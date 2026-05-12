@@ -1,5 +1,242 @@
 <!DOCTYPE html>
-<html>
-<head><title>SensorBees Hub</title></head>
-<body><h1>Welcome to SensorBees Hub</h1></body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SensorBees Hub - IoT Sensor Ecosystem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span class="bee-icon">🐝</span>
+            <span class="brand-name">SensorBees Hub</span>
+        </div>
+        <div class="nav-links">
+            <a href="#intro" class="active">Introduction</a>
+            <a href="#products">Products</a>
+            <a href="#gateways">Gateways</a>
+            <a href="#sensors">Sensors</a>
+            <a href="#platform">Platform</a>
+            <a href="#quickstart">Quick Start</a>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h4>Getting Started</h4>
+                <a href="#intro" class="sidebar-link active">Introduction</a>
+                <a href="#ecosystem" class="sidebar-link">Ecosystem</a>
+                <a href="#quickstart" class="sidebar-link">Quick Start Guide</a>
+            </div>
+            <div class="sidebar-section">
+                <h4>Hardware</h4>
+                <a href="#gateways" class="sidebar-link">Gateways</a>
+                <a href="#sensors" class="sidebar-link">Sensors</a>
+                <a href="#accessories" class="sidebar-link">Accessories</a>
+            </div>
+            <div class="sidebar-section">
+                <h4>Software</h4>
+                <a href="#platform" class="sidebar-link">Platform</a>
+                <a href="#api" class="sidebar-link">API & Integration</a>
+                <a href="#chirpstack" class="sidebar-link">ChirpStack Server</a>
+            </div>
+            <div class="sidebar-section">
+                <h4>Resources</h4>
+                <a href="#datasheets" class="sidebar-link">Datasheets</a>
+                <a href="#faq" class="sidebar-link">FAQ</a>
+                <a href="#support" class="sidebar-link">Support</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Hero Section -->
+            <section id="intro" class="hero">
+                <h1>SensorBees Hub Ecosystem</h1>
+                <p class="hero-subtitle">Industrial-grade IoT sensor solutions — from field to cloud</p>
+                <p>SensorBees Hub offers a comprehensive suite of LoRaWAN IoT solutions for digitalizing the world around us. From sensors to gateways, from edge to cloud — we help you monitor, collect, and analyze environmental data in real-time.</p>
+            </section>
+
+            <!-- Ecosystem -->
+            <section id="ecosystem">
+                <h2>Wild IoT — Sense the World</h2>
+                <p>Wild IoT refers to deploying sensor networks in natural environments to monitor and collect various environmental data in real-time. This includes temperature, humidity, air pressure, light intensity, soil moisture, and more.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Durable & Reliable</h3>
+                        <p>Industrial-grade sensors with high temperature, humidity, and corrosion resistance for stable operation in harsh outdoor conditions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>High Precision</h3>
+                        <p>Scientific-grade accuracy and stability for research and environmental monitoring applications.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔋</div>
+                        <h3>Ultra Low Power</h3>
+                        <p>Long battery life with low-power design, reducing maintenance frequency in remote deployments.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works -->
+            <section>
+                <h2>How It Works</h2>
+                <div class="workflow">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <h3>Data Collection</h3>
+                        <p>Sensors are deployed in the field to collect real-time environmental data.</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <h3>LoRaWAN Transmission</h3>
+                        <p>Data is transmitted to gateways via LoRaWAN long-range, low-power protocol.</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <h3>Cloud Processing</h3>
+                        <p>Gateways forward data to ChirpStack / cloud for storage and analysis.</p>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <h3>Visualization & Action</h3>
+                        <p>Real-time dashboards, alerts, and API integration for data-driven decisions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gateways -->
+            <section id="gateways">
+                <h2>Gateways</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-badge">Hot</div>
+                        <div class="product-img">📡</div>
+                        <h3>LPS8N</h3>
+                        <p class="product-desc">Indoor LoRaWAN Gateway</p>
+                        <ul>
+                            <li>Semtech SX1302 + SX1262</li>
+                            <li>CN470 / EU868 / US915</li>
+                            <li>WiFi & Ethernet</li>
+                            <li>120 × 120 × 30mm, 187g</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">📻</div>
+                        <h3>DLOS8</h3>
+                        <p class="product-desc">Outdoor LoRaWAN Gateway</p>
+                        <ul>
+                            <li>IP67 Weatherproof</li>
+                            <li>Solar Powered Option</li>
+                            <li>4G Cellular Backhaul</li>
+                            <li>Long Range Coverage</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sensors -->
+            <section id="sensors">
+                <h2>Sensors</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-img">🌡️</div>
+                        <h3>T68DL</h3>
+                        <p class="product-desc">Temperature & Humidity Sensor</p>
+                        <ul>
+                            <li>Range: -40°C ~ 85°C</li>
+                            <li>Accuracy: ±0.3°C / ±2% RH</li>
+                            <li>LoRaWAN Class A</li>
+                            <li>41 × 21.5 × 61.5mm</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">💧</div>
+                        <h3>Soil Moisture</h3>
+                        <p class="product-desc">Soil Moisture & Temperature</p>
+                        <ul>
+                            <li>Soil Moisture: 0~100%</li>
+                            <li>Soil Temperature: -20~60°C</li>
+                            <li>IP68 Waterproof Probe</li>
+                            <li>Agricultural Monitoring</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">💨</div>
+                        <h3>Air Quality</h3>
+                        <p class="product-desc">CO2 / PM2.5 / Air Quality</p>
+                        <ul>
+                            <li>Multi-parameter Monitoring</li>
+                            <li>Indoor / Outdoor</li>
+                            <li>Real-time Alerting</li>
+                            <li>Smart Building Integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Platform -->
+            <section id="platform">
+                <h2>Platform & Software</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🖥️</div>
+                        <h3>ChirpStack Server</h3>
+                        <p>Open-source LoRaWAN Network Server — manage gateways, devices, and data with ease.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Data Dashboard</h3>
+                        <p>Real-time visualization of sensor data with customizable dashboards and alerts.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3>REST API</h3>
+                        <p>Full API access for integration with your existing systems and workflows.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Start -->
+            <section id="quickstart">
+                <h2>Quick Start Guide</h2>
+                <div class="steps">
+                    <div class="step">
+                        <h3>1. Set up Gateway</h3>
+                        <p>Connect your LPS8N gateway to power and network. Access the web UI to configure LoRaWAN frequency plan (CN470).</p>
+                    </div>
+                    <div class="step">
+                        <h3>2. Deploy ChirpStack</h3>
+                        <p>Install ChirpStack v4 via Docker. Configure the network server and add your gateway.</p>
+                    </div>
+                    <div class="step">
+                        <h3>3. Register Sensors</h3>
+                        <p>Add your sensor devices in ChirpStack with the correct AppEUI, DevEUI, and AppKey.</p>
+                    </div>
+                    <div class="step">
+                        <h3>4. Monitor Data</h3>
+                        <p>View real-time sensor data, set up integrations, and build your dashboards.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>© 2026 SensorBees Hub by <a href="https://github.com/SpringbeeHub" target="_blank">SpringbeeHub</a> | Powered by LoRaWAN</p>
+            </footer>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
