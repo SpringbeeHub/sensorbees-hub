@@ -46,7 +46,11 @@ body {
     font-weight: 600;
 }
 
-.bee-icon { font-size: 24px; }
+.nav-logo {
+    height: 32px;
+    width: auto;
+    border-radius: 4px;
+}
 
 .nav-links {
     display: flex;
