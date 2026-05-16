@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SensorBees Hub - IoT Sensor Ecosystem</title>
+    <title>SpringBee Hub — IoT Sensor Knowledge Base</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/springbee-icon.png" type="image/png">
 </head>
 <body>
     <!-- Top Navigation -->
     <nav class="top-nav">
-        <div class="nav-brand">
-            <img src="assets/logo.png" alt="SensorBees Hub" class="nav-logo">
-            <span class="brand-name">SensorBees Hub</span>
-        </div>
+        <a href="#" class="nav-brand">
+            <img src="assets/springbee-icon.png" alt="SpringBee" class="nav-logo">
+            <span class="brand-name">Spring<span class="gold">Bee</span> Hub</span>
+        </a>
         <div class="nav-links">
-            <a href="#intro" class="active">Introduction</a>
-            <a href="#products">Products</a>
-            <a href="#gateways">Gateways</a>
+            <a href="#intro" class="active">Home</a>
             <a href="#sensors">Sensors</a>
-            <a href="#platform">Platform</a>
-            <a href="#quickstart">Quick Start</a>
+            <a href="#compatibility">Compatibility</a>
+            <a href="#network">Network</a>
+            <a href="#reports">Reports</a>
+            <a href="#faq">FAQ</a>
         </div>
     </nav>
 
@@ -30,23 +31,28 @@
                 <h4>Getting Started</h4>
                 <a href="#intro" class="sidebar-link active">Introduction</a>
                 <a href="#ecosystem" class="sidebar-link">Ecosystem</a>
-                <a href="#quickstart" class="sidebar-link">Quick Start Guide</a>
             </div>
             <div class="sidebar-section">
-                <h4>Hardware</h4>
-                <a href="#gateways" class="sidebar-link">Gateways</a>
-                <a href="#sensors" class="sidebar-link">Sensors</a>
-                <a href="#accessories" class="sidebar-link">Accessories</a>
+                <h4>Sensor Knowledge</h4>
+                <a href="#temp-humidity" class="sidebar-link">Temperature & Humidity</a>
+                <a href="#rs485" class="sidebar-link">RS485 Industrial</a>
+                <a href="#analog" class="sidebar-link">Analog (4~20mA)</a>
+                <a href="#agriculture" class="sidebar-link">Agriculture</a>
             </div>
             <div class="sidebar-section">
-                <h4>Software</h4>
-                <a href="#platform" class="sidebar-link">Platform</a>
-                <a href="#api" class="sidebar-link">API & Integration</a>
-                <a href="#chirpstack" class="sidebar-link">ChirpStack Server</a>
+                <h4>Compatibility</h4>
+                <a href="#dragino" class="sidebar-link">Dragino Nodes</a>
+                <a href="#milesight" class="sidebar-link">Milesight Nodes</a>
+            </div>
+            <div class="sidebar-section">
+                <h4>Network Setup</h4>
+                <a href="#lorawan-setup" class="sidebar-link">LoRaWAN</a>
+                <a href="#cellular-setup" class="sidebar-link">Cellular</a>
+                <a href="#topology" class="sidebar-link">Topology Guide</a>
             </div>
             <div class="sidebar-section">
                 <h4>Resources</h4>
-                <a href="#datasheets" class="sidebar-link">Datasheets</a>
+                <a href="#reports" class="sidebar-link">Test Reports</a>
                 <a href="#faq" class="sidebar-link">FAQ</a>
                 <a href="#support" class="sidebar-link">Support</a>
             </div>
@@ -56,183 +62,674 @@
         <main class="content">
             <!-- Hero Section -->
             <section id="intro" class="hero">
-                <h1>SensorBees Hub Ecosystem</h1>
-                <p class="hero-subtitle">Industrial-grade IoT sensor solutions — from field to cloud</p>
-                <p>SensorBees Hub offers a comprehensive suite of LoRaWAN IoT solutions for digitalizing the world around us. From sensors to gateways, from edge to cloud — we help you monitor, collect, and analyze environmental data in real-time.</p>
+                <span class="hero-badge">🐝 IoT Sensor Ecosystem</span>
+                <h1>SpringBee Hub</h1>
+                <p class="hero-subtitle">Your comprehensive knowledge base for industrial IoT sensors — from product fundamentals to wireless network deployment.</p>
+                <p>We help you select the right sensors, configure compatible hardware, and build reliable wireless data collection networks with LoRaWAN and Cellular connectivity.</p>
+                <div class="hero-cta">
+                    <a href="#sensors" class="btn btn-primary">📚 Explore Sensors</a>
+                    <a href="#network" class="btn btn-outline">📡 Build Your Network</a>
+                </div>
             </section>
 
-            <!-- Ecosystem -->
+            <!-- Core Value -->
             <section id="ecosystem">
-                <h2>Wild IoT — Sense the World</h2>
-                <p>Wild IoT refers to deploying sensor networks in natural environments to monitor and collect various environmental data in real-time. This includes temperature, humidity, air pressure, light intensity, soil moisture, and more.</p>
-                
+                <h2><span class="emoji">🎯</span>Core Advantages</h2>
                 <div class="feature-grid">
                     <div class="feature-card">
                         <div class="feature-icon">🛡️</div>
-                        <h3>Durable & Reliable</h3>
-                        <p>Industrial-grade sensors with high temperature, humidity, and corrosion resistance for stable operation in harsh outdoor conditions.</p>
+                        <h3>Industrial Durability</h3>
+                        <p>IP67/IP68 rated sensors built for harsh outdoor and industrial environments — temperature extremes, humidity, corrosion resistance.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3>High Precision</h3>
-                        <p>Scientific-grade accuracy and stability for research and environmental monitoring applications.</p>
+                        <div class="feature-icon">🔬</div>
+                        <h3>Precision & Accuracy</h3>
+                        <p>Scientific-grade measurement accuracy with stable long-term performance for research and critical monitoring applications.</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🔋</div>
+                        <div class="feature-icon">⚡</div>
                         <h3>Ultra Low Power</h3>
-                        <p>Long battery life with low-power design, reducing maintenance frequency in remote deployments.</p>
+                        <p>Years of battery life with optimized low-power design, minimizing maintenance in remote and large-scale deployments.</p>
                     </div>
                 </div>
             </section>
 
             <!-- How It Works -->
             <section>
-                <h2>How It Works</h2>
+                <h2><span class="emoji">⚙️</span>How It Works</h2>
                 <div class="workflow">
                     <div class="workflow-step">
                         <div class="step-number">1</div>
-                        <h3>Data Collection</h3>
-                        <p>Sensors are deployed in the field to collect real-time environmental data.</p>
+                        <h3>Sense</h3>
+                        <p>Sensors collect environmental data in the field</p>
                     </div>
                     <div class="workflow-arrow">→</div>
                     <div class="workflow-step">
                         <div class="step-number">2</div>
-                        <h3>LoRaWAN Transmission</h3>
-                        <p>Data is transmitted to gateways via LoRaWAN long-range, low-power protocol.</p>
+                        <h3>Transmit</h3>
+                        <p>Data sent wirelessly via LoRaWAN or Cellular</p>
                     </div>
                     <div class="workflow-arrow">→</div>
                     <div class="workflow-step">
                         <div class="step-number">3</div>
-                        <h3>Cloud Processing</h3>
-                        <p>Gateways forward data to ChirpStack / cloud for storage and analysis.</p>
+                        <h3>Process</h3>
+                        <p>Gateways forward to ChirpStack / Cloud server</p>
                     </div>
                     <div class="workflow-arrow">→</div>
                     <div class="workflow-step">
                         <div class="step-number">4</div>
-                        <h3>Visualization & Action</h3>
-                        <p>Real-time dashboards, alerts, and API integration for data-driven decisions.</p>
+                        <h3>Visualize</h3>
+                        <p>Real-time dashboards, alerts & API integration</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Gateways -->
-            <section id="gateways">
-                <h2>Gateways</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-badge">Hot</div>
-                        <div class="product-img">📡</div>
-                        <h3>LPS8N</h3>
-                        <p class="product-desc">Indoor LoRaWAN Gateway</p>
-                        <ul>
-                            <li>Semtech SX1302 + SX1262</li>
-                            <li>CN470 / EU868 / US915</li>
-                            <li>WiFi & Ethernet</li>
-                            <li>120 × 120 × 30mm, 187g</li>
-                        </ul>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-img">📻</div>
-                        <h3>DLOS8</h3>
-                        <p class="product-desc">Outdoor LoRaWAN Gateway</p>
-                        <ul>
-                            <li>IP67 Weatherproof</li>
-                            <li>Solar Powered Option</li>
-                            <li>4G Cellular Backhaul</li>
-                            <li>Long Range Coverage</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Sensors -->
+            <!-- ========================================== -->
+            <!-- SECTION 1: Sensor Product Knowledge        -->
+            <!-- ========================================== -->
             <section id="sensors">
-                <h2>Sensors</h2>
+                <h2><span class="emoji">📡</span>Sensor Product Knowledge</h2>
+                <p>SpringBee sensors cover a wide range of industrial and environmental monitoring scenarios. Select a category to learn about product fundamentals, specifications, and application guidance.</p>
+
+                <div class="category-grid">
+                    <a href="#temp-humidity" class="category-card">
+                        <div class="cat-icon">🌡️</div>
+                        <h3>Temperature & Humidity</h3>
+                        <p>Ambient & surface monitoring</p>
+                    </a>
+                    <a href="#rs485" class="category-card">
+                        <div class="cat-icon">🔌</div>
+                        <h3>RS485 Industrial</h3>
+                        <p>Modbus RTU sensors</p>
+                    </a>
+                    <a href="#analog" class="category-card">
+                        <div class="cat-icon">📈</div>
+                        <h3>Analog (4~20mA)</h3>
+                        <p>Current loop sensors</p>
+                    </a>
+                    <a href="#agriculture" class="category-card">
+                        <div class="cat-icon">🌾</div>
+                        <h3>Agriculture</h3>
+                        <p>Soil, weather & crop monitoring</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Temperature & Humidity -->
+            <section id="temp-humidity">
+                <h2><span class="emoji">🌡️</span>Temperature & Humidity Sensors</h2>
+                <p>Monitor ambient temperature and humidity for smart buildings, warehouses, greenhouses, and industrial facilities. Features high-accuracy sensing with LoRaWAN wireless transmission.</p>
+
                 <div class="product-grid">
                     <div class="product-card">
+                        <div class="product-badge">Popular</div>
                         <div class="product-img">🌡️</div>
                         <h3>T68DL</h3>
-                        <p class="product-desc">Temperature & Humidity Sensor</p>
+                        <p class="product-desc">LoRaWAN Temperature & Humidity Sensor</p>
                         <ul>
-                            <li>Range: -40°C ~ 85°C</li>
+                            <li>Range: -40°C ~ 85°C / 0~100% RH</li>
                             <li>Accuracy: ±0.3°C / ±2% RH</li>
-                            <li>LoRaWAN Class A</li>
-                            <li>41 × 21.5 × 61.5mm</li>
+                            <li>LoRaWAN Class A, CN470</li>
+                            <li>41 × 21.5 × 61.5mm, battery powered</li>
                         </ul>
                     </div>
                     <div class="product-card">
-                        <div class="product-img">💧</div>
-                        <h3>Soil Moisture</h3>
-                        <p class="product-desc">Soil Moisture & Temperature</p>
+                        <div class="product-img">🏠</div>
+                        <h3>Indoor TH Sensor</h3>
+                        <p class="product-desc">Wall-mounted ambient monitoring</p>
                         <ul>
-                            <li>Soil Moisture: 0~100%</li>
-                            <li>Soil Temperature: -20~60°C</li>
-                            <li>IP68 Waterproof Probe</li>
-                            <li>Agricultural Monitoring</li>
+                            <li>Indoor temperature & humidity</li>
+                            <li>Low power, long battery life</li>
+                            <li>Suitable for offices & warehouses</li>
+                            <li>Easy installation, magnetic mount</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RS485 Industrial -->
+            <section id="rs485">
+                <h2><span class="emoji">🔌</span>RS485 Industrial Sensors</h2>
+                <p>RS485 Modbus RTU sensors for industrial process monitoring. Connect via LoRaWAN RS485 nodes for wireless data transmission. Support various industrial measurement parameters.</p>
+
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-img">⚗️</div>
+                        <h3>Liquid Level</h3>
+                        <p class="product-desc">RS485 Modbus Liquid Level Sensor</p>
+                        <ul>
+                            <li>Range: 0~5m / 0~10m</li>
+                            <li>Modbus RTU RS485 output</li>
+                            <li>IP68 waterproof probe</li>
+                            <li>Water tank & well monitoring</li>
                         </ul>
                     </div>
                     <div class="product-card">
                         <div class="product-img">💨</div>
-                        <h3>Air Quality</h3>
-                        <p class="product-desc">CO2 / PM2.5 / Air Quality</p>
+                        <h3>Pressure</h3>
+                        <p class="product-desc">RS485 Modbus Pressure Transmitter</p>
                         <ul>
-                            <li>Multi-parameter Monitoring</li>
-                            <li>Indoor / Outdoor</li>
-                            <li>Real-time Alerting</li>
-                            <li>Smart Building Integration</li>
+                            <li>Range: 0~1.6MPa customizable</li>
+                            <li>High precision ±0.5% FS</li>
+                            <li>Stainless steel housing</li>
+                            <li>Industrial process control</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">🔧</div>
+                        <h3>Flow Meter</h3>
+                        <p class="product-desc">RS485 Electromagnetic Flow</p>
+                        <ul>
+                            <li>DN15~DN600 pipe diameter</li>
+                            <li>Accuracy: ±0.5%</li>
+                            <li>Modbus RTU communication</li>
+                            <li>Water / wastewater / chemical</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- Platform -->
-            <section id="platform">
-                <h2>Platform & Software</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🖥️</div>
-                        <h3>ChirpStack Server</h3>
-                        <p>Open-source LoRaWAN Network Server — manage gateways, devices, and data with ease.</p>
+            <!-- Analog 4~20mA -->
+            <section id="analog">
+                <h2><span class="emoji">📈</span>Analog Sensors (4~20mA)</h2>
+                <p>Traditional 4~20mA current loop sensors widely used in industrial automation. Convert to wireless with LoRaWAN analog input nodes for seamless integration.</p>
+
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-img">📊</div>
+                        <h3>4~20mA Sensor Adapter</h3>
+                        <p class="product-desc">LoRaWAN Analog Input Node</p>
+                        <ul>
+                            <li>1~4 channel 4~20mA input</li>
+                            <li>Compatible with standard transmitters</li>
+                            <li>12-bit ADC resolution</li>
+                            <li>Industrial DIN-rail mount</li>
+                        </ul>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>Data Dashboard</h3>
-                        <p>Real-time visualization of sensor data with customizable dashboards and alerts.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔗</div>
-                        <h3>REST API</h3>
-                        <p>Full API access for integration with your existing systems and workflows.</p>
+                    <div class="product-card">
+                        <div class="product-img">🏭</div>
+                        <h3>Pressure Transmitter</h3>
+                        <p class="product-desc">4~20mA Industrial Pressure</p>
+                        <ul>
+                            <li>0~10MPa range options</li>
+                            <li>4~20mA two-wire output</li>
+                            <li>Explosion-proof available</li>
+                            <li>Oil & gas / hydraulic systems</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- Quick Start -->
-            <section id="quickstart">
-                <h2>Quick Start Guide</h2>
-                <div class="steps">
-                    <div class="step">
-                        <h3>1. Set up Gateway</h3>
-                        <p>Connect your LPS8N gateway to power and network. Access the web UI to configure LoRaWAN frequency plan (CN470).</p>
+            <!-- Agriculture -->
+            <section id="agriculture">
+                <h2><span class="emoji">🌾</span>Agriculture Sensors</h2>
+                <p>Specialized sensors for precision agriculture — soil monitoring, microclimate, and irrigation management. Built for outdoor durability and long-term deployment.</p>
+
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-badge">Hot</div>
+                        <div class="product-img">🌱</div>
+                        <h3>Soil Moisture & Temp</h3>
+                        <p class="product-desc">LoRaWAN Soil Sensor</p>
+                        <ul>
+                            <li>Moisture: 0~100% VWC</li>
+                            <li>Temperature: -20~60°C</li>
+                            <li>IP68 waterproof probe</li>
+                            <li>Agricultural & greenhouse use</li>
+                        </ul>
                     </div>
-                    <div class="step">
-                        <h3>2. Deploy ChirpStack</h3>
-                        <p>Install ChirpStack v4 via Docker. Configure the network server and add your gateway.</p>
+                    <div class="product-card">
+                        <div class="product-img">☀️</div>
+                        <h3>Weather Station</h3>
+                        <p class="product-desc">LoRaWAN Microclimate Sensor</p>
+                        <ul>
+                            <li>Wind speed / direction</li>
+                            <li>Rainfall / solar radiation</li>
+                            <li>Temperature / humidity / pressure</li>
+                            <li>Farm & orchard monitoring</li>
+                        </ul>
                     </div>
-                    <div class="step">
-                        <h3>3. Register Sensors</h3>
-                        <p>Add your sensor devices in ChirpStack with the correct AppEUI, DevEUI, and AppKey.</p>
+                    <div class="product-card">
+                        <div class="product-img">🧪</div>
+                        <h3>Soil NPK</h3>
+                        <p class="product-desc">LoRaWAN Soil Nutrient Sensor</p>
+                        <ul>
+                            <li>Nitrogen / Phosphorus / Potassium</li>
+                            <li>Soil pH & EC</li>
+                            <li>RS485 Modbus RTU</li>
+                            <li>Precision fertilization guidance</li>
+                        </ul>
                     </div>
-                    <div class="step">
-                        <h3>4. Monitor Data</h3>
-                        <p>View real-time sensor data, set up integrations, and build your dashboards.</p>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SECTION 2: Product Compatibility           -->
+            <!-- ========================================== -->
+            <section id="compatibility">
+                <h2><span class="emoji">🔗</span>Product Compatibility</h2>
+                <p>SpringBee sensors are compatible with mainstream LoRaWAN node manufacturers. Below are the supported brands and their compatible gateway/sensor models.</p>
+
+                <div class="compat-section" id="dragino">
+                    <div class="compat-header">
+                        <span class="brand-tag">🟡 Dragino</span>
+                        <span style="font-size:13px;color:var(--text-light);">LoRaWAN Gateways & Sensor Nodes</span>
+                    </div>
+                    <div class="compat-placeholder">
+                        <div class="placeholder-icon">📋</div>
+                        <p><strong>Compatible Dragino models coming soon</strong></p>
+                        <p style="font-size:12px;margin-top:6px;">Gateway: LPS8N, DLOS8, DLOS6 · Sensor nodes: LHT65, LSE01, LSN50v2…</p>
+                        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">This section will be updated with detailed compatibility matrix.</p>
+                    </div>
+                </div>
+
+                <div class="compat-section" id="milesight" style="margin-top:16px;">
+                    <div class="compat-header">
+                        <span class="brand-tag">🟢 Milesight</span>
+                        <span style="font-size:13px;color:var(--text-light);">LoRaWAN Gateways & Sensor Nodes</span>
+                    </div>
+                    <div class="compat-placeholder">
+                        <div class="placeholder-icon">📋</div>
+                        <p><strong>Compatible Milesight models coming soon</strong></p>
+                        <p style="font-size:12px;margin-top:6px;">Gateway: UG65, UG67 · Sensor nodes: AM319, EM500, WS301…</p>
+                        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">This section will be updated with detailed compatibility matrix.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SECTION 3: Wireless Network Setup          -->
+            <!-- ========================================== -->
+            <section id="network">
+                <h2><span class="emoji">🌐</span>Build Your Wireless Network</h2>
+                <p>Transform your sensor deployment from wired to wireless. Choose the right connectivity for your scenario — LoRaWAN for long-range, low-power applications; Cellular for areas without gateway coverage.</p>
+
+                <div class="net-tabs">
+                    <button class="net-tab active" data-tab="lorawan">📡 LoRaWAN</button>
+                    <button class="net-tab" data-tab="cellular">📱 Cellular (4G/NB-IoT)</button>
+                </div>
+
+                <!-- LoRaWAN Panel -->
+                <div class="net-panel active" id="panel-lorawan">
+                    <div id="lorawan-setup">
+                        <p><strong>LoRaWAN</strong> is ideal for large-scale sensor deployments over wide areas (up to 15km line-of-sight). Ultra low power consumption enables years of battery life for field sensors.</p>
+
+                        <h3>LoRaWAN Network Architecture</h3>
+                        <div class="topology-container">
+                            <div class="topology-diagram">
+                                <!-- Layer 1: Sensors -->
+                                <div class="topo-row">
+                                    <div class="topo-node">
+                                        <div class="topo-icon">🌡️</div>
+                                        <div class="topo-label">TH Sensor</div>
+                                    </div>
+                                    <div class="topo-node">
+                                        <div class="topo-icon">🌱</div>
+                                        <div class="topo-label">Soil Sensor</div>
+                                    </div>
+                                    <div class="topo-node">
+                                        <div class="topo-icon">🔌</div>
+                                        <div class="topo-label">RS485 Node</div>
+                                    </div>
+                                    <div class="topo-node">
+                                        <div class="topo-icon">📈</div>
+                                        <div class="topo-label">Analog Node</div>
+                                    </div>
+                                    <div class="topo-node">
+                                        <div class="topo-icon">💨</div>
+                                        <div class="topo-label">Air Quality</div>
+                                    </div>
+                                </div>
+
+                                <!-- Arrow -->
+                                <div class="topo-row">
+                                    <span class="topo-arrow">⬇ LoRa Radio (CN470/EU868/US915)</span>
+                                </div>
+
+                                <!-- Layer 2: Gateways -->
+                                <div class="topo-row">
+                                    <div class="topo-node highlight">
+                                        <div class="topo-icon">📡</div>
+                                        <div class="topo-label">LPS8N</div>
+                                        <div class="topo-desc">Indoor Gateway</div>
+                                    </div>
+                                    <div class="topo-node highlight">
+                                        <div class="topo-icon">📻</div>
+                                        <div class="topo-label">DLOS8</div>
+                                        <div class="topo-desc">Outdoor Gateway</div>
+                                    </div>
+                                </div>
+
+                                <!-- Arrow -->
+                                <div class="topo-row">
+                                    <span class="topo-arrow">⬇ Ethernet / WiFi / 4G Backhaul</span>
+                                </div>
+
+                                <!-- Layer 3: Server -->
+                                <div class="topo-row">
+                                    <div class="topo-node highlight">
+                                        <div class="topo-icon">🖥️</div>
+                                        <div class="topo-label">ChirpStack / Cloud</div>
+                                        <div class="topo-desc">LoRaWAN Network Server</div>
+                                    </div>
+                                </div>
+
+                                <!-- Arrow -->
+                                <div class="topo-row">
+                                    <span class="topo-arrow">⬇ MQTT / HTTP API</span>
+                                </div>
+
+                                <!-- Layer 4: Application -->
+                                <div class="topo-row">
+                                    <div class="topo-node">
+                                        <div class="topo-icon">📊</div>
+                                        <div class="topo-label">Dashboard</div>
+                                    </div>
+                                    <div class="topo-node">
+                                        <div class="topo-icon">🔔</div>
+                                        <div class="topo-label">Alerts</div>
+                                    </div>
+                                    <div class="topo-node">
+                                        <div class="topo-icon">🔗</div>
+                                        <div class="topo-label">API / Integration</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>Quick Setup Steps</h3>
+                        <div class="steps">
+                            <div class="step">
+                                <h3>1. Deploy Gateway</h3>
+                                <p>Install LPS8N (indoor) or DLOS8 (outdoor) gateway, connect to network via Ethernet/WiFi/4G. Configure frequency plan (CN470 for China).</p>
+                            </div>
+                            <div class="step">
+                                <h3>2. Set Up ChirpStack</h3>
+                                <p>Deploy ChirpStack v4 via Docker. Add gateway, create application and device profiles.</p>
+                            </div>
+                            <div class="step">
+                                <h3>3. Register Devices</h3>
+                                <p>Add sensor devices in ChirpStack with correct AppEUI, DevEUI, and AppKey (OTAA) or ABP credentials.</p>
+                            </div>
+                            <div class="step">
+                                <h3>4. Integrate & Visualize</h3>
+                                <p>Set up MQTT/HTTP integration to forward data to your dashboard, database, or business system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cellular Panel -->
+                <div class="net-panel" id="panel-cellular">
+                    <div id="cellular-setup">
+                        <p><strong>Cellular (4G/NB-IoT)</strong> is ideal when LoRaWAN gateway deployment isn't feasible — remote sites, mobile assets, or scenarios requiring direct cloud connectivity without local infrastructure.</p>
+
+                        <h3>Cellular Network Architecture</h3>
+                        <div class="topology-container">
+                            <div class="topology-diagram">
+                                <!-- Layer 1: Sensors -->
+                                <div class="topo-row">
+                                    <div class="topo-node">
+                                        <div class="topo-icon">🌡️</div>
+                                        <div class="topo-label">TH Sensor</div>
+                                    </div>
+                                    <div class="topo-node">
+                                        <div class="topo-icon">🌱</div>
+                                        <div class="topo-label">Soil Sensor</div>
+                                    </div>
+                                    <div class="topo-node">
+                                        <div class="topo-icon">🔌</div>
+                                        <div class="topo-label">RS485 Node</div>
+                                    </div>
+                                </div>
+
+                                <!-- Arrow -->
+                                <div class="topo-row">
+                                    <span class="topo-arrow">⬇ Wired / RS485 / Analog</span>
+                                </div>
+
+                                <!-- Layer 2: Cellular Gateway -->
+                                <div class="topo-row">
+                                    <div class="topo-node highlight">
+                                        <div class="topo-icon">📱</div>
+                                        <div class="topo-label">4G/NB-IoT DTU</div>
+                                        <div class="topo-desc">Cellular Data Terminal</div>
+                                    </div>
+                                </div>
+
+                                <!-- Arrow -->
+                                <div class="topo-row">
+                                    <span class="topo-arrow">⬇ 4G / NB-IoT / LTE-M</span>
+                                </div>
+
+                                <!-- Layer 3: Cloud -->
+                                <div class="topo-row">
+                                    <div class="topo-node highlight">
+                                        <div class="topo-icon">☁️</div>
+                                        <div class="topo-label">Cloud Platform</div>
+                                        <div class="topo-desc">MQTT Broker / HTTP Server</div>
+                                    </div>
+                                </div>
+
+                                <!-- Arrow -->
+                                <div class="topo-row">
+                                    <span class="topo-arrow">⬇ API / WebSocket</span>
+                                </div>
+
+                                <!-- Layer 4: Application -->
+                                <div class="topo-row">
+                                    <div class="topo-node">
+                                        <div class="topo-icon">📊</div>
+                                        <div class="topo-label">Dashboard</div>
+                                    </div>
+                                    <div class="topo-node">
+                                        <div class="topo-icon">🔔</div>
+                                        <div class="topo-label">Alerts</div>
+                                    </div>
+                                    <div class="topo-node">
+                                        <div class="topo-icon">🔗</div>
+                                        <div class="topo-label">API / Integration</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>When to Use Cellular</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🏜️</div>
+                                <h3>Remote Sites</h3>
+                                <p>No gateway infrastructure needed — works anywhere with cellular coverage.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🚚</div>
+                                <h3>Mobile Assets</h3>
+                                <p>Track and monitor moving equipment, vehicles, or livestock.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">⚡</div>
+                                <h3>Quick Deploy</h3>
+                                <p>Get online in minutes — no network planning or gateway installation required.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SECTION 4: Test Reports                    -->
+            <!-- ========================================== -->
+            <section id="reports">
+                <h2><span class="emoji">📋</span>Test Reports & Downloads</h2>
+                <p>Download official test reports, certification documents, and technical data for SpringBee sensor products.</p>
+
+                <div class="download-grid">
+                    <a href="#" class="download-card">
+                        <div class="download-icon">🌡️</div>
+                        <div class="download-info">
+                            <h4>T68DL Test Report</h4>
+                            <p>Temperature & Humidity accuracy verification</p>
+                        </div>
+                        <span class="download-arrow">↓</span>
+                    </a>
+                    <a href="#" class="download-card">
+                        <div class="download-icon">🌱</div>
+                        <div class="download-info">
+                            <h4>Soil Sensor Test Report</h4>
+                            <p>Soil moisture & temperature calibration data</p>
+                        </div>
+                        <span class="download-arrow">↓</span>
+                    </a>
+                    <a href="#" class="download-card">
+                        <div class="download-icon">📡</div>
+                        <div class="download-info">
+                            <h4>LPS8N Gateway Report</h4>
+                            <p>Gateway RF performance & range test</p>
+                        </div>
+                        <span class="download-arrow">↓</span>
+                    </a>
+                    <a href="#" class="download-card">
+                        <div class="download-icon">🔌</div>
+                        <div class="download-info">
+                            <h4>RS485 Sensor Compatibility</h4>
+                            <p>Modbus RTU device compatibility matrix</p>
+                        </div>
+                        <span class="download-arrow">↓</span>
+                    </a>
+                    <a href="#" class="download-card">
+                        <div class="download-icon">📻</div>
+                        <div class="download-info">
+                            <h4>DLOS8 Outdoor Report</h4>
+                            <p>Weatherproof & solar performance data</p>
+                        </div>
+                        <span class="download-arrow">↓</span>
+                    </a>
+                    <a href="#" class="download-card">
+                        <div class="download-icon">🏭</div>
+                        <div class="download-info">
+                            <h4>Analog Sensor Report</h4>
+                            <p>4~20mA adapter accuracy & linearity</p>
+                        </div>
+                        <span class="download-arrow">↓</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SECTION 5: FAQ                            -->
+            <!-- ========================================== -->
+            <section id="faq">
+                <h2><span class="emoji">❓</span>Frequently Asked Questions</h2>
+
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span><span class="q-badge">Q</span> What frequency band should I use?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>For China, use CN470. For Europe, use EU868. For North America, use US915. Make sure your gateway and sensors are configured to the same frequency plan. All SpringBee sensors support common LoRaWAN frequency bands.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span><span class="q-badge">Q</span> How long does the sensor battery last?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Battery life depends on reporting interval. At 1 report per 5 minutes, most SpringBee sensors last 2~5 years. Increasing the interval to 15 minutes can extend life to 5~10 years. RS485 sensors require external power.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span><span class="q-badge">Q</span> What is the wireless range of LoRaWAN?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Line-of-sight: up to 15km with outdoor gateway (DLOS8). Urban: 2~5km with indoor gateway (LPS8N). Indoor: 500m~1km through walls. Range depends on antenna, elevation, and obstacles.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span><span class="q-badge">Q</span> Can I use my own cloud platform?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes. ChirpStack supports MQTT and HTTP integrations to forward data to any platform — AWS IoT, Azure, ThingsBoard, Grafana, or your custom backend. Data format is standard JSON via MQTT topics.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span><span class="q-badge">Q</span> How do RS485 sensors connect wirelessly?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>RS485 sensors connect to a LoRaWAN RS485 node (like Dragino LSN50v2) via Modbus RTU. The node reads sensor data periodically and transmits via LoRaWAN to the gateway. Up to 8 RS485 sensors can share one node with different Modbus addresses.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span><span class="q-badge">Q</span> LoRaWAN vs Cellular — which should I choose?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Choose LoRaWAN</strong> when: you have many sensors in a concentrated area, need long battery life, and can deploy a gateway.<br><strong>Choose Cellular</strong> when: you have few sensors in remote locations, no gateway infrastructure is available, or you need quick standalone deployment.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span><span class="q-badge">Q</span> How do I register a sensor on ChirpStack?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>In ChirpStack: go to your Application → Devices → Add. Enter DevEUI, AppEUI, and AppKey from the sensor label. Select the correct Device Profile (OTAA recommended). Power on the sensor — it should join within 1~2 minutes and start reporting data.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- Accessories                                -->
+            <!-- ========================================== -->
+            <section id="accessories">
+                <h2><span class="emoji">🧰</span>Accessories & Add-ons</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-img">📶</div>
+                        <h3>LoRa Antenna</h3>
+                        <p class="product-desc">Gateway & Node Antennas</p>
+                        <ul>
+                            <li>Various gain options (3dBi~10dBi)</li>
+                            <li>Fiberglass outdoor / SMA indoor</li>
+                            <li>Frequency-matched to gateway</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">🔋</div>
+                        <h3>UPS Power Supply</h3>
+                        <p class="product-desc">Uninterruptible Power for Gateways</p>
+                        <ul>
+                            <li>DC 12V/5V output</li>
+                            <li>Battery backup 4~8 hours</li>
+                            <li>Ensure 24/7 gateway uptime</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">⚡</div>
+                        <h3>Lightning Protection</h3>
+                        <p class="product-desc">Surge Protector Kit</p>
+                        <ul>
+                            <li>Coaxial lightning arrester</li>
+                            <li>For outdoor gateway antenna</li>
+                            <li>Grounding cable included</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
             <!-- Footer -->
             <footer class="footer">
-                <p>© 2026 SensorBees Hub by <a href="https://github.com/SpringbeeHub" target="_blank">SpringbeeHub</a> | Powered by LoRaWAN</p>
+                <p>© 2026 SpringBee Hub by <a href="https://github.com/SpringbeeHub" target="_blank">SpringbeeHub</a> — Powered by LoRaWAN & Cellular IoT</p>
             </footer>
         </main>
     </div>
