@@ -2,8 +2,6 @@ backend:
   name: github
   repo: SpringbeeHub/sensorbees-hub
   branch: main
-  auth_type: pkce
-  app_id: Ov23li5KyrZgbV8Hmj6m
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
