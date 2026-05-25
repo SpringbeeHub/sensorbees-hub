@@ -5,9 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Content Manager | SpringBees Hub</title>
-  <link href="config.yml" type="text/yaml" rel="cms-config">
   <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
 </head>
 <body>
+  <script>
+    // Load config.yml via fetch and inject it
+    fetch('config.yml')
+      .then(r => r.text())
+      .then(text => {
+        const blob = new Blob([text], { type: 'text/yaml' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('link');
+        link.href = url;
+        link.type = 'text/yaml';
+        link.rel = 'cms-config';
+        document.head.appendChild(link);
+      });
+  </script>
 </body>
 </html>
