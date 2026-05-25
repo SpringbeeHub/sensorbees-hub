@@ -2,7 +2,7 @@ backend:
   name: github
   repo: SpringbeeHub/sensorbees-hub
   branch: main
-  base_url: https://api.netlify.com/auth/done
+  base_url: https://api.netlify.com
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
