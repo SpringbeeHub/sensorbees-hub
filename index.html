@@ -55,6 +55,7 @@
                 <a href="#reports" class="sidebar-link">Test Reports</a>
                 <a href="#faq" class="sidebar-link">FAQ</a>
                 <a href="#support" class="sidebar-link">Support</a>
+                <a href="#contact" class="sidebar-link">Contact</a>
             </div>
         </aside>
 
@@ -725,6 +726,46 @@
                         </ul>
                     </div>
                 </div>
+            </section>
+
+            <!-- Contact Form -->
+            <section id="contact">
+                <h2><span class="emoji">✉️</span>Contact Us</h2>
+                <p>Have questions about our sensors or need a custom solution? Send us a message and we'll get back to you within 24 hours.</p>
+                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p class="hidden" style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" placeholder="Your company name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option value="">Select a topic</option>
+                            <option value="Product Inquiry">Product Inquiry</option>
+                            <option value="Technical Support">Technical Support</option>
+                            <option value="Custom Solution">Custom Solution</option>
+                            <option value="Partnership">Partnership</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project or question..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
             </section>
 
             <!-- Footer -->
