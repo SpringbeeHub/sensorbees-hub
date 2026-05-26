@@ -230,6 +230,24 @@ function toggleFaq(el) {
         });
 })();
 
+// Contact modal toggle
+function toggleContactModal() {
+    const overlay = document.getElementById('contactModalOverlay');
+    if (!overlay) return;
+    overlay.classList.toggle('active');
+    document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const overlay = document.getElementById('contactModalOverlay');
+        if (overlay && overlay.classList.contains('active')) {
+            toggleContactModal();
+        }
+    }
+});
+
 // Network tabs
 document.querySelectorAll('.net-tab').forEach(tab => {
     tab.addEventListener('click', function () {
