@@ -938,14 +938,15 @@ body {
 .nav-badge {
     background: var(--gold) !important;
     color: var(--navy) !important;
-    padding: 8px 22px !important;
+    padding: 4px 16px !important;
     border-radius: 999px;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 12px;
     text-decoration: none;
     transition: background 0.2s, transform 0.15s;
     white-space: nowrap;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    line-height: 1.8;
 }
 .nav-badge:hover {
     background: var(--gold-dark) !important;
