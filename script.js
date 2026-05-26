@@ -230,6 +230,36 @@ function toggleFaq(el) {
         });
 })();
 
+// Contact form AJAX submission
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+        })
+        .then(response => {
+            if (response.ok) {
+                // Show success message
+                const fields = contactForm.querySelectorAll('.form-group, .form-row, button[type=submit]');
+                fields.forEach(f => f.style.display = 'none');
+                document.getElementById('formSuccess').style.display = 'block';
+                // Reset after 3 seconds and close modal
+                setTimeout(() => {
+                    fields.forEach(f => f.style.display = '');
+                    document.getElementById('formSuccess').style.display = 'none';
+                    contactForm.reset();
+                    toggleContactModal();
+                }, 3000);
+            }
+        })
+        .catch(error => console.error('Form submission error:', error));
+    });
+}
+
 // Contact modal toggle
 function toggleContactModal() {
     const overlay = document.getElementById('contactModalOverlay');
