@@ -243,7 +243,7 @@ if (contactForm) {
         const message = formData.get('message');
 
         // Notify Feishu via serverless function
-        fetch('/functions/notify-feishu', {
+        fetch('/notify-feishu', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, company, subject, message })
