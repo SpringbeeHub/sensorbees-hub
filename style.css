@@ -938,8 +938,8 @@ body {
 .nav-badge {
     background: var(--gold) !important;
     color: var(--navy) !important;
-    padding: 6px 18px !important;
-    border-radius: 50px;
+    padding: 8px 22px !important;
+    border-radius: 999px;
     font-weight: 600;
     font-size: 13px;
     text-decoration: none;
