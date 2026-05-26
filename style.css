@@ -937,17 +937,19 @@ body {
 /* Header badge link */
 .nav-badge {
     background: var(--gold) !important;
-    color: #fff !important;
-    padding: 4px 14px !important;
-    border-radius: 20px;
+    color: var(--navy) !important;
+    padding: 6px 18px !important;
+    border-radius: 50px;
     font-weight: 600;
     font-size: 13px;
     text-decoration: none;
     transition: background 0.2s, transform 0.15s;
     white-space: nowrap;
+    letter-spacing: 0.3px;
 }
 .nav-badge:hover {
     background: var(--gold-dark) !important;
+    color: var(--navy) !important;
     transform: scale(1.05);
 }
 
