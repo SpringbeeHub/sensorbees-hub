@@ -1,5 +1,3 @@
-const crypto = require('crypto');
-
 export async function onRequestPost(context) {
     const FEISHU_WEBHOOK = context.env.FEISHU_WEBHOOK_URL;
     const FEISHU_SECRET = context.env.FEISHU_WEBHOOK_SECRET || '';
@@ -42,12 +40,20 @@ export async function onRequestPost(context) {
             }
         };
 
+        // Feishu signature verification
         if (FEISHU_SECRET) {
             const timestamp = Math.floor(Date.now() / 1000).toString();
             const stringToSign = `${timestamp}\n${FEISHU_SECRET}`;
-            const hmac = crypto.createHmac('sha256', stringToSign);
-            hmac.update('');
-            const sign = hmac.digest('base64');
+            const encoder = new TextEncoder();
+            const key = await crypto.subtle.importKey(
+                'raw',
+                encoder.encode(stringToSign),
+                { name: 'HMAC', hash: 'SHA-256' },
+                false,
+                ['sign']
+            );
+            const signature = await crypto.subtle.sign('HMAC', key, encoder.encode(''));
+            const sign = btoa(String.fromCharCode(...new Uint8Array(signature)));
             feishuBody.timestamp = timestamp;
             feishuBody.sign = sign;
         }
