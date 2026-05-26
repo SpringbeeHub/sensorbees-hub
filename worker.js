@@ -1,6 +1,20 @@
-export async function onRequestPost(context) {
-    const FEISHU_WEBHOOK = context.env.FEISHU_WEBHOOK_URL;
-    const FEISHU_SECRET = context.env.FEISHU_WEBHOOK_SECRET || '';
+export default {
+    async fetch(request, env) {
+        const url = new URL(request.url);
+
+        // Route: /notify-feishu
+        if (url.pathname === '/notify-feishu' && request.method === 'POST') {
+            return await handleNotifyFeishu(request, env);
+        }
+
+        // All other requests: serve static assets
+        return env.ASSETS.fetch(request);
+    }
+};
+
+async function handleNotifyFeishu(request, env) {
+    const FEISHU_WEBHOOK = env.FEISHU_WEBHOOK_URL;
+    const FEISHU_SECRET = env.FEISHU_WEBHOOK_SECRET || '';
 
     if (!FEISHU_WEBHOOK) {
         return new Response(JSON.stringify({ error: 'Webhook not configured' }), {
@@ -10,7 +24,7 @@ export async function onRequestPost(context) {
     }
 
     try {
-        const data = await context.request.json();
+        const data = await request.json();
 
         const name = data.name || 'N/A';
         const email = data.email || 'N/A';
@@ -40,7 +54,6 @@ export async function onRequestPost(context) {
             }
         };
 
-        // Feishu signature verification
         if (FEISHU_SECRET) {
             const timestamp = Math.floor(Date.now() / 1000).toString();
             const stringToSign = `${timestamp}\n${FEISHU_SECRET}`;

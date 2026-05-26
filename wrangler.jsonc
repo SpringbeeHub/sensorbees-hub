@@ -5,8 +5,10 @@
   "observability": {
     "enabled": true
   },
+  "main": "worker.js",
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "not_found_handling": "single-page"
   },
   "compatibility_flags": [
     "nodejs_compat"
