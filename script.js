@@ -236,6 +236,8 @@ if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const formData = new FormData(contactForm);
+
+        // Submit to Netlify Forms
         fetch('/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -243,6 +245,19 @@ if (contactForm) {
         })
         .then(response => {
             if (response.ok) {
+                // Also notify Feishu via our serverless function
+                fetch('/.netlify/functions/notify-feishu', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        company: formData.get('company'),
+                        subject: formData.get('subject'),
+                        message: formData.get('message')
+                    })
+                }).catch(err => console.warn('Feishu notification failed:', err));
+
                 // Show success message
                 const fields = contactForm.querySelectorAll('.form-group, .form-row, button[type=submit]');
                 fields.forEach(f => f.style.display = 'none');
