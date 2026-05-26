@@ -934,6 +934,23 @@ body {
     box-shadow: 0 6px 24px rgba(234,169,36,0.5);
 }
 
+/* Header badge link */
+.nav-badge {
+    background: var(--gold) !important;
+    color: #fff !important;
+    padding: 4px 14px !important;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+}
+.nav-badge:hover {
+    background: var(--gold-dark) !important;
+    transform: scale(1.05);
+}
+
 .contact-modal-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
