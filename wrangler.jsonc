@@ -8,8 +8,7 @@
   "main": "worker.js",
   "assets": {
     "directory": ".",
-    "binding": "ASSETS",
-    "exclude": ["worker.js", "wrangler.jsonc", "build.sh", "package.json", ".gitignore", ".git/**"]
+    "binding": "ASSETS"
   },
   "compatibility_flags": [
     "nodejs_compat"
