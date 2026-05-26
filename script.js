@@ -242,24 +242,68 @@ if (contactForm) {
         const subject = formData.get('subject');
         const message = formData.get('message');
 
-        // Notify Feishu via serverless function
-        fetch('/notify-feishu', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, company, subject, message })
-        }).catch(err => console.warn('Feishu notification failed:', err));
+        // Send to Feishu webhook directly
+        const FEISHU_WEBHOOK = 'https://open.feishu.cn/open-apis/bot/v2/hook/f1c936a9-ae6a-4486-bb6a-f0c1b13fbdf7';
+        const FEISHU_SECRET = '5ELvcqmdpxVWwvLaY4Y1Nf';
 
-        // Show success message
-        const fields = contactForm.querySelectorAll('.form-group, .form-row, button[type=submit]');
-        fields.forEach(f => f.style.display = 'none');
-        document.getElementById('formSuccess').style.display = 'block';
-        // Reset after 3 seconds and close modal
-        setTimeout(() => {
-            fields.forEach(f => f.style.display = '');
-            document.getElementById('formSuccess').style.display = 'none';
-            contactForm.reset();
-            toggleContactModal();
-        }, 3000);
+        const timestamp = Math.floor(Date.now() / 1000).toString();
+        const stringToSign = timestamp + '\n' + FEISHU_SECRET;
+
+        // Generate HMAC-SHA256 signature
+        crypto.subtle.importKey(
+            'raw',
+            new TextEncoder().encode(stringToSign),
+            { name: 'HMAC', hash: 'SHA-256' },
+            false,
+            ['sign']
+        ).then(key => {
+            return crypto.subtle.sign('HMAC', key, new TextEncoder().encode(''));
+        }).then(signature => {
+            const sign = btoa(String.fromCharCode(...new Uint8Array(signature)));
+
+            const feishuBody = {
+                timestamp: timestamp,
+                sign: sign,
+                msg_type: 'interactive',
+                card: {
+                    header: {
+                        title: { tag: 'plain_text', content: '📩 新的客户咨询' },
+                        template: 'gold'
+                    },
+                    elements: [{
+                        tag: 'div',
+                        text: {
+                            tag: 'lark_md',
+                            content: `**姓名：** ${name}\n**邮箱：** ${email}\n**公司：** ${company}\n**主题：** ${subject}\n**留言：**\n${message}`
+                        }
+                    }]
+                }
+            };
+
+            return fetch(FEISHU_WEBHOOK, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(feishuBody)
+            });
+        }).then(response => response.json()).then(result => {
+            if (result.code === 0) {
+                // Show success message
+                const fields = contactForm.querySelectorAll('.form-group, .form-row, button[type=submit]');
+                fields.forEach(f => f.style.display = 'none');
+                document.getElementById('formSuccess').style.display = 'block';
+                setTimeout(() => {
+                    fields.forEach(f => f.style.display = '');
+                    document.getElementById('formSuccess').style.display = 'none';
+                    contactForm.reset();
+                    toggleContactModal();
+                }, 3000);
+            } else {
+                alert('Send failed, please try again later.');
+            }
+        }).catch(err => {
+            console.error('Feishu notification failed:', err);
+            alert('Send failed, please try again later.');
+        });
     });
 }
 
