@@ -1,5 +1,5 @@
 export default {
-    async fetch(request, env) {
+    async fetch(request, env, ctx) {
         const url = new URL(request.url);
 
         // Route: /notify-feishu
@@ -7,7 +7,7 @@ export default {
             return await handleNotifyFeishu(request, env);
         }
 
-        // All other requests: serve static assets
+        // All other requests: serve static assets via ASSETS binding
         return env.ASSETS.fetch(request);
     }
 };

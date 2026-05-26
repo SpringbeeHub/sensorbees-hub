@@ -7,8 +7,7 @@
   },
   "main": "worker.js",
   "assets": {
-    "directory": ".",
-    "not_found_handling": "single-page"
+    "directory": "./public"
   },
   "compatibility_flags": [
     "nodejs_compat"
