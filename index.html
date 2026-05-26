@@ -622,70 +622,20 @@
             <section id="faq">
                 <h2><span class="emoji">❓</span>Frequently Asked Questions</h2>
 
-                <div class="faq-list">
+                <div class="faq-list" id="faq-list">
+                    <!-- FAQ items will be dynamically loaded from GitHub faq/ folder -->
+                    <!-- If JS fails, static fallback FAQ below will be shown -->
+                    <noscript>
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFaq(this)">
                             <span><span class="q-badge">Q</span> What frequency band should I use?</span>
                             <span class="faq-toggle">+</span>
                         </div>
                         <div class="faq-answer">
-                            <p>For China, use CN470. For Europe, use EU868. For North America, use US915. Make sure your gateway and sensors are configured to the same frequency plan. All SpringBees sensors support common LoRaWAN frequency bands.</p>
+                            <p>For China, use CN470. For Europe, use EU868. For North America, use US915.</p>
                         </div>
                     </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            <span><span class="q-badge">Q</span> How long does the sensor battery last?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Battery life depends on reporting interval. At 1 report per 5 minutes, most SpringBees sensors last 2~5 years. Increasing the interval to 15 minutes can extend life to 5~10 years. RS485 sensors require external power.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            <span><span class="q-badge">Q</span> What is the wireless range of LoRaWAN?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Line-of-sight: up to 15km with outdoor gateway (DLOS8). Urban: 2~5km with indoor gateway (LPS8N). Indoor: 500m~1km through walls. Range depends on antenna, elevation, and obstacles.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            <span><span class="q-badge">Q</span> Can I use my own cloud platform?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Yes. ChirpStack supports MQTT and HTTP integrations to forward data to any platform — AWS IoT, Azure, ThingsBoard, Grafana, or your custom backend. Data format is standard JSON via MQTT topics.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            <span><span class="q-badge">Q</span> How do RS485 sensors connect wirelessly?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>RS485 sensors connect to a LoRaWAN RS485 node (like Dragino LSN50v2) via Modbus RTU. The node reads sensor data periodically and transmits via LoRaWAN to the gateway. Up to 8 RS485 sensors can share one node with different Modbus addresses.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            <span><span class="q-badge">Q</span> LoRaWAN vs Cellular — which should I choose?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p><strong>Choose LoRaWAN</strong> when: you have many sensors in a concentrated area, need long battery life, and can deploy a gateway.<br><strong>Choose Cellular</strong> when: you have few sensors in remote locations, no gateway infrastructure is available, or you need quick standalone deployment.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFaq(this)">
-                            <span><span class="q-badge">Q</span> How do I register a sensor on ChirpStack?</span>
-                            <span class="faq-toggle">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>In ChirpStack: go to your Application → Devices → Add. Enter DevEUI, AppEUI, and AppKey from the sensor label. Select the correct Device Profile (OTAA recommended). Power on the sensor — it should join within 1~2 minutes and start reporting data.</p>
-                        </div>
-                    </div>
+                    </noscript>
                 </div>
             </section>
 
