@@ -5,10 +5,8 @@
   "observability": {
     "enabled": true
   },
-  "main": "worker.js",
   "assets": {
-    "directory": ".",
-    "binding": "ASSETS"
+    "directory": "."
   },
   "compatibility_flags": [
     "nodejs_compat"
