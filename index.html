@@ -697,9 +697,7 @@
                 <button class="contact-modal-close" onclick="toggleContactModal()" aria-label="Close">✕</button>
             </div>
             <p class="contact-modal-desc">Have questions about our sensors or need a custom solution? Send us a message and we'll get back to you within 24 hours.</p>
-            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="contactForm">
-                <input type="hidden" name="form-name" value="contact" />
-                <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+            <form name="contact" class="contact-form" id="contactForm">
                 <div id="formSuccess" style="display:none; text-align:center; padding:24px;">
                     <div style="font-size:48px;margin-bottom:12px;">✅</div>
                     <h3 style="margin-bottom:8px;">Message Sent!</h3>

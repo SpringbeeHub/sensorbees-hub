@@ -236,42 +236,30 @@ if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const company = formData.get('company');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
 
-        // Submit to Netlify Forms
-        fetch('/', {
+        // Notify Feishu via serverless function
+        fetch('/functions/notify-feishu', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString()
-        })
-        .then(response => {
-            if (response.ok) {
-                // Also notify Feishu via our serverless function
-                fetch('/.netlify/functions/notify-feishu', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: formData.get('name'),
-                        email: formData.get('email'),
-                        company: formData.get('company'),
-                        subject: formData.get('subject'),
-                        message: formData.get('message')
-                    })
-                }).catch(err => console.warn('Feishu notification failed:', err));
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, company, subject, message })
+        }).catch(err => console.warn('Feishu notification failed:', err));
 
-                // Show success message
-                const fields = contactForm.querySelectorAll('.form-group, .form-row, button[type=submit]');
-                fields.forEach(f => f.style.display = 'none');
-                document.getElementById('formSuccess').style.display = 'block';
-                // Reset after 3 seconds and close modal
-                setTimeout(() => {
-                    fields.forEach(f => f.style.display = '');
-                    document.getElementById('formSuccess').style.display = 'none';
-                    contactForm.reset();
-                    toggleContactModal();
-                }, 3000);
-            }
-        })
-        .catch(error => console.error('Form submission error:', error));
+        // Show success message
+        const fields = contactForm.querySelectorAll('.form-group, .form-row, button[type=submit]');
+        fields.forEach(f => f.style.display = 'none');
+        document.getElementById('formSuccess').style.display = 'block';
+        // Reset after 3 seconds and close modal
+        setTimeout(() => {
+            fields.forEach(f => f.style.display = '');
+            document.getElementById('formSuccess').style.display = 'none';
+            contactForm.reset();
+            toggleContactModal();
+        }, 3000);
     });
 }
 

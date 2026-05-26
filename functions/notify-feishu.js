@@ -1,19 +1,18 @@
 const crypto = require('crypto');
 
-exports.handler = async (event) => {
-    if (event.httpMethod !== 'POST') {
-        return { statusCode: 405, body: 'Method Not Allowed' };
-    }
-
-    const FEISHU_WEBHOOK = process.env.FEISHU_WEBHOOK_URL;
-    const FEISHU_SECRET = process.env.FEISHU_WEBHOOK_SECRET || '';
+export async function onRequestPost(context) {
+    const FEISHU_WEBHOOK = context.env.FEISHU_WEBHOOK_URL;
+    const FEISHU_SECRET = context.env.FEISHU_WEBHOOK_SECRET || '';
 
     if (!FEISHU_WEBHOOK) {
-        return { statusCode: 500, body: 'Webhook not configured' };
+        return new Response(JSON.stringify({ error: 'Webhook not configured' }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' }
+        });
     }
 
     try {
-        const data = JSON.parse(event.body);
+        const data = await context.request.json();
 
         const name = data.name || 'N/A';
         const email = data.email || 'N/A';
@@ -62,12 +61,17 @@ exports.handler = async (event) => {
         const result = await response.json();
 
         if (result.code !== 0) {
-            return { statusCode: 502, body: JSON.stringify(result) };
+            return new Response(JSON.stringify(result), {
+                status: 502,
+                headers: { 'Content-Type': 'application/json' }
+            });
         }
 
-        return { statusCode: 200, body: 'OK' };
+        return new Response('OK', { status: 200 });
     } catch (err) {
-        console.error('Error:', err);
-        return { statusCode: 500, body: 'Internal Server Error' };
+        return new Response(JSON.stringify({ error: err.message }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' }
+        });
     }
-};
+}
