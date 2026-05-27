@@ -9,20 +9,47 @@
     <style>
         .page-header {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 60px 20px 40px;
+            padding: 40px 20px 50px;
             text-align: center;
             color: #fff;
         }
+        .page-header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            position: absolute;
+            top: 20px;
+            left: 24px;
+        }
+        .page-header-brand img {
+            height: 32px;
+            width: auto;
+        }
+        .page-header-brand .brand-name {
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+        .page-header-brand .brand-name .gold { color: #EAA924; }
         .page-header h1 { font-size: 2rem; margin-bottom: 10px; }
         .page-header p { opacity: 0.8; font-size: 1.1rem; }
+        .page-header {
+            position: relative;
+        }
         .back-link {
             display: inline-block;
-            margin-bottom: 20px;
             color: #ffd700;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
+            font-weight: 700;
         }
         .back-link:hover { text-decoration: underline; }
+        .faq-nav {
+            margin-bottom: 28px;
+            padding-left: 32px;
+        }
         .faq-container {
             max-width: 86%;
             margin: 40px auto;
@@ -128,11 +155,17 @@
 </head>
 <body>
     <div class="page-header">
-        <a href="/" class="back-link">← Back to Home</a>
+        <a href="/" class="page-header-brand">
+            <img src="assets/springbee-icon.png" alt="SpringBees">
+            <span class="brand-name">Spring<span class="gold">Bee</span> Hub</span>
+        </a>
         <h1>❓ Frequently Asked Questions</h1>
         <p>Common questions about SpringBees sensors, gateways, and network setup</p>
     </div>
     <div class="faq-container">
+        <div class="faq-nav">
+            <a href="/" class="back-link">>>> Back to Home</a>
+        </div>
         <div id="faq-list" class="loading">Loading FAQ...</div>
     </div>
 
