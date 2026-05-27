@@ -7,19 +7,14 @@
   <title>Content Manager | SpringBees Hub</title>
 </head>
 <body>
-  <script>
-  window.CMS_MANUAL_INIT = true;
-  </script>
-  <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
+  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
   <script>
   CMS.init({
     config: {
       backend: {
         name: "github",
         repo: "SpringbeeHub/sensorbees-hub",
-        branch: "main",
-        base_url: "https://cms-oauth.late-butterfly-c370.workers.dev",
-        auth_endpoint: "/auth"
+        branch: "main"
       },
       media_folder: "assets/uploads",
       public_folder: "/assets/uploads",
