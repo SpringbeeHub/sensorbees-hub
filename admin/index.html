@@ -7,6 +7,121 @@
   <title>Content Manager | SpringBees Hub</title>
 </head>
 <body>
+  <div id="nc-root"></div>
   <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
+  <script>
+  // Check if we're returning from OAuth with a code
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var code = params.get('code');
+    
+    if (code) {
+      // Exchange code for token
+      fetch('https://cms-oauth.late-butterfly-c370.workers.dev/callback?code=' + encodeURIComponent(code), {
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.token) {
+          // Store token in localStorage that Decap CMS can use
+          localStorage.setItem('decap-cms-user', JSON.stringify(data));
+          // Remove code from URL and reload
+          window.history.replaceState({}, '', '/admin/');
+          window.location.reload();
+        }
+      })
+      .catch(function(err) {
+        console.error('OAuth error:', err);
+        window.history.replaceState({}, '', '/admin/');
+      });
+      return;
+    }
+
+    // Normal CMS init
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "SpringbeeHub/sensorbees-hub",
+          branch: "main"
+        },
+        media_folder: "assets/uploads",
+        public_folder: "/assets/uploads",
+        locale: "zh",
+        collections: [
+          {
+            name: "pages",
+            label: "📄 页面管理",
+            folder: "pages",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "页面标题", name: "title", widget: "string" },
+              { label: "排序权重（越小越靠前）", name: "order", widget: "number", default: 0, value_type: "int" },
+              { label: "正文内容", name: "body", widget: "markdown" }
+            ]
+          },
+          {
+            name: "products",
+            label: "🛒 产品管理",
+            folder: "products",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "产品名称", name: "title", widget: "string" },
+              { label: "产品分类", name: "category", widget: "select", options: ["Temperature & Humidity", "RS485 Industrial", "Analog (4~20mA)", "Agriculture", "Accessories"] },
+              { label: "产品简介", name: "description", widget: "text" },
+              { label: "产品图片", name: "image", widget: "image", required: false },
+              { label: "标签（如 Popular, Hot）", name: "badge", widget: "string", required: false },
+              { label: "详细参数", name: "body", widget: "markdown" }
+            ]
+          },
+          {
+            name: "downloads",
+            label: "📥 下载资源",
+            folder: "downloads",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "资源标题", name: "title", widget: "string" },
+              { label: "描述", name: "description", widget: "text" },
+              { label: "文件链接", name: "file_url", widget: "string" },
+              { label: "图标 emoji", name: "icon", widget: "string", default: "📋" },
+              { label: "详情说明", name: "body", widget: "markdown", required: false }
+            ]
+          },
+          {
+            name: "faq",
+            label: "❓ FAQ 管理",
+            folder: "faq",
+            create: true,
+            slug: "{{slug}}",
+            fields: [
+              { label: "问题", name: "title", widget: "string" },
+              { label: "回答", name: "body", widget: "markdown" }
+            ]
+          }
+        ]
+      }
+    });
+
+    // Override the login button to use our redirect flow
+    var checkLogin = setInterval(function() {
+      var loginBtn = document.querySelector('button');
+      if (loginBtn && loginBtn.textContent.includes('GitHub')) {
+        clearInterval(checkLogin);
+        loginBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // Redirect to our OAuth Worker instead of popup
+          var clientId = 'Ov23li5KyrZgbV8Hmj6m';
+          var redirectUri = encodeURIComponent(window.location.origin + '/admin/');
+          var scope = encodeURIComponent('repo,user');
+          window.location.href = 'https://github.com/login/oauth/authorize?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&scope=' + scope;
+        }, true);
+      }
+    }, 200);
+  })();
+  </script>
 </body>
 </html>
