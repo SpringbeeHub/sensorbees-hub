@@ -24,11 +24,99 @@
         }
         .back-link:hover { text-decoration: underline; }
         .faq-container {
-            max-width: 900px;
+            max-width: 66%;
             margin: 40px auto;
             padding: 0 20px;
         }
+        @media (max-width: 1024px) {
+            .faq-container { max-width: 90%; }
+        }
         .loading { text-align: center; padding: 40px; color: #666; }
+
+        .faq-item {
+            margin-bottom: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #eef0f4;
+            transition: box-shadow 0.2s;
+        }
+        .faq-item:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--navy);
+            transition: background 0.2s;
+            gap: 12px;
+        }
+        .faq-question:hover { background: rgba(234,169,36,0.04); }
+        .faq-question .q-text {
+            flex: 1;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .q-number {
+            display: inline-block;
+            background: var(--gold);
+            color: #fff;
+            min-width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .faq-toggle {
+            font-size: 1.3rem;
+            color: var(--gold);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .faq-item.open .faq-toggle { transform: rotate(45deg); }
+        .faq-answer {
+            padding: 0 24px 20px 64px;
+            color: #444;
+            font-size: 14px;
+            line-height: 1.8;
+            display: none;
+        }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-answer p { margin: 0 0 10px; }
+        .faq-answer ul, .faq-answer ol { margin: 8px 0; padding-left: 0; list-style: none; }
+        .faq-answer ul li, .faq-answer ol li {
+            margin-bottom: 6px;
+            padding-left: 0;
+        }
+        .faq-answer .answer-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .faq-answer .point-label {
+            display: inline-block;
+            background: #f0f0f0;
+            color: var(--navy);
+            min-width: 22px;
+            height: 22px;
+            line-height: 22px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
@@ -42,13 +130,9 @@
     </div>
 
     <script>
-    function toggleFaq(el) {
-        el.parentElement.classList.toggle('open');
-    }
-
     document.addEventListener('click', function(e) {
         const q = e.target.closest('.faq-question');
-        if (q) toggleFaq(q);
+        if (q) q.parentElement.classList.toggle('open');
     });
 
     (function loadFaqFromGitHub() {
@@ -56,13 +140,28 @@
         const BRANCH = 'main';
         const FOLDER = 'faq';
 
-        function markdownToHtml(md) {
+        function markdownToAnswerHtml(md) {
+            // Remove frontmatter
             md = md.replace(/^---[\s\S]*?---\n*/, '');
+            // Bold
             md = md.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            // Italic
             md = md.replace(/\*(.+?)\*/g, '<em>$1</em>');
-            md = md.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
-            md = md.replace(/^[\-\*]\s+(.+)$/gm, '<li>$1</li>');
-            md = md.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
+            // Numbered list items → A B C labels
+            let listIndex = 0;
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            md = md.replace(/^\d+\.\s+(.+)$/gm, function(match, content) {
+                const label = letters[listIndex] || (listIndex + 1);
+                listIndex++;
+                return `<div class="answer-point"><span class="point-label">${label}</span><span>${content}</span></div>`;
+            });
+            // Unordered list items
+            md = md.replace(/^[\-\*]\s+(.+)$/gm, function(match, content) {
+                const label = letters[listIndex] || (listIndex + 1);
+                listIndex++;
+                return `<div class="answer-point"><span class="point-label">${label}</span><span>${content}</span></div>`;
+            });
+            // Paragraphs
             md = md.replace(/\n\n/g, '</p><p>');
             md = '<p>' + md + '</p>';
             md = md.replace(/<p>\s*<\/p>/g, '');
@@ -83,18 +182,19 @@
             .then(items => {
                 const faqList = document.getElementById('faq-list');
                 faqList.innerHTML = '';
-                items.forEach(item => {
+                items.forEach((item, idx) => {
                     const fmMatch = item.body.match(/^---[\s\S]*?title:\s*["']?([\s\S]+?)["']?\s*$/m);
                     const title = fmMatch ? fmMatch[1].replace(/\n\s+/g, ' ').trim() : 'FAQ';
+
                     const faqEl = document.createElement('div');
                     faqEl.className = 'faq-item';
                     faqEl.innerHTML = `
                         <div class="faq-question">
-                            <span><span class="q-badge">Q</span> ${title}</span>
+                            <span class="q-text"><span class="q-number">Q${idx + 1}</span>${title}</span>
                             <span class="faq-toggle">+</span>
                         </div>
                         <div class="faq-answer">
-                            ${markdownToHtml(item.body)}
+                            ${markdownToAnswerHtml(item.body)}
                         </div>
                     `;
                     faqList.appendChild(faqEl);
