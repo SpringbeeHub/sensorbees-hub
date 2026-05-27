@@ -166,8 +166,8 @@ body {
 /* ===== Content ===== */
 .content {
     flex: 1;
-    max-width: 1600px;
-    padding: 36px 40px;
+    max-width: 100%;
+    padding: 36px 32px;
 }
 
 .content h1 {
