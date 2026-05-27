@@ -940,7 +940,7 @@ body {
     background: var(--gold) !important;
     color: var(--navy) !important;
     padding: 8px 20px !important;
-    border-radius: 50px;
+    border-radius: 999px;
     font-weight: 700;
     font-size: 13px;
     text-decoration: none;
