@@ -83,6 +83,9 @@ body {
     border-radius: 6px;
     transition: all 0.2s;
 }
+.nav-links a.nav-badge {
+    border-radius: 999px !important;
+}
 
 .nav-links a:hover,
 .nav-links a.active {
