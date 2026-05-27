@@ -941,7 +941,7 @@ body {
 /* Header badge link */
 .nav-badge {
     background: transparent !important;
-    color: #EAA924 !important;
+    color: #fff !important;
     padding: 6px 18px !important;
     border-radius: 999px !important;
     border: 3px double #EAA924 !important;
@@ -957,7 +957,7 @@ body {
 }
 .nav-badge:hover {
     background: rgba(234,169,36,0.1) !important;
-    color: #EAA924 !important;
+    color: #fff !important;
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0 #EAA924 !important;
 }
