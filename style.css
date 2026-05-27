@@ -17,7 +17,7 @@
     --card-shadow: 0 2px 12px rgba(27,43,72,0.06);
     --card-shadow-hover: 0 4px 20px rgba(27,43,72,0.12);
     --nav-height: 60px;
-    --sidebar-width: 260px;
+    --sidebar-width: 200px;
     --radius: 8px;
     --radius-lg: 12px;
 }
@@ -166,8 +166,8 @@ body {
 /* ===== Content ===== */
 .content {
     flex: 1;
-    max-width: 940px;
-    padding: 36px 52px;
+    max-width: 1200px;
+    padding: 36px 48px;
 }
 
 .content h1 {
