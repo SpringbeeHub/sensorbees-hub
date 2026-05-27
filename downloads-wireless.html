@@ -64,6 +64,7 @@
             white-space: nowrap;
         }
         .dl-list .dl-btn:hover { background: #ffec80; }
+        .loading { text-align: center; padding: 40px; color: #666; }
     </style>
 </head>
 <body>
@@ -73,49 +74,111 @@
         <p>Gateway test reports, wireless configuration guides, and network deployment documents</p>
     </div>
     <div class="dl-container">
-        <div class="category-title">LoRaWAN Gateways</div>
-        <ul class="dl-list">
-            <li>
-                <span class="dl-icon">📡</span>
-                <div class="dl-info">
-                    <h4>LPS8N Gateway Report</h4>
-                    <p>Indoor gateway RF performance & range test</p>
-                </div>
-                <a href="#" class="dl-btn">Download</a>
-            </li>
-            <li>
-                <span class="dl-icon">📻</span>
-                <div class="dl-info">
-                    <h4>DLOS8 Outdoor Gateway Report</h4>
-                    <p>Weatherproof & solar performance data</p>
-                </div>
-                <a href="#" class="dl-btn">Download</a>
-            </li>
-        </ul>
-
-        <div class="category-title">LoRaWAN End Nodes</div>
-        <ul class="dl-list">
-            <li>
-                <span class="dl-icon">📻</span>
-                <div class="dl-info">
-                    <h4>LoRaWAN Sensor Configuration Guide</h4>
-                    <p>Step-by-step guide for connecting sensors to LoRaWAN network</p>
-                </div>
-                <a href="#" class="dl-btn">Download</a>
-            </li>
-        </ul>
-
-        <div class="category-title">Cellular (4G/NB-IoT)</div>
-        <ul class="dl-list">
-            <li>
-                <span class="dl-icon">📱</span>
-                <div class="dl-info">
-                    <h4>Cellular Gateway Setup Guide</h4>
-                    <p>4G/NB-IoT gateway configuration and deployment</p>
-                </div>
-                <a href="#" class="dl-btn">Download</a>
-            </li>
-        </ul>
+        <div id="download-content" class="loading">Loading downloads...</div>
     </div>
+
+    <script>
+    (function loadDownloads() {
+        const REPO = 'SpringbeeHub/sensorbees-hub';
+        const BRANCH = 'main';
+        const FOLDER = 'downloads';
+
+        // Wireless sub-categories
+        const CATEGORIES = {
+            'LoRaWAN Gateways': ['gateway', 'lps', 'dlos', 'LPS', 'DLOS'],
+            'LoRaWAN End Nodes': ['lorawan', 'lora', 'LoRaWAN', 'end node', 'end-node'],
+            'Cellular (4G/NB-IoT)': ['cellular', '4g', 'nbiot', 'nb-iot', 'NB-IoT'],
+            'WiFi': ['wifi', 'Wi-Fi', 'WIFI']
+        };
+
+        function parseFrontmatter(text) {
+            const fm = {};
+            const match = text.match(/^---\n([\s\S]*?)\n---/);
+            if (!match) return fm;
+            match[1].split('\n').forEach(line => {
+                const m = line.match(/^(\w+):\s*["']?(.+?)["']?\s*$/);
+                if (m) fm[m[1]] = m[2].trim();
+            });
+            return fm;
+        }
+
+        function categorize(item) {
+            const title = (item.title || '').toLowerCase();
+            for (const [cat, keywords] of Object.entries(CATEGORIES)) {
+                for (const kw of keywords) {
+                    if (title.includes(kw.toLowerCase())) return cat;
+                }
+            }
+            return 'Other Wireless';
+        }
+
+        fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`)
+            .then(r => r.json())
+            .then(files => {
+                if (!Array.isArray(files)) throw new Error('No files');
+                const mdFiles = files.filter(f => f.name.endsWith('.md'));
+                return Promise.all(mdFiles.map(f =>
+                    fetch(f.download_url).then(r => r.text()).then(text => {
+                        const fm = parseFrontmatter(text);
+                        return {
+                            title: fm.title || f.name.replace('.md', ''),
+                            description: fm.description || '',
+                            file_url: fm.file_url || '#',
+                            icon: fm.icon || '📡',
+                            category: fm.category || '',
+                            body: text.replace(/^---[\s\S]*?---\n*/, '')
+                        };
+                    })
+                ));
+            })
+            .then(items => {
+                // Filter only wireless items
+                const wirelessKeywords = ['gateway', 'lorawan', 'lora', 'wireless', 'cellular', '4g', 'nbiot', 'nb-iot', 'dlos', 'lps', 'wifi', 'network'];
+                const wirelessItems = items.filter(item => {
+                    const t = (item.title + ' ' + item.category).toLowerCase();
+                    return wirelessKeywords.some(kw => t.includes(kw));
+                });
+
+                if (wirelessItems.length === 0) {
+                    document.getElementById('download-content').innerHTML = '<p>No wireless downloads available yet.</p>';
+                    return;
+                }
+
+                // Group by category
+                const grouped = {};
+                wirelessItems.forEach(item => {
+                    const cat = categorize(item);
+                    if (!grouped[cat]) grouped[cat] = [];
+                    grouped[cat].push(item);
+                });
+
+                // Render
+                let html = '';
+                const catOrder = ['LoRaWAN Gateways', 'LoRaWAN End Nodes', 'Cellular (4G/NB-IoT)', 'WiFi', 'Other Wireless'];
+                catOrder.forEach(cat => {
+                    if (!grouped[cat]) return;
+                    html += `<div class="category-title">${cat}</div><ul class="dl-list">`;
+                    grouped[cat].forEach(item => {
+                        html += `
+                        <li>
+                            <span class="dl-icon">${item.icon}</span>
+                            <div class="dl-info">
+                                <h4>${item.title}</h4>
+                                <p>${item.description}</p>
+                            </div>
+                            <a href="${item.file_url}" class="dl-btn" target="_blank">Download</a>
+                        </li>`;
+                    });
+                    html += '</ul>';
+                });
+
+                document.getElementById('download-content').innerHTML = html;
+            })
+            .catch(err => {
+                console.warn('Failed to load downloads:', err);
+                document.getElementById('download-content').innerHTML = '<p>No wireless downloads available yet.</p>';
+            });
+    })();
+    </script>
 </body>
 </html>
