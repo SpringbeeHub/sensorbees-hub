@@ -940,7 +940,7 @@ body {
     background: transparent !important;
     color: #EAA924 !important;
     padding: 6px 18px !important;
-    border-radius: 12px !important;
+    border-radius: 999px !important;
     border: 3px double #EAA924 !important;
     font-weight: 800 !important;
     font-style: italic !important;
