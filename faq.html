@@ -83,8 +83,7 @@
                 faqList.innerHTML = '';
                 items.forEach(item => {
                     const fmMatch = item.body.match(/^---[\s\S]*?title:\s*["']?([\s\S]+?)["']?\s*$/m);
-                    let title = fmMatch ? fmMatch[1].replace(/\n\s+/g, ' ').trim() : 'FAQ';
-                    const title = fmMatch ? fmMatch[1].trim() : 'FAQ';
+                    const title = fmMatch ? fmMatch[1].replace(/\n\s+/g, ' ').trim() : 'FAQ';
                     const faqEl = document.createElement('div');
                     faqEl.className = 'faq-item';
                     faqEl.innerHTML = `

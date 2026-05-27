@@ -23,8 +23,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Sidebar link click
 document.querySelectorAll('.sidebar-link').forEach(link => {
     link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        // External links: let browser navigate normally
+        if (href.startsWith('/') || href.startsWith('http')) return;
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
