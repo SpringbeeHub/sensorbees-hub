@@ -78,10 +78,11 @@ body {
     color: rgba(255,255,255,0.7);
     text-decoration: none;
     font-size: 13px;
-    font-weight: 500;
-    padding: 6px 12px;
+    font-weight: 700;
+    padding: 6px 14px;
     border-radius: 6px;
     transition: all 0.2s;
+    margin-right: 4px;
 }
 .nav-links a.nav-badge {
     border-radius: 999px !important;
@@ -954,6 +955,7 @@ body {
     letter-spacing: 0.5px;
     line-height: 1.6;
     box-shadow: 4px 4px 0 #EAA924 !important;
+    margin-left: auto;
 }
 .nav-badge:hover {
     background: rgba(234,169,36,0.1) !important;
