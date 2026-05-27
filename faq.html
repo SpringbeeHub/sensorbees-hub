@@ -28,50 +28,6 @@
             margin: 40px auto;
             padding: 0 20px;
         }
-        .faq-item {
-            margin-bottom: 12px;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #fff;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-        }
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--navy);
-            transition: background 0.2s;
-        }
-        .faq-question:hover { background: rgba(234,169,36,0.05); }
-        .q-badge {
-            display: inline-block;
-            background: var(--gold);
-            color: #fff;
-            width: 24px;
-            height: 24px;
-            line-height: 24px;
-            text-align: center;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-right: 10px;
-        }
-        .faq-toggle {
-            font-size: 1.2rem;
-            color: var(--gold);
-            transition: transform 0.3s;
-        }
-        .faq-answer {
-            padding: 0 20px 16px;
-            color: #555;
-            line-height: 1.7;
-            display: none;
-        }
-        .faq-item.open .faq-answer { display: block; }
-        .faq-item.open .faq-toggle { transform: rotate(45deg); }
         .loading { text-align: center; padding: 40px; color: #666; }
     </style>
 </head>
@@ -87,9 +43,13 @@
 
     <script>
     function toggleFaq(el) {
-        const item = el.parentElement;
-        item.classList.toggle('open');
+        el.parentElement.classList.toggle('open');
     }
+
+    document.addEventListener('click', function(e) {
+        const q = e.target.closest('.faq-question');
+        if (q) toggleFaq(q);
+    });
 
     (function loadFaqFromGitHub() {
         const REPO = 'SpringbeeHub/sensorbees-hub';
@@ -122,12 +82,13 @@
                 const faqList = document.getElementById('faq-list');
                 faqList.innerHTML = '';
                 items.forEach(item => {
-                    const fmMatch = item.body.match(/^---[\s\S]*?title:\s*["']?(.+?)["']?\s*$/m);
+                    const fmMatch = item.body.match(/^---[\s\S]*?title:\s*["']?([\s\S]+?)["']?\s*$/m);
+                    let title = fmMatch ? fmMatch[1].replace(/\n\s+/g, ' ').trim() : 'FAQ';
                     const title = fmMatch ? fmMatch[1].trim() : 'FAQ';
                     const faqEl = document.createElement('div');
                     faqEl.className = 'faq-item';
                     faqEl.innerHTML = `
-                        <div class="faq-question" onclick="toggleFaq(this)">
+                        <div class="faq-question">
                             <span><span class="q-badge">Q</span> ${title}</span>
                             <span class="faq-toggle">+</span>
                         </div>
