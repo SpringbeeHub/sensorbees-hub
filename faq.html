@@ -24,7 +24,7 @@
         }
         .back-link:hover { text-decoration: underline; }
         .faq-container {
-            max-width: 66%;
+            max-width: 75%;
             margin: 40px auto;
             padding: 0 20px;
         }
@@ -55,12 +55,15 @@
             color: var(--navy);
             transition: background 0.2s;
             gap: 12px;
+            text-align: left;
         }
         .faq-question:hover { background: rgba(234,169,36,0.04); }
         .faq-question .q-text {
             flex: 1;
             font-size: 15px;
             line-height: 1.6;
+            white-space: normal;
+            word-break: break-word;
         }
         .q-number {
             display: inline-block;
@@ -85,11 +88,12 @@
         }
         .faq-item.open .faq-toggle { transform: rotate(45deg); }
         .faq-answer {
-            padding: 0 24px 20px 64px;
+            padding: 0 24px 20px 24px;
             color: #444;
             font-size: 14px;
             line-height: 1.8;
             display: none;
+            text-align: left;
         }
         .faq-item.open .faq-answer { display: block; }
         .faq-answer p { margin: 0 0 10px; }
