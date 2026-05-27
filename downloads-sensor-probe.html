@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Sensor Probe Downloads — SpringBees Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/springbee-icon.png" type="image/png">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 60px 20px 40px;
+            text-align: center;
+            color: #fff;
+        }
+        .page-header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .page-header p { opacity: 0.8; font-size: 1.1rem; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .dl-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 30px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ffd700;
+            color: #1a1a2e;
+        }
+        .dl-list { list-style: none; padding: 0; }
+        .dl-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            margin-bottom: 8px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            transition: box-shadow 0.2s;
+        }
+        .dl-list li:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .dl-list .dl-info { flex: 1; }
+        .dl-list .dl-info h4 { margin: 0 0 4px; font-size: 1rem; color: #1a1a2e; }
+        .dl-list .dl-info p { margin: 0; font-size: 0.85rem; color: #666; }
+        .dl-list .dl-icon { font-size: 1.5rem; margin-right: 15px; }
+        .dl-list .dl-btn {
+            background: #ffd700;
+            color: #1a1a2e;
+            padding: 6px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .dl-list .dl-btn:hover { background: #ffec80; }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <a href="/" class="back-link">← Back to Home</a>
+        <h1>🌡️ All Sensor Probe Downloads</h1>
+        <p>Test reports, datasheets, and technical documents for all sensor probes</p>
+    </div>
+    <div class="dl-container">
+        <div class="category-title">Temperature & Humidity</div>
+        <ul class="dl-list">
+            <li>
+                <span class="dl-icon">🌡️</span>
+                <div class="dl-info">
+                    <h4>T68DL Test Report</h4>
+                    <p>Temperature & Humidity accuracy verification</p>
+                </div>
+                <a href="#" class="dl-btn">Download</a>
+            </li>
+            <li>
+                <span class="dl-icon">🌡️</span>
+                <div class="dl-info">
+                    <h4>T68DL Datasheet</h4>
+                    <p>Product specifications and technical parameters</p>
+                </div>
+                <a href="#" class="dl-btn">Download</a>
+            </li>
+        </ul>
+
+        <div class="category-title">Soil & Agriculture</div>
+        <ul class="dl-list">
+            <li>
+                <span class="dl-icon">🌱</span>
+                <div class="dl-info">
+                    <h4>Soil Sensor Test Report</h4>
+                    <p>Soil moisture & temperature calibration data</p>
+                </div>
+                <a href="#" class="dl-btn">Download</a>
+            </li>
+        </ul>
+
+        <div class="category-title">RS485 Industrial</div>
+        <ul class="dl-list">
+            <li>
+                <span class="dl-icon">🔌</span>
+                <div class="dl-info">
+                    <h4>RS485 Sensor Compatibility</h4>
+                    <p>Modbus RTU device compatibility matrix</p>
+                </div>
+                <a href="#" class="dl-btn">Download</a>
+            </li>
+        </ul>
+
+        <div class="category-title">Analog (4~20mA)</div>
+        <ul class="dl-list">
+            <li>
+                <span class="dl-icon">🏭</span>
+                <div class="dl-info">
+                    <h4>Analog Sensor Report</h4>
+                    <p>4~20mA adapter accuracy & linearity</p>
+                </div>
+                <a href="#" class="dl-btn">Download</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
