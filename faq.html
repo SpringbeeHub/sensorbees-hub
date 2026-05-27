@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ — SpringBees Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/springbee-icon.png" type="image/png">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 60px 20px 40px;
+            text-align: center;
+            color: #fff;
+        }
+        .page-header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .page-header p { opacity: 0.8; font-size: 1.1rem; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .faq-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .faq-item {
+            margin-bottom: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--navy);
+            transition: background 0.2s;
+        }
+        .faq-question:hover { background: rgba(234,169,36,0.05); }
+        .q-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: var(--gold);
+            transition: transform 0.3s;
+        }
+        .faq-answer {
+            padding: 0 20px 16px;
+            color: #555;
+            line-height: 1.7;
+            display: none;
+        }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-toggle { transform: rotate(45deg); }
+        .loading { text-align: center; padding: 40px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <a href="/" class="back-link">← Back to Home</a>
+        <h1>❓ Frequently Asked Questions</h1>
+        <p>Common questions about SpringBees sensors, gateways, and network setup</p>
+    </div>
+    <div class="faq-container">
+        <div id="faq-list" class="loading">Loading FAQ...</div>
+    </div>
+
+    <script>
+    function toggleFaq(el) {
+        const item = el.parentElement;
+        item.classList.toggle('open');
+    }
+
+    (function loadFaqFromGitHub() {
+        const REPO = 'SpringbeeHub/sensorbees-hub';
+        const BRANCH = 'main';
+        const FOLDER = 'faq';
+
+        function markdownToHtml(md) {
+            md = md.replace(/^---[\s\S]*?---\n*/, '');
+            md = md.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            md = md.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            md = md.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
+            md = md.replace(/^[\-\*]\s+(.+)$/gm, '<li>$1</li>');
+            md = md.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
+            md = md.replace(/\n\n/g, '</p><p>');
+            md = '<p>' + md + '</p>';
+            md = md.replace(/<p>\s*<\/p>/g, '');
+            return md;
+        }
+
+        fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`)
+            .then(res => res.json())
+            .then(files => {
+                if (!Array.isArray(files) || files.length === 0) throw new Error('No files');
+                const mdFiles = files.filter(f => f.name.endsWith('.md'));
+                return Promise.all(mdFiles.map(f =>
+                    fetch(f.download_url).then(r => r.text()).then(text => ({ body: text }))
+                ));
+            })
+            .then(items => {
+                const faqList = document.getElementById('faq-list');
+                faqList.innerHTML = '';
+                items.forEach(item => {
+                    const fmMatch = item.body.match(/^---[\s\S]*?title:\s*["']?(.+?)["']?\s*$/m);
+                    const title = fmMatch ? fmMatch[1].trim() : 'FAQ';
+                    const faqEl = document.createElement('div');
+                    faqEl.className = 'faq-item';
+                    faqEl.innerHTML = `
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span><span class="q-badge">Q</span> ${title}</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            ${markdownToHtml(item.body)}
+                        </div>
+                    `;
+                    faqList.appendChild(faqEl);
+                });
+            })
+            .catch(err => {
+                console.warn('Failed to load FAQ:', err);
+                document.getElementById('faq-list').innerHTML = '<p>FAQ currently unavailable.</p>';
+            });
+    })();
+    </script>
+</body>
+</html>
