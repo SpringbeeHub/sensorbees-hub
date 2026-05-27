@@ -33,7 +33,7 @@
         }
         .loading { text-align: center; padding: 40px; color: #666; }
 
-        .faq-item {
+        .faq-container .faq-item {
             margin-bottom: 16px;
             border-radius: 12px;
             overflow: hidden;
@@ -42,10 +42,10 @@
             border: 1px solid #eef0f4;
             transition: box-shadow 0.2s;
         }
-        .faq-item:hover {
+        .faq-container .faq-item:hover {
             box-shadow: 0 4px 16px rgba(0,0,0,0.12);
         }
-        .faq-question {
+        .faq-container .faq-question {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -56,16 +56,19 @@
             transition: background 0.2s;
             gap: 12px;
             text-align: left;
+            background: #fff;
+            font-size: 15px;
+            user-select: none;
         }
-        .faq-question:hover { background: rgba(234,169,36,0.04); }
-        .faq-question .q-text {
+        .faq-container .faq-question:hover { background: rgba(234,169,36,0.04); }
+        .faq-container .faq-question .q-text {
             flex: 1;
             font-size: 15px;
             line-height: 1.6;
             white-space: normal;
             word-break: break-word;
         }
-        .q-number {
+        .faq-container .faq-question .q-number {
             display: inline-block;
             background: var(--gold);
             color: #fff;
@@ -79,15 +82,15 @@
             margin-right: 12px;
             flex-shrink: 0;
         }
-        .faq-toggle {
+        .faq-container .faq-toggle {
             font-size: 1.3rem;
             color: var(--gold);
             transition: transform 0.3s;
             flex-shrink: 0;
             margin-top: 2px;
         }
-        .faq-item.open .faq-toggle { transform: rotate(45deg); }
-        .faq-answer {
+        .faq-container .faq-item.open .faq-toggle { transform: rotate(45deg); }
+        .faq-container .faq-answer {
             padding: 0 24px 20px 24px;
             color: #444;
             font-size: 14px;
@@ -95,7 +98,7 @@
             display: none;
             text-align: left;
         }
-        .faq-item.open .faq-answer { display: block; }
+        .faq-container .faq-item.open .faq-answer { display: block; }
         .faq-answer p { margin: 0 0 10px; }
         .faq-answer ul, .faq-answer ol { margin: 8px 0; padding-left: 0; list-style: none; }
         .faq-answer ul li, .faq-answer ol li {
