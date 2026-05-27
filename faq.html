@@ -97,6 +97,9 @@
                     `;
                     faqList.appendChild(faqEl);
                 });
+                // Auto-open first FAQ
+                const firstItem = faqList.querySelector('.faq-item');
+                if (firstItem) firstItem.classList.add('open');
             })
             .catch(err => {
                 console.warn('Failed to load FAQ:', err);
