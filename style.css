@@ -435,7 +435,7 @@ body {
 }
 
 .hex-card:hover {
-    filter: drop-shadow(0 0 1.5px var(--gold));
+    filter: drop-shadow(0 0 1.5px var(--border));
 }
 
 .hex-card:hover .hex-card-inner {
