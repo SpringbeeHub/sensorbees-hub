@@ -395,9 +395,20 @@ body {
     position: relative;
     width: 140px;
     height: 160px;
+    clip-path: polygon(
+        50% 0%,
+        95% 20%,
+        100% 25%,
+        100% 75%,
+        95% 80%,
+        50% 100%,
+        5% 80%,
+        0% 75%,
+        0% 25%,
+        5% 20%
+    );
     background: #fff;
-    border: 3px solid var(--border);
-    border-radius: 999px;
+    border: none;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -408,13 +419,48 @@ body {
 }
 
 .hex-card::before {
-    display: none;
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    clip-path: polygon(
+        50% 0%,
+        95% 20%,
+        100% 25%,
+        100% 75%,
+        95% 80%,
+        50% 100%,
+        5% 80%,
+        0% 75%,
+        0% 25%,
+        5% 20%
+    );
+    background: var(--border);
+    z-index: -1;
+    width: 146px;
+    height: 166px;
+    left: -3px;
+    top: -3px;
 }
 
 .hex-card:hover {
     background: var(--navy);
-    border-color: var(--gold);
-    border-width: 5px;
+}
+
+.hex-card:hover::before {
+    background: var(--gold);
+    width: 150px;
+    height: 170px;
+    left: -5px;
+    top: -5px;
+}
+
+.hex-card:hover h3 {
+    color: #fff;
+}
+
+.hex-card:hover .product-badge {
+    background: var(--gold);
+    color: var(--navy-dark);
 }
 
 .hex-card:hover h3 {
