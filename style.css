@@ -571,13 +571,21 @@ body {
     position: relative;
 }
 
-.topo-arrow-head {
-    color: var(--gold);
-    font-size: 14px;
-    line-height: 1;
+/* Integrated arrowhead via CSS triangle */
+.topo-arrow-line::after {
+    content: '';
     position: absolute;
-    right: -8px;
-    top: -6px;
+    right: -6px;
+    top: -4px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid var(--gold);
+}
+
+.topo-arrow-head {
+    display: none;
 }
 
 .topo-arrow-text {
