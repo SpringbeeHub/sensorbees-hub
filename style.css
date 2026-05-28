@@ -853,6 +853,27 @@ body {
     margin: 24px 0;
 }
 
+/* Sub-section numbered titles (under Sensor Product Knowledge) */
+.sub-section-title {
+    font-size: 18px !important;
+    border-bottom: 1px solid var(--border) !important;
+    margin-top: 32px !important;
+}
+
+.section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    color: var(--gold);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
 .step {
     background: var(--bg-white);
     border-left: 4px solid var(--gold);
