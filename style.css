@@ -606,11 +606,11 @@ body {
 
 .topo-node {
     background: var(--bg-sidebar);
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
     text-align: center;
-    min-width: 120px;
+    min-width: 90px;
     transition: all 0.2s;
 }
 
@@ -620,18 +620,18 @@ body {
 }
 
 .topo-node .topo-icon {
-    font-size: 28px;
-    margin-bottom: 6px;
+    font-size: 20px;
+    margin-bottom: 4px;
 }
 
 .topo-node .topo-label {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--navy);
 }
 
 .topo-node .topo-desc {
-    font-size: 11px;
+    font-size: 9px;
     color: var(--text-muted);
 }
 
