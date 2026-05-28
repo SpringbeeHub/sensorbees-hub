@@ -395,19 +395,7 @@ body {
     position: relative;
     width: 150px;
     height: 174px;
-    clip-path: polygon(
-        50% 3%,
-        94% 21%,
-        98% 26%,
-        98% 74%,
-        94% 79%,
-        50% 97%,
-        6% 79%,
-        2% 74%,
-        2% 26%,
-        6% 21%
-    );
-    background: var(--border);
+    background: none;
     border: none;
     padding: 0;
     display: flex;
@@ -420,39 +408,51 @@ body {
 
 .hex-card > * {
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
+/* Border hex */
 .hex-card::before {
-    display: none;
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(
+        50% 0%,
+        100% 25%,
+        100% 75%,
+        50% 100%,
+        0% 75%,
+        0% 25%
+    );
+    background: var(--border);
+    z-index: 1;
+    transition: background 0.25s;
 }
 
+/* Fill hex (slightly smaller) */
 .hex-card::after {
     content: '';
     position: absolute;
-    width: 140px;
-    height: 162px;
+    top: 3px;
+    left: 3px;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
     clip-path: polygon(
-        50% 4%,
-        93% 22%,
-        96% 27%,
-        96% 73%,
-        93% 78%,
-        50% 96%,
-        7% 78%,
-        4% 73%,
-        4% 27%,
-        7% 22%
+        50% 0%,
+        100% 25%,
+        100% 75%,
+        50% 100%,
+        0% 75%,
+        0% 25%
     );
     background: #fff;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    transition: all 0.25s;
+    z-index: 2;
+    transition: background 0.25s;
 }
 
-.hex-card:hover {
+.hex-card:hover::before {
     background: var(--gold);
 }
 
