@@ -438,6 +438,8 @@ body {
 
 .hex-card:hover {
     filter: drop-shadow(0 0 1.5px var(--border));
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
 
 .hex-card:hover .hex-card-inner {
