@@ -392,21 +392,17 @@ body {
 }
 
 .hex-card {
+    all: unset;
     position: relative;
     width: 150px;
     height: 170px;
-    background: none;
-    border: none;
-    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     transition: filter 0.25s;
-    min-width: auto;
     filter: drop-shadow(0 0 1.5px var(--border));
-    box-shadow: none;
-    border-radius: 0;
+    box-sizing: border-box;
 }
 
 .hex-card-inner {
@@ -438,8 +434,6 @@ body {
 
 .hex-card:hover {
     filter: drop-shadow(0 0 1.5px var(--border));
-    border-color: transparent !important;
-    box-shadow: none !important;
 }
 
 .hex-card:hover .hex-card-inner {
