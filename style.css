@@ -267,7 +267,7 @@ body {
 }
 
 .btn-primary {
-    background: transparent;
+    background: #fff;
     color: var(--navy);
     border: 2px solid var(--border);
 }
@@ -280,7 +280,7 @@ body {
 }
 
 .btn-outline {
-    background: transparent;
+    background: #fff;
     color: var(--navy);
     border: 2px solid var(--border);
 }
