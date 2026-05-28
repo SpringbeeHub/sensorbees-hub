@@ -393,78 +393,53 @@ body {
 
 .hex-card {
     position: relative;
-    width: 156px;
-    height: 180px;
-    clip-path: polygon(
-        50% 4%,
-        91% 20%,
-        96% 25%,
-        96% 75%,
-        91% 80%,
-        50% 96%,
-        9% 80%,
-        4% 75%,
-        4% 25%,
-        9% 20%
-    );
-    background: var(--border);
+    width: 150px;
+    height: 170px;
+    background: none;
     border: none;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: background 0.25s;
+    transition: filter 0.25s;
     min-width: auto;
+    filter: drop-shadow(0 0 1.5px var(--border));
 }
 
-.hex-card > * {
+.hex-card-inner {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(
+        50% 2%,
+        93% 19%,
+        98% 25%,
+        98% 75%,
+        93% 81%,
+        50% 98%,
+        7% 81%,
+        2% 75%,
+        2% 25%,
+        7% 19%
+    );
+    background: #fff;
+    z-index: 0;
+    transition: background 0.25s;
+}
+
+.hex-card > *:not(.hex-card-inner) {
     position: relative;
     z-index: 2;
 }
 
-/* Fill hex (slightly smaller, rounded corners) */
-.hex-card::before {
-    content: '';
-    position: absolute;
-    top: 5px; left: 5px;
-    right: 5px; bottom: 5px;
-    clip-path: polygon(
-        50% 4%,
-        90% 21%,
-        95% 26%,
-        95% 74%,
-        90% 79%,
-        50% 96%,
-        10% 79%,
-        5% 74%,
-        5% 26%,
-        10% 21%
-    );
-    background: #fff;
-    z-index: 1;
-    transition: background 0.25s;
-}
-
-.hex-card::after {
-    display: none;
-}
-
 .hex-card:hover {
-    background: var(--gold);
+    filter: drop-shadow(0 0 1.5px var(--gold));
 }
 
-.hex-card:hover::before {
+.hex-card:hover .hex-card-inner {
     background: var(--navy);
-}
-
-.hex-card:hover h3 {
-    color: #fff;
-}
-
-.hex-card:hover .product-badge {
-    background: var(--gold);
-    color: var(--navy-dark);
 }
 
 .hex-card:hover h3 {
@@ -497,7 +472,6 @@ body {
 .hex-card .product-badge {
     position: absolute;
     top: 12px;
-    right: auto;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--gold), var(--gold-light));
@@ -508,7 +482,7 @@ body {
     border-radius: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    z-index: 1;
+    z-index: 3;
 }
 
 .product-card {
