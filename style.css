@@ -405,6 +405,8 @@ body {
     transition: filter 0.25s;
     min-width: auto;
     filter: drop-shadow(0 0 1.5px var(--border));
+    box-shadow: none;
+    border-radius: 0;
 }
 
 .hex-card-inner {
