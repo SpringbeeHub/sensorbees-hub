@@ -497,6 +497,7 @@ body {
     border-radius: var(--radius-lg);
     padding: 32px;
     margin: 24px 0;
+    overflow-x: auto;
 }
 
 .topology-title {
@@ -507,11 +508,85 @@ body {
     margin-bottom: 24px;
 }
 
+/* Default: vertical layout */
 .topology-diagram {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
+}
+
+/* Horizontal (left-to-right) layout */
+.topology-diagram.topology-horizontal {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+    min-width: max-content;
+}
+
+.topo-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.topo-stage-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--navy);
+    background: rgba(234,169,36,0.1);
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    padding: 3px 14px;
+    white-space: nowrap;
+}
+
+.topo-stage-nodes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Arrow connector between stages */
+.topo-arrow-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    min-width: 80px;
+    position: relative;
+}
+
+.topo-arrow-line {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+}
+
+.topo-arrow-head {
+    color: var(--gold);
+    font-size: 12px;
+    line-height: 1;
+    margin-top: -2px;
+}
+
+.topo-arrow-text {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+    margin-top: 6px;
+}
+
+.topo-arrow-sub {
+    font-size: 9px;
+    color: var(--text-muted);
+    white-space: nowrap;
 }
 
 .topo-row {

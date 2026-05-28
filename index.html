@@ -401,82 +401,103 @@
 
                         <h3>LoRaWAN Network Architecture</h3>
                         <div class="topology-container">
-                            <div class="topology-diagram">
-                                <!-- Layer 1: Sensors -->
-                                <div class="topo-row">
-                                    <div class="topo-node">
-                                        <div class="topo-icon">🌡️</div>
-                                        <div class="topo-label">TH Sensor</div>
-                                    </div>
-                                    <div class="topo-node">
-                                        <div class="topo-icon">🌱</div>
-                                        <div class="topo-label">Soil Sensor</div>
-                                    </div>
-                                    <div class="topo-node">
-                                        <div class="topo-icon">🔌</div>
-                                        <div class="topo-label">RS485 Node</div>
-                                    </div>
-                                    <div class="topo-node">
-                                        <div class="topo-icon">📈</div>
-                                        <div class="topo-label">Analog Node</div>
-                                    </div>
-                                    <div class="topo-node">
-                                        <div class="topo-icon">💨</div>
-                                        <div class="topo-label">Air Quality</div>
-                                    </div>
-                                </div>
-
-                                <!-- Arrow -->
-                                <div class="topo-row">
-                                    <span class="topo-arrow">⬇ LoRa Radio (CN470/EU868/US915)</span>
-                                </div>
-
-                                <!-- Layer 2: Gateways -->
-                                <div class="topo-row">
-                                    <div class="topo-node highlight">
-                                        <div class="topo-icon">📡</div>
-                                        <div class="topo-label">LPS8N</div>
-                                        <div class="topo-desc">Indoor Gateway</div>
-                                    </div>
-                                    <div class="topo-node highlight">
-                                        <div class="topo-icon">📻</div>
-                                        <div class="topo-label">DLOS8</div>
-                                        <div class="topo-desc">Outdoor Gateway</div>
+                            <div class="topology-diagram topology-horizontal">
+                                <!-- Stage 1: Sensors -->
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">End Devices</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node">
+                                            <div class="topo-icon">🌡️</div>
+                                            <div class="topo-label">TH Sensor</div>
+                                        </div>
+                                        <div class="topo-node">
+                                            <div class="topo-icon">🌱</div>
+                                            <div class="topo-label">Soil Sensor</div>
+                                        </div>
+                                        <div class="topo-node">
+                                            <div class="topo-icon">🔌</div>
+                                            <div class="topo-label">RS485 Node</div>
+                                        </div>
+                                        <div class="topo-node">
+                                            <div class="topo-icon">📈</div>
+                                            <div class="topo-label">Analog Node</div>
+                                        </div>
+                                        <div class="topo-node">
+                                            <div class="topo-icon">💨</div>
+                                            <div class="topo-label">Air Quality</div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Arrow -->
-                                <div class="topo-row">
-                                    <span class="topo-arrow">⬇ Ethernet / WiFi / 4G Backhaul</span>
+                                <div class="topo-arrow-connector">
+                                    <div class="topo-arrow-line"></div>
+                                    <div class="topo-arrow-head">▶</div>
+                                    <div class="topo-arrow-text">LoRa Radio</div>
+                                    <div class="topo-arrow-sub">CN470 / EU868 / US915</div>
                                 </div>
 
-                                <!-- Layer 3: Server -->
-                                <div class="topo-row">
-                                    <div class="topo-node highlight">
-                                        <div class="topo-icon">🖥️</div>
-                                        <div class="topo-label">ChirpStack / Cloud</div>
-                                        <div class="topo-desc">LoRaWAN Network Server</div>
+                                <!-- Stage 2: Gateways -->
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">Gateways</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node highlight">
+                                            <div class="topo-icon">📡</div>
+                                            <div class="topo-label">LPS8N</div>
+                                            <div class="topo-desc">Indoor Gateway</div>
+                                        </div>
+                                        <div class="topo-node highlight">
+                                            <div class="topo-icon">📻</div>
+                                            <div class="topo-label">DLOS8</div>
+                                            <div class="topo-desc">Outdoor Gateway</div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Arrow -->
-                                <div class="topo-row">
-                                    <span class="topo-arrow">⬇ MQTT / HTTP API</span>
+                                <div class="topo-arrow-connector">
+                                    <div class="topo-arrow-line"></div>
+                                    <div class="topo-arrow-head">▶</div>
+                                    <div class="topo-arrow-text">Backhaul</div>
+                                    <div class="topo-arrow-sub">Ethernet / WiFi / 4G</div>
                                 </div>
 
-                                <!-- Layer 4: Application -->
-                                <div class="topo-row">
-                                    <div class="topo-node">
-                                        <div class="topo-icon">📊</div>
-                                        <div class="topo-label">Dashboard</div>
+                                <!-- Stage 3: Server -->
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">Network Server</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node highlight">
+                                            <div class="topo-icon">🖥️</div>
+                                            <div class="topo-label">ChirpStack / Cloud</div>
+                                            <div class="topo-desc">LoRaWAN Server</div>
+                                        </div>
                                     </div>
-                                    <div class="topo-node">
-                                        <div class="topo-icon">🔔</div>
-                                        <div class="topo-label">Alerts</div>
-                                    </div>
-                                    <div class="topo-node">
-                                        <div class="topo-icon">🔗</div>
-                                        <div class="topo-label">API / Integration</div>
+                                </div>
+
+                                <!-- Arrow -->
+                                <div class="topo-arrow-connector">
+                                    <div class="topo-arrow-line"></div>
+                                    <div class="topo-arrow-head">▶</div>
+                                    <div class="topo-arrow-text">Data Push</div>
+                                    <div class="topo-arrow-sub">MQTT / HTTP API</div>
+                                </div>
+
+                                <!-- Stage 4: Application -->
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">Applications</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node">
+                                            <div class="topo-icon">📊</div>
+                                            <div class="topo-label">Dashboard</div>
+                                        </div>
+                                        <div class="topo-node">
+                                            <div class="topo-icon">🔔</div>
+                                            <div class="topo-label">Alerts</div>
+                                        </div>
+                                        <div class="topo-node">
+                                            <div class="topo-icon">🔗</div>
+                                            <div class="topo-label">API / Integration</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -511,69 +532,90 @@
 
                         <h3>Cellular Network Architecture</h3>
                         <div class="topology-container">
-                            <div class="topology-diagram">
-                                <!-- Layer 1: Sensors -->
-                                <div class="topo-row">
-                                    <div class="topo-node">
-                                        <div class="topo-icon">🌡️</div>
-                                        <div class="topo-label">TH Sensor</div>
-                                    </div>
-                                    <div class="topo-node">
-                                        <div class="topo-icon">🌱</div>
-                                        <div class="topo-label">Soil Sensor</div>
-                                    </div>
-                                    <div class="topo-node">
-                                        <div class="topo-icon">🔌</div>
-                                        <div class="topo-label">RS485 Node</div>
-                                    </div>
-                                </div>
-
-                                <!-- Arrow -->
-                                <div class="topo-row">
-                                    <span class="topo-arrow">⬇ Wired / RS485 / Analog</span>
-                                </div>
-
-                                <!-- Layer 2: Cellular Gateway -->
-                                <div class="topo-row">
-                                    <div class="topo-node highlight">
-                                        <div class="topo-icon">📱</div>
-                                        <div class="topo-label">4G/NB-IoT DTU</div>
-                                        <div class="topo-desc">Cellular Data Terminal</div>
+                            <div class="topology-diagram topology-horizontal">
+                                <!-- Stage 1: Sensors -->
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">End Devices</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node">
+                                            <div class="topo-icon">🌡️</div>
+                                            <div class="topo-label">TH Sensor</div>
+                                        </div>
+                                        <div class="topo-node">
+                                            <div class="topo-icon">🌱</div>
+                                            <div class="topo-label">Soil Sensor</div>
+                                        </div>
+                                        <div class="topo-node">
+                                            <div class="topo-icon">🔌</div>
+                                            <div class="topo-label">RS485 Node</div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Arrow -->
-                                <div class="topo-row">
-                                    <span class="topo-arrow">⬇ 4G / NB-IoT / LTE-M</span>
+                                <div class="topo-arrow-connector">
+                                    <div class="topo-arrow-line"></div>
+                                    <div class="topo-arrow-head">▶</div>
+                                    <div class="topo-arrow-text">Wired Link</div>
+                                    <div class="topo-arrow-sub">RS485 / Analog</div>
                                 </div>
 
-                                <!-- Layer 3: Cloud -->
-                                <div class="topo-row">
-                                    <div class="topo-node highlight">
-                                        <div class="topo-icon">☁️</div>
-                                        <div class="topo-label">Cloud Platform</div>
-                                        <div class="topo-desc">MQTT Broker / HTTP Server</div>
+                                <!-- Stage 2: Cellular Gateway -->
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">Cellular DTU</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node highlight">
+                                            <div class="topo-icon">📱</div>
+                                            <div class="topo-label">4G/NB-IoT DTU</div>
+                                            <div class="topo-desc">Cellular Data Terminal</div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Arrow -->
-                                <div class="topo-row">
-                                    <span class="topo-arrow">⬇ API / WebSocket</span>
+                                <div class="topo-arrow-connector">
+                                    <div class="topo-arrow-line"></div>
+                                    <div class="topo-arrow-head">▶</div>
+                                    <div class="topo-arrow-text">Cellular</div>
+                                    <div class="topo-arrow-sub">4G / NB-IoT / LTE-M</div>
                                 </div>
 
-                                <!-- Layer 4: Application -->
-                                <div class="topo-row">
-                                    <div class="topo-node">
-                                        <div class="topo-icon">📊</div>
-                                        <div class="topo-label">Dashboard</div>
+                                <!-- Stage 3: Cloud -->
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">Cloud Platform</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node highlight">
+                                            <div class="topo-icon">☁️</div>
+                                            <div class="topo-label">Cloud Platform</div>
+                                            <div class="topo-desc">MQTT Broker / HTTP</div>
+                                        </div>
                                     </div>
-                                    <div class="topo-node">
-                                        <div class="topo-icon">🔔</div>
-                                        <div class="topo-label">Alerts</div>
-                                    </div>
-                                    <div class="topo-node">
-                                        <div class="topo-icon">🔗</div>
-                                        <div class="topo-label">API / Integration</div>
+                                </div>
+
+                                <!-- Arrow -->
+                                <div class="topo-arrow-connector">
+                                    <div class="topo-arrow-line"></div>
+                                    <div class="topo-arrow-head">▶</div>
+                                    <div class="topo-arrow-text">Data Push</div>
+                                    <div class="topo-arrow-sub">API / WebSocket</div>
+                                </div>
+
+                                <!-- Stage 4: Application -->
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">Applications</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node">
+                                            <div class="topo-icon">📊</div>
+                                            <div class="topo-label">Dashboard</div>
+                                        </div>
+                                        <div class="topo-node">
+                                            <div class="topo-icon">🔔</div>
+                                            <div class="topo-label">Alerts</div>
+                                        </div>
+                                        <div class="topo-node">
+                                            <div class="topo-icon">🔗</div>
+                                            <div class="topo-label">API / Integration</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
