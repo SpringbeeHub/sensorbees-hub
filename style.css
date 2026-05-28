@@ -393,19 +393,19 @@ body {
 
 .hex-card {
     position: relative;
-    width: 146px;
-    height: 166px;
+    width: 150px;
+    height: 174px;
     clip-path: polygon(
-        50% 0%,
-        95% 20%,
-        100% 25%,
-        100% 75%,
-        95% 80%,
-        50% 100%,
-        5% 80%,
-        0% 75%,
-        0% 25%,
-        5% 20%
+        50% 3%,
+        94% 21%,
+        98% 26%,
+        98% 74%,
+        94% 79%,
+        50% 97%,
+        6% 79%,
+        2% 74%,
+        2% 26%,
+        6% 21%
     );
     background: var(--border);
     border: none;
@@ -430,19 +430,19 @@ body {
 .hex-card::after {
     content: '';
     position: absolute;
-    width: 142px;
+    width: 140px;
     height: 162px;
     clip-path: polygon(
-        50% 0%,
-        95% 20%,
-        100% 25%,
-        100% 75%,
-        95% 80%,
-        50% 100%,
-        5% 80%,
-        0% 75%,
-        0% 25%,
-        5% 20%
+        50% 4%,
+        93% 22%,
+        96% 27%,
+        96% 73%,
+        93% 78%,
+        50% 96%,
+        7% 78%,
+        4% 73%,
+        4% 27%,
+        7% 22%
     );
     background: #fff;
     top: 50%;
