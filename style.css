@@ -430,8 +430,8 @@ body {
 .hex-card::after {
     content: '';
     position: absolute;
-    width: 138px;
-    height: 158px;
+    width: 142px;
+    height: 162px;
     clip-path: polygon(
         50% 0%,
         95% 20%,
@@ -458,8 +458,6 @@ body {
 
 .hex-card:hover::after {
     background: var(--navy);
-    width: 138px;
-    height: 158px;
 }
 
 .hex-card:hover h3 {
