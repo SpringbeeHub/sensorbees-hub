@@ -459,45 +459,46 @@ body {
 
 .workflow-step {
     flex: 1;
-    min-width: 170px;
+    min-width: auto;
     text-align: center;
     background: var(--bg-white);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 24px 16px;
+    border-radius: 999px;
+    padding: 12px 20px;
 }
 
 .step-number {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     background: linear-gradient(135deg, var(--navy), var(--navy-light));
     color: var(--gold);
     border-radius: 50%;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 14px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 12px;
+    vertical-align: middle;
+    margin-right: 8px;
 }
 
 .workflow-arrow {
     font-size: 22px;
     color: var(--gold);
-    padding-top: 24px;
     flex-shrink: 0;
+    align-self: center;
 }
 
 .workflow-step h3 {
     font-size: 14px;
-    margin: 8px 0;
+    margin: 0;
     color: var(--navy);
+    display: inline;
+    vertical-align: middle;
 }
 
 .workflow-step p {
-    font-size: 12.5px;
-    color: var(--text-light);
-    margin: 0;
+    display: none;
 }
 
 /* ===== Topology Diagram ===== */
