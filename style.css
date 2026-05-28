@@ -262,23 +262,25 @@ body {
 }
 
 .btn-primary {
-    background: var(--gold);
-    color: var(--navy-dark);
+    background: var(--navy);
+    color: #fff;
 }
 
 .btn-primary:hover {
-    background: var(--gold-light);
-    box-shadow: 0 4px 12px rgba(234,169,36,0.3);
+    background: var(--navy-light);
+    box-shadow: 0 4px 12px rgba(27,43,72,0.3);
 }
 
 .btn-outline {
-    background: transparent;
-    color: var(--navy);
-    border: 2px solid var(--border);
+    background: var(--navy);
+    color: #fff;
+    border: 2px solid var(--navy);
 }
 
 .btn-outline:hover {
-    border-color: var(--navy);
+    background: var(--navy-light);
+    border-color: var(--navy-light);
+    color: #fff;
 }
 
 /* ===== Feature Grid ===== */
