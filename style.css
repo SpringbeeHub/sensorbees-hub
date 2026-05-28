@@ -224,12 +224,12 @@ body {
 
 .hero-badge {
     display: inline-block;
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    color: var(--navy-dark);
-    font-size: 12px;
+    background: var(--navy);
+    color: #fff;
+    font-size: 14px;
     font-weight: 700;
-    padding: 4px 14px;
-    border-radius: 20px;
+    padding: 8px 24px;
+    border-radius: 24px;
     margin-bottom: 16px;
     letter-spacing: 0.5px;
 }
