@@ -262,8 +262,8 @@ body {
 }
 
 .btn-primary {
-    background: var(--gold);
-    color: var(--navy-dark);
+    background: #fff;
+    color: var(--navy);
 }
 
 .btn-primary:hover {
