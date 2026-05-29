@@ -822,6 +822,20 @@ body {
     border-radius: 50%;
 }
 
+.topo-node.topo-img-node {
+    width: 120px;
+    min-width: 120px;
+    padding: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.topo-banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .topo-node:hover {
     border-color: var(--gold);
     box-shadow: var(--card-shadow);
