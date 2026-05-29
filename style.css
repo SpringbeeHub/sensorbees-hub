@@ -833,6 +833,10 @@ body {
     overflow: hidden;
 }
 
+.topo-arrow-backhaul {
+    margin-left: -3px;
+}
+
 .topo-banner-img {
     width: 300px;
     height: auto;
