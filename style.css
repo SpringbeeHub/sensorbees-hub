@@ -859,8 +859,9 @@ body {
 }
 
 .topo-node.highlight {
-    border-color: var(--gold);
-    background: rgba(234,169,36,0.05);
+    border-color: var(--border);
+    background: #fff;
+    border-radius: 12px;
 }
 
 .topo-arrow {
