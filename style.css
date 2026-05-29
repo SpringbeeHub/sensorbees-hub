@@ -966,11 +966,14 @@ body {
     width: 30px;
     height: 30px;
     background: linear-gradient(135deg, var(--navy), var(--navy-light));
-    color: var(--gold);
+    color: #FFB800;
     border-radius: 50%;
     font-size: 14px;
     font-weight: 700;
     margin-right: 10px;
+    line-height: 1;
+    text-align: center;
+    padding: 0;
 }
 
 .step {
