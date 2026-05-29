@@ -722,6 +722,7 @@ body {
 
 .topo-stage-gateway {
     padding-top: 8px;
+    margin-left: -10px;
 }
 
 /* Arrow connector between stages - always centers vertically */
@@ -835,6 +836,10 @@ body {
 
 .topo-arrow-backhaul {
     margin-left: -3px;
+}
+
+.topo-arrow-lora {
+    margin-left: -10px;
 }
 
 .topo-banner-img {
