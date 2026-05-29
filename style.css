@@ -393,8 +393,8 @@ body {
 
 .hex-card {
     position: relative;
-    width: 150px;
-    height: 170px;
+    width: 112px;
+    height: 128px;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
