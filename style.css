@@ -4,8 +4,8 @@
     --navy-light: #2A3F64;
     --navy-dark: #0F1A2E;
     --gold: #EAA924;
-    --gold-light: #F5C84C;
-    --gold-dark: #C48E1A;
+    --gold-light: #EAA924;
+    --gold-dark: #EAA924;
     --bg: #FAFBFD;
     --bg-white: #FFFFFF;
     --bg-sidebar: #F4F6FA;
@@ -126,7 +126,7 @@ body {
     padding: 10px 24px 6px;
     font-size: 11px;
     text-transform: uppercase;
-    color: var(--gold-dark);
+    color: var(--gold);
     letter-spacing: 1px;
     font-weight: 900;
 }
