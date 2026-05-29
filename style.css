@@ -705,8 +705,8 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.8px;
     color: var(--navy);
-    background: rgba(234,169,36,0.1);
-    border: 1px solid var(--gold);
+    background: #fff;
+    border: 1.5px solid var(--border);
     border-radius: 20px;
     padding: 3px 14px;
     white-space: nowrap;
