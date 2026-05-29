@@ -1154,7 +1154,9 @@ body {
 }
 
 .net-tab:hover:not(.active) {
-    border-color: var(--text-muted);
+    border-color: var(--navy);
+    background: var(--navy);
+    color: #fff;
 }
 
 .net-panel {
