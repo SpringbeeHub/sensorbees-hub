@@ -837,6 +837,7 @@ body {
     width: 300px;
     height: auto;
     display: block;
+    margin-left: 3px;
 }
 
 .topo-node:hover {
