@@ -718,6 +718,10 @@ body {
     gap: 8px;
 }
 
+.topo-stage-gateway {
+    margin-top: -12px;
+}
+
 /* Arrow connector between stages - always centers vertically */
 .topo-arrow-connector {
     display: flex;
@@ -800,9 +804,9 @@ body {
 }
 
 .topo-node.topo-img-circle {
-    width: 70px;
-    height: 70px;
-    min-width: 70px;
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
     border-radius: 50%;
     padding: 0;
     overflow: hidden;
