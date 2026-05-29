@@ -802,6 +802,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: #fff;
 }
 
 .topo-node.topo-img-circle {
