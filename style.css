@@ -218,6 +218,12 @@ body {
 }
 
 /* ===== Search in Nav ===== */
+.nav-right-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
 .nav-search {
     display: flex;
     align-items: center;
@@ -225,7 +231,7 @@ body {
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 20px;
     padding: 5px 12px;
-    margin-left: 8px;
+    margin-left: 0;
     transition: border-color 0.2s, background 0.2s;
 }
 .nav-search:focus-within {
