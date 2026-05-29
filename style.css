@@ -66,7 +66,7 @@ body {
     color: #fff;
 }
 
-.brand-name .gold { color: var(--gold); }
+.brand-name .gold { color: #FFB800; }
 
 .nav-links {
     display: flex;
