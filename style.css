@@ -805,9 +805,9 @@ body {
 }
 
 .topo-node.topo-img-circle {
-    width: 54px;
-    height: 54px;
-    min-width: 54px;
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
     border-radius: 50%;
     padding: 0;
     overflow: hidden;
