@@ -687,6 +687,7 @@ body {
     flex-direction: row;
     align-items: center;
     gap: 0;
+    padding-left: 40px;
     min-width: max-content;
 }
 
