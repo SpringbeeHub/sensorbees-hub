@@ -110,6 +110,11 @@
             <!-- SECTION 1: Sensor Product Knowledge        -->
             <!-- ========================================== -->
             <section id="sensors">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="sensor-search" placeholder="Search sensor probes, accessories..." autocomplete="off">
+                    <span class="search-clear" id="search-clear">✕</span>
+                </div>
                 <h2>The Beekeeper's Knowledge to All Sensor Probes</h2>
                 <p style="font-size:13px;color:var(--text-muted);font-style:italic;">Everything you need to know about sensor probes, all in one hive</p>
 
@@ -681,5 +686,40 @@
     </div>
 
     <script src="script.js"></script>
+<script>
+(function() {
+    const input = document.getElementById('sensor-search');
+    const clearBtn = document.getElementById('search-clear');
+    if (!input) return;
+
+    const cards = document.querySelectorAll('.hex-card');
+    const grids = document.querySelectorAll('.hex-grid');
+
+    input.addEventListener('input', function() {
+        const q = this.value.trim().toLowerCase();
+        clearBtn.classList.toggle('visible', q.length > 0);
+
+        cards.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            if (!q || text.includes(q)) {
+                card.classList.remove('search-hidden');
+            } else {
+                card.classList.add('search-hidden');
+            }
+        });
+
+        grids.forEach(grid => {
+            const visible = grid.querySelectorAll('.hex-card:not(.search-hidden)');
+            grid.classList.toggle('search-empty', visible.length === 0 && q.length > 0);
+        });
+    });
+
+    clearBtn.addEventListener('click', function() {
+        input.value = '';
+        input.dispatchEvent(new Event('input'));
+        input.focus();
+    });
+})();
+</script>
 </body>
 </html>
