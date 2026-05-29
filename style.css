@@ -559,13 +559,14 @@ body {
     width: 28px;
     height: 28px;
     background: linear-gradient(135deg, var(--navy), var(--navy-light));
-    color: var(--gold);
+    color: #FFB800;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
     font-size: 12px;
+    line-height: 1;
     vertical-align: middle;
     margin-right: 8px;
 }
