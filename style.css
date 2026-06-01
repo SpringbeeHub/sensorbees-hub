@@ -1299,7 +1299,7 @@ body {
     border-radius: 999px !important;
     border: 3px double #EAA924 !important;
     font-weight: 800 !important;
-    font-style: italic !important;
+    font-style: normal !important;
     font-size: 13px;
     text-decoration: none;
     transition: all 0.2s;
