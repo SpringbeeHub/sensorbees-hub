@@ -3,77 +3,66 @@ const PRODUCTS_DATA = [
   {
     "title": "T68DL",
     "category": "Temperature & Humidity",
-    "description": "Industrial temperature and humidity sensor with LoRaWAN® wireless transmission",
     "order": 1,
     "slug": "t68dl"
   },
   {
     "title": "Indoor TH Sensor",
     "category": "Temperature & Humidity",
-    "description": "Indoor ambient temperature and humidity sensor for smart buildings and warehouses",
     "order": 2,
     "slug": "indoor-th-sensor"
   },
   {
     "title": "Liquid Level",
     "category": "RS485 Industrial",
-    "description": "RS485 Modbus RTU liquid level sensor for industrial process monitoring",
     "order": 3,
     "slug": "liquid-level"
   },
   {
     "title": "Pressure",
     "category": "RS485 Industrial",
-    "description": "RS485 Modbus RTU pressure sensor for industrial process monitoring",
     "order": 4,
     "slug": "pressure"
   },
   {
     "title": "Flow Meter",
     "category": "RS485 Industrial",
-    "description": "RS485 Modbus RTU flow meter sensor for industrial process monitoring",
     "order": 5,
     "slug": "flow-meter"
   },
   {
     "title": "4~20mA Sensor Adapter",
     "category": "Analog (4~20mA)",
-    "description": "4~20mA current loop sensor adapter for industrial automation wireless conversion",
     "order": 6,
     "slug": "4-20ma-sensor-adapter"
   },
   {
     "title": "Pressure Transmitter",
     "category": "Analog (4~20mA)",
-    "description": "4~20mA pressure transmitter for industrial automation applications",
     "order": 7,
     "slug": "pressure-transmitter"
   },
   {
     "title": "Soil Moisture & Temp",
     "category": "Agriculture",
-    "description": "Soil moisture and temperature sensor for precision agriculture and irrigation management",
     "order": 8,
     "slug": "soil-moisture-temp"
   },
   {
     "title": "Weather Station",
     "category": "Agriculture",
-    "description": "Agricultural weather station for microclimate monitoring",
     "order": 9,
     "slug": "weather-station"
   },
   {
     "title": "Soil NPK",
     "category": "Agriculture",
-    "description": "Soil nitrogen, phosphorus and potassium sensor for precision farming",
     "order": 10,
     "slug": "soil-npk"
   },
   {
     "title": "LoRa Antenna",
     "category": "Accessories",
-    "description": "LoRa antenna for LoRaWAN® gateway and node signal enhancement",
     "order": 11,
     "slug": "lora-antenna",
     "anchor": "accessories-antenna"
@@ -81,7 +70,6 @@ const PRODUCTS_DATA = [
   {
     "title": "UPS Power",
     "category": "Accessories",
-    "description": "Uninterruptible power supply for gateways and sensor systems",
     "order": 12,
     "slug": "ups-power",
     "anchor": "accessories-ups"
@@ -89,7 +77,6 @@ const PRODUCTS_DATA = [
   {
     "title": "Lightning Prot.",
     "category": "Accessories",
-    "description": "Lightning protection device for outdoor LoRaWAN® installations",
     "order": 13,
     "slug": "lightning-protection",
     "anchor": "accessories-lightning"
