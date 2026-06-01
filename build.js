@@ -4,6 +4,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { marked } = require(path.join(__dirname, 'node_modules/marked'));
 
 const productsDir = path.join(__dirname, 'products');
 const pagesDir = path.join(__dirname, 'pages');
@@ -103,7 +104,8 @@ for (const p of products) {
   const applications = parseYamlList(page ? page.applications : p.applications);
   const appImages = parseYamlList(page ? page.app_images : p.app_images);
   const description = (page && page.description) ? page.description : (p.description || '');
-  const bodyHtml = (page && page._body) ? page._body : (p._body || '');
+  const rawBody = (page && page._body) ? page._body : (p._body || '');
+  const bodyHtml = rawBody ? marked.parse(rawBody) : '';
 
   let featuresHtml = '';
   if (features.length) {
