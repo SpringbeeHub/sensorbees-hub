@@ -30,7 +30,11 @@ collections:
       - { label: 产品简介, name: description, widget: text }
       - { label: 产品图片, name: image, widget: image, required: false }
       - { label: "标签（如 Popular, Hot）", name: badge, widget: string, required: false }
-      - { label: 详细参数, name: body, widget: markdown }
+      - { label: 排序权重, name: order, widget: number, default: 0, value_type: int }
+      - { label: 核心特性, name: features, widget: list, required: false, field: { label: 特性, name: feature, widget: string } }
+      - { label: 技术参数, name: specs, widget: list, required: false, field: { label: 参数, name: spec, widget: string } }
+      - { label: 典型应用, name: applications, widget: list, required: false, field: { label: 应用场景, name: app, widget: string } }
+      - { label: 详细说明, name: body, widget: markdown, required: false }
   - name: downloads
     label: "📥 下载资源"
     folder: downloads

@@ -75,23 +75,23 @@ const PRODUCTS_DATA = [
     "category": "Accessories",
     "description": "LoRa antenna for LoRaWAN® gateway and node signal enhancement",
     "order": 11,
-    "anchor": "accessories-antenna",
-    "slug": "lora-antenna"
+    "slug": "lora-antenna",
+    "anchor": "accessories-antenna"
   },
   {
     "title": "UPS Power",
     "category": "Accessories",
     "description": "Uninterruptible power supply for gateways and sensor systems",
     "order": 12,
-    "anchor": "accessories-ups",
-    "slug": "ups-power"
+    "slug": "ups-power",
+    "anchor": "accessories-ups"
   },
   {
     "title": "Lightning Prot.",
     "category": "Accessories",
     "description": "Lightning protection device for outdoor LoRaWAN® installations",
     "order": 13,
-    "anchor": "accessories-lightning",
-    "slug": "lightning-protection"
+    "slug": "lightning-protection",
+    "anchor": "accessories-lightning"
   }
 ];

@@ -450,6 +450,8 @@
             const card = document.createElement('div');
             card.className = 'hex-card';
             if (product.anchor) card.id = product.anchor;
+            card.style.cursor = 'pointer';
+            card.onclick = function() { window.location.href = '/' + product.slug; };
             if (product.image) {
                 card.innerHTML =
                     '<div class="hex-card-inner">' + HEX_SVG + '</div>' +
