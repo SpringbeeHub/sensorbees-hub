@@ -22,6 +22,7 @@ collections:
       - { label: 核心特性, name: features, widget: list, required: false, field: { label: 特性, name: feature, widget: string } }
       - { label: 技术参数, name: specs, widget: list, required: false, field: { label: 参数, name: spec, widget: string } }
       - { label: 典型应用, name: applications, widget: list, required: false, field: { label: 应用场景, name: app, widget: string } }
+      - { label: 应用场景图片, name: app_images, widget: list, required: false, field: { label: 图片, name: image, widget: image } }
       - { label: 详细说明, name: body, widget: markdown, required: false }
   - name: products
     label: "🛒 产品管理"

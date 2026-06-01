@@ -101,6 +101,7 @@ for (const p of products) {
   const features = parseYamlList(page ? page.features : p.features);
   const specs = parseYamlList(page ? page.specs : p.specs);
   const applications = parseYamlList(page ? page.applications : p.applications);
+  const appImages = parseYamlList(page ? page.app_images : p.app_images);
   const description = (page && page.description) ? page.description : (p.description || '');
   const bodyHtml = (page && page._body) ? page._body : (p._body || '');
 
@@ -120,7 +121,11 @@ for (const p of products) {
 
   let appsHtml = '';
   if (applications.length) {
-    appsHtml = `<div class="detail-section"><h3>🎯 Typical Applications</h3><ul>${applications.map(a => `<li>${a}</li>`).join('')}</ul></div>`;
+    appsHtml = `<div class="detail-section"><h3>🎯 Typical Applications</h3><ul>${applications.map(a => `<li>${a}</li>`).join('')}</ul>`;
+    if (appImages.length) {
+      appsHtml += `<div class="app-images">${appImages.map(img => `<img src="${img}" alt="Application" class="app-image">`).join('')}</div>`;
+    }
+    appsHtml += `</div>`;
   }
 
   let bodySectionHtml = '';
@@ -169,6 +174,8 @@ for (const p of products) {
       .detail-body p { margin-bottom: 12px; }
       .detail-back { display: inline-block; margin-top: 32px; padding: 10px 24px; background: var(--navy); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s; }
       .detail-back:hover { background: var(--gold); }
+      .app-images { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+      .app-image { max-width: 220px; border-radius: 8px; border: 1px solid var(--border); }
     </style>
 </head>
 <body>
