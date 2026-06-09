@@ -746,28 +746,10 @@ body {
     position: relative;
 }
 
-/* Rounded dot arrowhead */
-.topo-arrow-line::after {
-    content: '';
-    position: absolute;
-    right: -7px;
-    top: -5px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #bbb;
-}
-
-/* Rounded dot at start of line */
+/* Arrow line only (no dots) */
+.topo-arrow-line::after,
 .topo-arrow-line::before {
-    content: '';
-    position: absolute;
-    left: -7px;
-    top: -5px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #bbb;
+    display: none;
 }
 
 .topo-arrow-head {
@@ -933,28 +915,10 @@ body {
     position: relative;
 }
 
-/* Rounded dot at the start of the line (sensor side) */
-.topo-dash-line::before {
-    content: '';
-    position: absolute;
-    left: -7px;
-    top: -5px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #bbb;
-}
-
-/* Rounded dot at the end of the line (gateway side) */
+/* Dash line only (no dots) */
+.topo-dash-line::before,
 .topo-dash-line::after {
-    content: '';
-    position: absolute;
-    right: -7px;
-    top: -5px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #bbb;
+    display: none;
 }
 
 .topo-star-center {
