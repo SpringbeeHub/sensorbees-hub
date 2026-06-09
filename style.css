@@ -884,58 +884,7 @@ body {
     transform: rotate(90deg);
 }
 
-/* ===== Dashed Connector Group (5 separate dashed lines) ===== */
-/* Replace the single arrow between Sensors and Gateway with 5 dashed lines */
-.topo-dashed-connector-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    position: relative;
-    min-width: 90px;
-    padding: 14px 0 6px;
-}
 
-.topo-dashed-connector {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    position: relative;
-}
-
-/* 5 dashed lines, one for each sensor */
-.topo-dashed-line {
-    width: 50px;
-    height: 0;
-    border-top: 2px dashed #bbb;
-    flex-shrink: 0;
-}
-
-.topo-dashed-label {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--navy);
-    white-space: nowrap;
-    text-align: center;
-    margin-top: 8px;
-}
-
-.topo-dashed-sub {
-    font-size: 9px;
-    color: var(--text-muted);
-    white-space: nowrap;
-    text-align: center;
-}
-
-/* Keep sensor nodes in a vertical column, each aligned with a dashed line */
-.topo-stage-nodes.sensor-column-nodes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
 
 .topo-divider {
     width: 1px;
