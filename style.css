@@ -884,88 +884,57 @@ body {
     transform: rotate(90deg);
 }
 
-/* ===== Star Topology (LoRaWAN) ===== */
-.topology-star {
+/* ===== Dashed Connector Group (5 separate dashed lines) ===== */
+/* Replace the single arrow between Sensors and Gateway with 5 dashed lines */
+.topo-dashed-connector-group {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    padding: 20px 10px;
+    flex-shrink: 0;
     position: relative;
+    min-width: 90px;
+    padding: 14px 0 6px;
 }
 
-.topo-star-container {
-    padding: 32px 47px;
-    overflow-x: auto;
-    width: fit-content;
-    max-width: 100%;
-}
-
-.topo-star-sensors {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-end;
-}
-
-.topo-star-row {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-/* Dashed line from sensor to gateway */
-.topo-dash-line {
-    width: 40px;
-    height: 0;
-    border-top: 2px dashed #bbb;
-    position: relative;
-}
-
-/* Dash line only (no dots) */
-.topo-dash-line::before,
-.topo-dash-line::after {
-    display: none;
-}
-
-.topo-star-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-}
-
-.topo-star-center-label {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--navy);
-}
-
-.topo-star-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-}
-
-.topo-star-server-col {
+.topo-dashed-connector {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    margin-left: 10px;
+    position: relative;
 }
 
-.topo-star-lora-label {
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
+/* 5 dashed lines, one for each sensor */
+.topo-dashed-line {
+    width: 50px;
+    height: 0;
+    border-top: 2px dashed #bbb;
+    flex-shrink: 0;
+}
+
+.topo-dashed-label {
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.topo-dashed-sub {
+    font-size: 9px;
     color: var(--text-muted);
     white-space: nowrap;
+    text-align: center;
+}
+
+/* Keep sensor nodes in a vertical column, each aligned with a dashed line */
+.topo-stage-nodes.sensor-column-nodes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .topo-divider {
