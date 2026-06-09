@@ -742,7 +742,7 @@ body {
 .topo-arrow-line {
     width: 50px;
     height: 0;
-    border-top: 2px dashed #999;
+    border-top: 2px dashed #bbb;
     position: relative;
 }
 
@@ -755,7 +755,7 @@ body {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #999;
+    background: #bbb;
 }
 
 /* Rounded dot at start of line */
@@ -767,7 +767,7 @@ body {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #999;
+    background: #bbb;
 }
 
 .topo-arrow-head {
@@ -891,13 +891,13 @@ body {
 
 .topo-arrow {
     font-size: 20px;
-    color: #999;
+    color: #bbb;
     font-weight: 700;
 }
 
 .topo-arrow-down {
     font-size: 20px;
-    color: #999;
+    color: #bbb;
     font-weight: 700;
     transform: rotate(90deg);
 }
@@ -929,7 +929,7 @@ body {
 .topo-dash-line {
     width: 40px;
     height: 0;
-    border-top: 2px dashed #999;
+    border-top: 2px dashed #bbb;
     position: relative;
 }
 
@@ -942,7 +942,7 @@ body {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #999;
+    background: #bbb;
 }
 
 /* Rounded dot at the end of the line (gateway side) */
@@ -954,7 +954,7 @@ body {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #999;
+    background: #bbb;
 }
 
 .topo-star-center {
