@@ -741,22 +741,33 @@ body {
 
 .topo-arrow-line {
     width: 50px;
-    height: 2px;
-    background: var(--gold);
+    height: 0;
+    border-top: 2px dashed #999;
     position: relative;
 }
 
-/* Integrated arrowhead via CSS triangle */
+/* Rounded dot arrowhead */
 .topo-arrow-line::after {
     content: '';
     position: absolute;
-    right: -6px;
-    top: -4px;
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 8px solid var(--gold);
+    right: -7px;
+    top: -5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #999;
+}
+
+/* Rounded dot at start of line */
+.topo-arrow-line::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: -5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #999;
 }
 
 .topo-arrow-head {
@@ -880,13 +891,13 @@ body {
 
 .topo-arrow {
     font-size: 20px;
-    color: var(--gold);
+    color: #999;
     font-weight: 700;
 }
 
 .topo-arrow-down {
     font-size: 20px;
-    color: var(--gold);
+    color: #999;
     font-weight: 700;
     transform: rotate(90deg);
 }
