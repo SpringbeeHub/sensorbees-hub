@@ -887,11 +887,19 @@ body {
 /* ===== Star Topology (LoRaWAN) ===== */
 .topology-star {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 20px;
     padding: 20px 10px;
     position: relative;
+}
+
+.topo-star-container {
+    padding: 32px 47px;
+    overflow-x: auto;
+    width: fit-content;
+    max-width: 100%;
 }
 
 .topo-star-sensors {
