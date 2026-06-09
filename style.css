@@ -902,6 +902,100 @@ body {
     transform: rotate(90deg);
 }
 
+/* ===== Star Topology (LoRaWAN) ===== */
+.topology-star {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 10px;
+    position: relative;
+}
+
+.topo-star-sensors {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.topo-star-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Dashed line from sensor to gateway */
+.topo-dash-line {
+    width: 40px;
+    height: 0;
+    border-top: 2px dashed #999;
+    position: relative;
+}
+
+/* Rounded dot at the start of the line (sensor side) */
+.topo-dash-line::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: -5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #999;
+}
+
+/* Rounded dot at the end of the line (gateway side) */
+.topo-dash-line::after {
+    content: '';
+    position: absolute;
+    right: -7px;
+    top: -5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #999;
+}
+
+.topo-star-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.topo-star-center-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.topo-star-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.topo-star-server-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.topo-star-lora-label {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
 .topo-divider {
     width: 1px;
     height: 40px;
