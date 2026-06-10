@@ -1384,18 +1384,18 @@ body {
 /* Buy capsule on compatibility images */
 .buy-capsule {
     position: absolute;
-    bottom: 16px;
-    right: 16px;
-    background: linear-gradient(135deg, #EAA924, #d4921e);
-    color: #fff;
-    border: none;
+    top: 8px;
+    right: 8px;
+    background: #fff3d6;
+    color: #b8860b;
+    border: 1px solid #e8c36a;
     border-radius: 999px;
-    padding: 8px 22px;
+    padding: 6px 18px;
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(234,169,36,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     transition: transform 0.15s, box-shadow 0.15s;
     line-height: 1;
 }
