@@ -43,6 +43,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: 资源标题, name: title, widget: string }
+      - { label: 资源分类, name: category, widget: select, options: ["Sensor Probes", "Wireless End Nodes"], required: true }
       - { label: 描述, name: description, widget: text }
       - { label: 文件链接, name: file_url, widget: string }
       - { label: "图标 emoji", name: icon, widget: string, default: "📋" }
