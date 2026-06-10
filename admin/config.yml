@@ -17,7 +17,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: 页面标题, name: title, widget: string }
-      - { label: 关联产品, name: product, widget: relation, collection: products, value_field: slug, search_fields: [title], display_fields: [title], required: false }
+      - { label: 关联产品, name: product, widget: relation, collection: products, value_field: title, search_fields: [title], required: false }
       - { label: 产品型号, name: models, widget: list, required: false, field: { label: 型号, name: model, widget: string } }
       - { label: 产品简介, name: description, widget: text, required: false }
       - { label: 核心特性, name: features, widget: list, required: false, field: { label: 特性, name: feature, widget: string } }

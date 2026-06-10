@@ -128,7 +128,8 @@ const categorySectionMap = {
 };
 
 for (const p of products) {
-  const page = pages[p.slug] || null;
+  // Try matching by product title (from Decap relation field) first, then by slug
+  const page = pages[p.title] || pages[p.slug] || null;
   const sectionNum = categorySectionMap[p.category] || '?';
 
   const models = parseYamlList(page ? page.models : p.models);
