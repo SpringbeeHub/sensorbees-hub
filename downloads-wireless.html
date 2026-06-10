@@ -8,8 +8,8 @@
     <link rel="icon" href="assets/springbee-icon.png" type="image/png">
     <style>
         .page-header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 10px 20px 18px;
+            background: #032144;
+            padding: 2px 20px 8px;
             text-align: center;
             color: #fff;
             position: relative;
@@ -20,17 +20,17 @@
             gap: 10px;
             text-decoration: none;
             position: absolute;
-            top: 18px;
-            left: 24px;
+            top: 28px;
+            left: 29px;
         }
-        .page-header-brand img { height: 44px; width: auto; }
+        .page-header-brand img { height: 56px; width: auto; }
         .page-header-brand .brand-name { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; color: #fff; }
         .page-header-brand .brand-name .gold { color: #EAA924; }
-        .page-header h1 { font-size: 2rem; margin-bottom: 10px; }
+        .page-header h1 { font-size: 1.5rem; margin-bottom: 4px; margin-top: 20px; }
         .page-header p { opacity: 0.8; font-size: 1.1rem; }
         .back-link {
             display: inline-block;
-            color: #1a1a2e; background: #EAA924; padding: 8px 20px; border-radius: 50px; display: inline-block;
+            color: #fff; background: #032144; padding: 8px 20px; border-radius: 50px; display: inline-block;
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: 700;
@@ -38,7 +38,7 @@
         .back-link:hover { text-decoration: underline; }
         .page-nav {
             margin-bottom: 16px;
-            padding-left: 32px;
+            padding-left: 0;
         }
         .dl-container {
             max-width: 1000px;
@@ -51,7 +51,7 @@
             margin: 30px 0 15px;
             padding-bottom: 8px;
             border-bottom: 2px solid #ffd700;
-            color: #1a1a2e; background: #EAA924; padding: 8px 20px; border-radius: 50px; display: inline-block;
+            color: #fff; background: #032144; padding: 8px 20px; border-radius: 50px; display: inline-block;
         }
         .dl-list { list-style: none; padding: 0; }
         .dl-list li {
@@ -67,12 +67,12 @@
         }
         .dl-list li:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .dl-list .dl-info { flex: 1; }
-        .dl-list .dl-info h4 { margin: 0 0 4px; font-size: 1rem; color: #1a1a2e; background: #EAA924; padding: 8px 20px; border-radius: 50px; display: inline-block; }
+        .dl-list .dl-info h4 { margin: 0 0 4px; font-size: 1rem; color: #fff; background: #032144; padding: 8px 20px; border-radius: 50px; display: inline-block; }
         .dl-list .dl-info p { margin: 0; font-size: 0.85rem; color: #666; }
         .dl-list .dl-icon { font-size: 1.5rem; margin-right: 15px; }
         .dl-list .dl-btn {
             background: #ffd700;
-            color: #1a1a2e; background: #EAA924; padding: 8px 20px; border-radius: 50px; display: inline-block;
+            color: #fff; background: #032144; padding: 8px 20px; border-radius: 50px; display: inline-block;
             padding: 6px 18px;
             border-radius: 6px;
             text-decoration: none;
@@ -82,7 +82,15 @@
         }
         .dl-list .dl-btn:hover { background: #ffec80; }
         .loading { text-align: center; padding: 40px; color: #666; }
-    </style>
+    
+        .dl-list-wrapper {
+            background: #FFFDF5;
+            border-radius: 16px;
+            padding: 16px 12px;
+            margin-top: 16px;
+            min-height: 200px;
+        }
+</style>
 </head>
 <body>
     <div class="page-header">
