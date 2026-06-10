@@ -157,6 +157,7 @@
                         return {
                             title: fm.title || f.name.replace('.md', ''),
                             description: fm.description || '',
+                            files: fm.files || '',
                             file_url: fm.file_url || '#',
                             icon: fm.icon || '📡',
                             category: fm.category || '',
@@ -167,9 +168,11 @@
             })
             .then(items => {
                 // Filter only wireless items
-                const wirelessKeywords = ['gateway', 'lorawan', 'lora', 'wireless', 'cellular', '4g', 'nbiot', 'nb-iot', 'dlos', 'lps', 'wifi', 'network'];
                 const wirelessItems = items.filter(item => {
+                    // If category is set to Wireless End Nodes, include it directly
+                    if (item.category === 'Wireless End Nodes') return true;
                     const t = (item.title + ' ' + item.category).toLowerCase();
+                    const wirelessKeywords = ['gateway', 'lorawan', 'lora', 'cellular', '4g', 'nbiot', 'nb-iot', 'dlos', 'lps', 'wifi', 'network'];
                     return wirelessKeywords.some(kw => t.includes(kw));
                 });
 
@@ -193,7 +196,10 @@
                     if (!grouped[cat]) return;
                     html += `<div class="category-title">${cat}</div><ul class="dl-list">`;
                     grouped[cat].forEach(item => {
-                        const files = item.files ? (typeof item.files === 'string' ? JSON.parse(item.files) : item.files) : [];
+                        let files = [];
+                        if (item.files) {
+                            try { files = typeof item.files === 'string' ? JSON.parse(item.files) : item.files; } catch(e) { files = []; }
+                        }
                         let btns = '';
                         if (files.length > 0) {
                             files.forEach(f => {
