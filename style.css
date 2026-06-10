@@ -1384,11 +1384,11 @@ body {
 /* Buy capsule on compatibility images */
 .buy-capsule {
     position: absolute;
-    top: 8px;
+    top: 0;
     right: 8px;
     background: #fff3d6;
-    color: #b8860b;
-    border: 1px solid #e8c36a;
+    color: #2b4f6e;
+    border: none;
     border-radius: 999px;
     padding: 6px 18px;
     font-family: 'Poppins', sans-serif;
