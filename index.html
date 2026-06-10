@@ -181,8 +181,66 @@
                         <p><strong>LoRaWAN<sup>®</sup></strong> (Long Range Wide Area Network) is a wireless protocol purpose-built for IoT. It delivers exceptional range — up to 15 km in rural areas — while keeping power consumption so low that a single battery can last years. Designed for devices that send small amounts of data infrequently, LoRaWAN<sup>®</sup> is the go-to choice for remote, hard-to-reach, and large-scale sensor deployments.</p>
 
                         <h3>LoRaWAN<sup>®</sup> Network Topology</h3>
-                        <div class="topology-container" style="padding:0;overflow:hidden;">
-                            <img src="assets/lorawan-topology.png" alt="LoRaWAN<sup>®</sup> Network Topology" style="width:100%;height:auto;display:block;">
+                        <div class="topology-container">
+                            <div class="topology-diagram topology-horizontal">
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">End Devices</div>
+                                    <div class="topo-stage-nodes sensor-column-nodes">
+                                        <div class="topo-node topo-circle"></div>
+                                        <div class="topo-node topo-circle"></div>
+                                        <div class="topo-node topo-circle"></div>
+                                        <div class="topo-node topo-circle"></div>
+                                        <div class="topo-node topo-circle"></div>
+                                    </div>
+                                </div>
+                                <div class="topo-dashed-connector-group">
+                                    <div class="topo-dashed-connector topo-dashed-lora">
+                                        <div class="topo-dashed-line"></div>
+                                        <div class="topo-dashed-line"></div>
+                                        <div class="topo-dashed-line"></div>
+                                        <div class="topo-dashed-line"></div>
+                                        <div class="topo-dashed-line"></div>
+                                        <div class="topo-dashed-label">LoRa Radio</div>
+                                        <div class="topo-dashed-sub">CN470 / EU868 / US915</div>
+                                    </div>
+                                </div>
+                                <div class="topo-stage topo-stage-gateway">
+                                    <div class="topo-stage-label">Gateway</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node topo-circle topo-img-circle highlight">
+                                            <img src="assets/lps8n.jpg" alt="LPS8N" class="topo-product-img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="topo-arrow-connector topo-arrow-backhaul">
+                                    <div class="topo-arrow-line"></div>
+                                    <div class="topo-arrow-head">&#9654;</div>
+                                    <div class="topo-arrow-text">Backhaul</div>
+                                    <div class="topo-arrow-sub">Ethernet / WiFi / 4G</div>
+                                </div>
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">Network Server</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node highlight">
+                                            <div class="topo-icon">🖥️</div>
+                                            <div class="topo-label">ChirpStack / TTN / AWS</div>
+                                            <div class="topo-desc">LoRaWAN<sup>®</sup> Server</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="topo-arrow-connector">
+                                    <div class="topo-arrow-line"></div>
+                                    <div class="topo-arrow-head">&#9654;</div>
+                                    <div class="topo-arrow-text">Data Push</div>
+                                    <div class="topo-arrow-sub">MQTT / HTTP API</div>
+                                </div>
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">Applications</div>
+                                    <div class="topo-stage-nodes">
+                                        <img src="assets/dashboard_banner.svg" alt="Dashboard" class="topo-banner-img">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -193,8 +251,45 @@
                         <p><strong>Cellular IoT protocols — NB-IoT & LTE-M (CAT-M1) & CAT-1</strong> — bring your sensor data to the cloud over existing mobile networks. Unlike LoRaWAN<sup>®</sup>, there are no gateways to deploy or maintain. A cellular sensor works anywhere there's a cell tower, making it the plug-and-play choice for beekeepers who want zero infrastructure and instant connectivity.</p>
 
                         <h3>Cellular Network Topology</h3>
-                        <div class="topology-container" style="padding:0;overflow:hidden;">
-                            <img src="assets/cellular-topology.png" alt="Cellular Network Topology" style="width:100%;height:auto;display:block;">
+                        <div class="topology-container">
+                            <div class="topology-diagram topology-horizontal">
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">End Devices</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node topo-circle"></div>
+                                        <div class="topo-node topo-circle"></div>
+                                        <div class="topo-node topo-circle"></div>
+                                    </div>
+                                </div>
+                                <div class="topo-arrow-connector">
+                                    <div class="topo-arrow-line"></div>
+                                    <div class="topo-arrow-head">&#9654;</div>
+                                    <div class="topo-arrow-text">Cellular</div>
+                                    <div class="topo-arrow-sub">CAT-1 / CAT-M / NB-IoT</div>
+                                </div>
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">Cloud Platform</div>
+                                    <div class="topo-stage-nodes">
+                                        <div class="topo-node highlight">
+                                            <div class="topo-icon">☁️</div>
+                                            <div class="topo-label">Cloud Platform</div>
+                                            <div class="topo-desc">MQTT Broker / HTTP</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="topo-arrow-connector">
+                                    <div class="topo-arrow-line"></div>
+                                    <div class="topo-arrow-head">&#9654;</div>
+                                    <div class="topo-arrow-text">Data Push</div>
+                                    <div class="topo-arrow-sub">API / WebSocket</div>
+                                </div>
+                                <div class="topo-stage">
+                                    <div class="topo-stage-label">Applications</div>
+                                    <div class="topo-stage-nodes">
+                                        <img src="assets/dashboard_banner.svg" alt="Dashboard" class="topo-banner-img">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
