@@ -1383,9 +1383,7 @@ body {
 
 /* Buy capsule on compatibility images */
 .buy-capsule {
-    position: absolute;
-    top: 0;
-    right: 8px;
+    margin-left: auto;
     background: #fff3d6;
     color: #2b4f6e;
     border: none;
