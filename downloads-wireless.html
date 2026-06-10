@@ -140,7 +140,7 @@
                     if (title.includes(kw.toLowerCase())) return cat;
                 }
             }
-            return 'Other Wireless';
+            return '';
         }
 
         const API_PROXY = 'https://oauth.sensorbeeshub.com/api/github';
@@ -187,7 +187,7 @@
 
                 // Render
                 let html = '';
-                const catOrder = ['LoRaWAN Gateways', 'LoRaWAN End Nodes', 'Cellular (4G/NB-IoT)', 'WiFi', 'Other Wireless'];
+                const catOrder = ['LoRaWAN Gateways', 'LoRaWAN End Nodes', 'Cellular (4G/NB-IoT)', 'WiFi'];
                 catOrder.forEach(cat => {
                     if (!grouped[cat]) return;
                     html += `<div class="category-title">${cat}</div><ul class="dl-list">`;
