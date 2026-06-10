@@ -239,7 +239,7 @@ for (const p of products) {
       .detail-placeholder { text-align: center; color: var(--text-muted); padding: 60px 0; font-size: 15px; }
 
       .detail-back-wrap { text-align: right; margin-top: 40px; margin-bottom: 8px; }
-      .detail-back { display: inline-block; padding: 8px 24px; background: #fff3d6; color: var(--text-light); border-radius: 999px; text-decoration: none; font-weight: 500; font-size: 13px; transition: background 0.2s, color 0.2s; }
+      .detail-back { display: inline-block; padding: 8px 24px; background: #fff3d6; color: var(--navy); border-radius: 999px; text-decoration: none; font-weight: 500; font-size: 13px; transition: background 0.2s, color 0.2s; }
       .detail-back:hover { background: var(--gold); color: #fff; }
 
       .app-images { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
