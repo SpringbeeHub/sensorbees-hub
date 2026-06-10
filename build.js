@@ -90,10 +90,7 @@ if (!fs.existsSync(productsPageDir)) fs.mkdirSync(productsPageDir, { recursive: 
 // Sidebar HTML (shared across all detail pages)
 const sidebarHtml = `      <aside class="sidebar">
           <div class="sidebar-section">
-              <h4>About This Hub</h4>
-              <a href="/#intro" class="sidebar-link">Introduction</a>
-          </div>
-          <div class="sidebar-section">
+<div class="sidebar-section">
               <h4>Sensor Hive</h4>
               <a href="/#temp-humidity" class="sidebar-link">Tem & Hum RH Sensor</a>
               <a href="/#agriculture" class="sidebar-link">Agriculture Sensor</a>
@@ -211,7 +208,7 @@ for (const p of products) {
       .detail-header { margin-bottom: 28px; }
       .detail-title { font-size: 1.6rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
       .detail-badge { display: inline-block; background: #e74c3c; color: #fff; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; }
-      .detail-category { display: inline-block; background: var(--gold); color: #fff; padding: 2px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+      .detail-category { display: inline-block; background: var(--navy); color: #fff; padding: 6px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
 
       /* --- Models capsule row --- */
       .detail-models { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
