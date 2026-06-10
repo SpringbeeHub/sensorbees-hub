@@ -11,7 +11,7 @@
     <link rel="icon" href="/assets/springbee-icon.png" type="image/png">
     <style>
       .detail-layout { display: flex; min-height: calc(100vh - var(--nav-height, 60px)); }
-      .detail-content { flex: 1; max-width: 900px; padding: 32px 40px 60px; margin: 0 auto; width: 100%; }
+      .detail-content { flex: 1; max-width: 100%; padding: 36px 32px 36px 32px; margin-right: 90px; width: auto; }
 
       .detail-breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
       .detail-breadcrumb a { color: var(--gold); text-decoration: none; }
@@ -50,8 +50,9 @@
 
       .detail-placeholder { text-align: center; color: var(--text-muted); padding: 60px 0; font-size: 15px; }
 
-      .detail-back { display: inline-block; margin-top: 40px; padding: 10px 24px; background: var(--navy); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px; transition: background 0.2s; }
-      .detail-back:hover { background: var(--gold); }
+      .detail-back-wrap { text-align: right; margin-top: 40px; margin-bottom: 8px; }
+      .detail-back { display: inline-block; padding: 8px 24px; background: #fff3d6; color: var(--text-light); border-radius: 999px; text-decoration: none; font-weight: 500; font-size: 13px; transition: background 0.2s, color 0.2s; }
+      .detail-back:hover { background: var(--gold); color: #fff; }
 
       .app-images { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
       .app-image { max-width: 200px; border-radius: 8px; border: 1px solid var(--border); }
@@ -143,7 +144,9 @@
       <p>📝 Detailed content is being prepared. Stay tuned!</p>
     </div>
 
-            <a href="/#sensors" class="detail-back">← Back to Products</a>
+            <div class="detail-back-wrap">
+              <a href="/#sensors" class="detail-back">← Back to Products</a>
+            </div>
         </main>
     </div>
 </body>
