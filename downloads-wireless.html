@@ -81,6 +81,7 @@
             white-space: nowrap;
         }
         .dl-list .dl-btn:hover { background: #ffec80; }
+        .dl-actions { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
         .loading { text-align: center; padding: 40px; color: #666; }
     
         .dl-list-wrapper {
@@ -192,6 +193,16 @@
                     if (!grouped[cat]) return;
                     html += `<div class="category-title">${cat}</div><ul class="dl-list">`;
                     grouped[cat].forEach(item => {
+                        const files = item.files ? (typeof item.files === 'string' ? JSON.parse(item.files) : item.files) : [];
+                        let btns = '';
+                        if (files.length > 0) {
+                            files.forEach(f => {
+                                const typeLabel = f.type || 'Download';
+                                btns += `<a href="${f.url}" class="dl-btn" target="_blank">${typeLabel}</a> `;
+                            });
+                        } else if (item.file_url) {
+                            btns += `<a href="${item.file_url}" class="dl-btn" target="_blank">Download</a>`;
+                        }
                         html += `
                         <li>
                             <span class="dl-icon">${item.icon}</span>
@@ -199,7 +210,7 @@
                                 <h4>${item.title}</h4>
                                 <p>${item.description}</p>
                             </div>
-                            <a href="${item.file_url}" class="dl-btn" target="_blank">Download</a>
+                            <div class="dl-actions">${btns}</div>
                         </li>`;
                     });
                     html += '</ul>';
