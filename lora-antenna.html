@@ -10,31 +10,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="icon" href="/assets/springbee-icon.png" type="image/png">
     <style>
-      .detail-page { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
-      .detail-breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+      .detail-layout { display: flex; min-height: calc(100vh - var(--nav-height, 60px)); }
+      .detail-content { flex: 1; max-width: 900px; padding: 32px 40px 60px; margin: 0 auto; width: 100%; }
+
+      .detail-breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
       .detail-breadcrumb a { color: var(--gold); text-decoration: none; }
       .detail-breadcrumb a:hover { text-decoration: underline; }
-      .detail-title { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
-      .detail-category { display: inline-block; background: var(--gold); color: #fff; padding: 2px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 16px; }
-      .detail-badge { display: inline-block; background: #e74c3c; color: #fff; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; margin-left: 8px; }
-      .detail-desc { font-size: 15px; color: var(--text-light); line-height: 1.7; margin-bottom: 24px; }
-      .detail-image { max-width: 100%; border-radius: 12px; margin-bottom: 24px; }
+
+      .detail-header { margin-bottom: 28px; }
+      .detail-title { font-size: 1.6rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+      .detail-badge { display: inline-block; background: #e74c3c; color: #fff; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+      .detail-category { display: inline-block; background: var(--gold); color: #fff; padding: 2px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+
+      /* --- Models capsule row --- */
+      .detail-models { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+      .models-label { font-size: 13px; font-weight: 500; color: var(--text-light); }
+      .model-capsule { display: inline-block; background: #fef7e8; border: 1px solid var(--gold); color: #8a6a0f; border-radius: 999px; padding: 4px 16px; font-size: 13px; font-weight: 500; }
+
+      /* --- Description --- */
+      .detail-desc { font-size: 14px; color: var(--text-light); line-height: 1.7; margin-bottom: 28px; }
+      .detail-image { max-width: 100%; border-radius: 12px; margin-bottom: 28px; }
+
+      /* --- Sections --- */
       .detail-section { margin-bottom: 28px; }
-      .detail-section h3 { font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; border-bottom: 2px solid var(--gold); padding-bottom: 6px; display: inline-block; }
-      .detail-section ul { padding-left: 20px; line-height: 1.8; }
-      .detail-section li { margin-bottom: 4px; }
+      .detail-section h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; border-bottom: 2px solid var(--gold); padding-bottom: 6px; display: inline-block; }
+
+      .feature-list { padding-left: 20px; line-height: 1.9; }
+      .feature-list li { margin-bottom: 2px; }
+      .app-list { padding-left: 20px; line-height: 1.9; }
+      .app-list li { margin-bottom: 2px; }
+
       .spec-table { width: 100%; border-collapse: collapse; }
       .spec-table th, .spec-table td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 14px; }
-      .spec-table th { width: 40%; color: var(--navy); font-weight: 600; background: #f8f9fa; }
+      .spec-table th { width: 38%; color: var(--navy); font-weight: 600; background: #f8f9fa; border-radius: 6px 0 0 6px; }
+      .spec-table tr:last-child th, .spec-table tr:last-child td { border-bottom: none; }
+
       .detail-body { line-height: 1.8; font-size: 14px; }
       .detail-body p { margin-bottom: 12px; }
-      .detail-back { display: inline-block; margin-top: 32px; padding: 10px 24px; background: var(--navy); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s; }
+
+      .detail-placeholder { text-align: center; color: var(--text-muted); padding: 60px 0; font-size: 15px; }
+
+      .detail-back { display: inline-block; margin-top: 40px; padding: 10px 24px; background: var(--navy); color: #fff; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px; transition: background 0.2s; }
       .detail-back:hover { background: var(--gold); }
+
       .app-images { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
-      .app-image { max-width: 220px; border-radius: 8px; border: 1px solid var(--border); }
+      .app-image { max-width: 200px; border-radius: 8px; border: 1px solid var(--border); }
+
+      @media (max-width: 768px) {
+        .detail-content { padding: 20px 16px 40px; }
+        .detail-title { font-size: 1.3rem; }
+        .sidebar { display: none; }
+      }
     </style>
 </head>
 <body>
+    <!-- Top Navigation -->
     <nav class="top-nav">
         <a href="/" class="nav-brand">
             <img src="/assets/springbee-icon.png" alt="SpringBees" class="nav-logo">
@@ -48,29 +78,76 @@
             <a href="/faq">FAQ</a>
         </div>
         <div class="nav-right-group">
-            <a href="https://www.iot-bees.com" class="nav-badge" target="_blank" rel="noopener">🛒 Sensor Selection Store</a>
+            <div class="nav-search">
+                <span class="nav-search-icon">🔍</span>
+                <input type="text" class="nav-search-input" placeholder="Search products...">
+            </div>
+            <a href="https://www.iot-bees.com" class="nav-badge" target="_blank" rel="noopener">🛒 BeeSense Store</a>
         </div>
     </nav>
 
-    <div class="detail-page">
-        <div class="detail-breadcrumb">
-            <a href="/">Home</a> / <a href="/#sensors">Products</a> / LoRa Antenna
-        </div>
-        
-        <h1 class="detail-title">LoRa Antenna</h1>
-        <span class="detail-category">Section A · Accessories</span>
-        <p class="detail-desc">LoRa antenna for LoRaWAN® gateway and node signal enhancement</p>
-        
-        
-        
-        
-        
-    <div class="detail-section detail-placeholder">
-      <p style="text-align:center;color:var(--text-muted);padding:40px 0;">
-        📝 Detailed content is being prepared. Stay tuned!
-      </p>
+    <div class="detail-layout">
+      <aside class="sidebar">
+          <div class="sidebar-section">
+              <h4>About This Hub</h4>
+              <a href="/#intro" class="sidebar-link">Introduction</a>
+          </div>
+          <div class="sidebar-section">
+              <h4>Sensor Hive</h4>
+              <a href="/#temp-humidity" class="sidebar-link">Tem & Hum RH Sensor</a>
+              <a href="/#agriculture" class="sidebar-link">Agriculture Sensor</a>
+              <a href="/#rs485" class="sidebar-link">RS485 Industrial</a>
+              <a href="/#analog" class="sidebar-link">Analog Sensor</a>
+          </div>
+          <div class="sidebar-section">
+              <h4>Accessories Hive</h4>
+              <a href="/#accessories" class="sidebar-link">LoRa Antenna</a>
+              <a href="/#accessories-ups" class="sidebar-link">UPS Power Supply</a>
+              <a href="/#accessories-lightning" class="sidebar-link">Lightning Protection</a>
+          </div>
+          <div class="sidebar-section">
+              <h4>Wireless Cell</h4>
+              <a href="/#lorawan-setup" class="sidebar-link">LoRaWAN<sup>®</sup></a>
+              <a href="/#cellular-setup" class="sidebar-link">CAT-1/LTE-M/NB-IoT</a>
+          </div>
+          <div class="sidebar-section">
+              <h4>Wings Hive</h4>
+              <a href="/#dragino" class="sidebar-link">Dragino Nodes</a>
+              <a href="/#milesight" class="sidebar-link">Milesight Nodes</a>
+          </div>
+          <div class="sidebar-section">
+              <h4>Resources</h4>
+              <a href="/#downloads" class="sidebar-link">Downloads</a>
+              <a href="/faq" class="sidebar-link">FAQ</a>
+          </div>
+      </aside>
+
+        <main class="detail-content">
+            <div class="detail-breadcrumb">
+                <a href="/">Home</a> / <a href="/#sensors">Products</a> / LoRa Antenna
+            </div>
+
+            <div class="detail-header">
+                <span class="detail-category">Section A · Accessories</span>
+                <h1 class="detail-title">LoRa Antenna</h1>
+                
+            </div>
+
+            <p class="detail-desc">LoRa antenna for LoRaWAN® gateway and node signal enhancement</p>
+
+            
+
+            
+            
+            
+            
+            
+    <div class="detail-placeholder">
+      <p>📝 Detailed content is being prepared. Stay tuned!</p>
     </div>
-        <a href="/#sensors" class="detail-back">← Back to Product Hive</a>
+
+            <a href="/#sensors" class="detail-back">← Back to Products</a>
+        </main>
     </div>
 </body>
 </html>
