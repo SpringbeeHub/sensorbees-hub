@@ -90,7 +90,6 @@ if (!fs.existsSync(productsPageDir)) fs.mkdirSync(productsPageDir, { recursive: 
 // Sidebar HTML (shared across all detail pages)
 const sidebarHtml = `      <aside class="sidebar">
           <div class="sidebar-section">
-<div class="sidebar-section">
               <h4>Sensor Hive</h4>
               <a href="/#temp-humidity" class="sidebar-link">Tem & Hum RH Sensor</a>
               <a href="/#agriculture" class="sidebar-link">Agriculture Sensor</a>
