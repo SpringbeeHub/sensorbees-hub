@@ -183,7 +183,12 @@
                         <h3>LoRaWAN<sup>®</sup> Network Topology</h3>
                         <div class="topology-container" style="padding:0;overflow:hidden;">
                             <img src="assets/lorawan-topology.png" alt="LoRaWAN<sup>®</sup> Network Topology" style="width:100%;height:auto;display:block;">
-                        </div><div class="net-panel" id="panel-cellular">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cellular Panel -->
+                <div class="net-panel" id="panel-cellular">
                     <div id="cellular-setup">
                         <p><strong>Cellular IoT protocols — NB-IoT & LTE-M (CAT-M1) & CAT-1</strong> — bring your sensor data to the cloud over existing mobile networks. Unlike LoRaWAN<sup>®</sup>, there are no gateways to deploy or maintain. A cellular sensor works anywhere there's a cell tower, making it the plug-and-play choice for beekeepers who want zero infrastructure and instant connectivity.</p>
 
@@ -191,6 +196,201 @@
                         <div class="topology-container" style="padding:0;overflow:hidden;">
                             <img src="assets/cellular-topology.png" alt="Cellular Network Topology" style="width:100%;height:auto;display:block;">
                         </div>
-
                     </div>
                 </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SECTION 2: Product Compatibility           -->
+            <!-- ========================================== -->
+            <section id="compatibility">
+                <h2><svg class="section-icon" viewBox="0 0 24 24" width="33" height="33" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z"/><path d="M12 7l4.33 2.5v5L12 17l-4.33-2.5v-5z" stroke="#EAA924"/></svg> Product Compatibility</h2>
+                <p>SpringBees sensors are compatible with mainstream LoRaWAN<sup>®</sup> node manufacturers. Below are the supported brands and their compatible gateway/sensor models.</p>
+
+                <div class="compat-section" id="dragino">
+                    <div class="compat-header">
+                        <span class="brand-tag">🟡 Dragino</span>
+                        <span style="font-size:13px;color:var(--text-light);">LoRaWAN<sup>®</sup> Gateways & Sensor Nodes</span>
+                    </div>
+                    <div class="compat-placeholder">
+                        <div class="placeholder-icon">📋</div>
+                        <p><strong>Compatible Dragino models coming soon</strong></p>
+                        <p style="font-size:12px;margin-top:6px;">Gateway: LPS8N, DLOS8, DLOS6 · Sensor nodes: LHT65, LSE01, LSN50v2…</p>
+                        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">This section will be updated with detailed compatibility matrix.</p>
+                    </div>
+                </div>
+
+                <div class="compat-section" id="milesight" style="margin-top:16px;">
+                    <div class="compat-header">
+                        <span class="brand-tag">🟢 Milesight</span>
+                        <span style="font-size:13px;color:var(--text-light);">LoRaWAN<sup>®</sup> Gateways & Sensor Nodes</span>
+                    </div>
+                    <div class="compat-placeholder">
+                        <div class="placeholder-icon">📋</div>
+                        <p><strong>Compatible Milesight models coming soon</strong></p>
+                        <p style="font-size:12px;margin-top:6px;">Gateway: UG65, UG67 · Sensor nodes: AM319, EM500, WS301…</p>
+                        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">This section will be updated with detailed compatibility matrix.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SECTION 4: Downloads                    -->
+            <!-- ========================================== -->
+            <section id="downloads">
+                <h2><svg class="section-icon" viewBox="0 0 24 24" width="33" height="33" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z"/><path d="M12 7l4.33 2.5v5L12 17l-4.33-2.5v-5z" stroke="#EAA924"/><path d="M12 10v5" stroke="#EAA924" stroke-width="2" stroke-linecap="round"/><path d="M10 13l2 2 2-2" stroke="#EAA924" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Downloads</h2>
+                <p>Access test reports, datasheets, configuration guides, and technical documents.</p>
+
+                <div class="download-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+                    <a href="/downloads-sensor-probe" class="download-card" style="padding: 12px 14px; text-align: left;">
+                        <div class="download-info">
+                            <h4 style="font-size: 0.85rem;">Sensor Probes</h4>
+                            <p>Test reports, datasheets & technical docs for all sensor probes</p>
+                        </div>
+                        <span class="download-arrow">→</span>
+                    </a>
+                    <a href="/downloads-wireless" class="download-card" style="padding: 12px 14px; text-align: left;">
+                        <div class="download-info">
+                            <h4 style="font-size: 0.85rem;">Wireless End Nodes</h4>
+                            <p>Gateway reports, LoRaWAN<sup>®</sup> & cellular configuration guides</p>
+                        </div>
+                        <span class="download-arrow">→</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>© 2026 SpringBees Hub — Powered by Zhongshan Springbee Technology Co.,Ltd</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Floating Contact Button -->
+    <button class="contact-fab" id="contactFab" onclick="toggleContactModal()" aria-label="Contact Us">
+        ✉️
+    </button>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal-overlay" id="contactModalOverlay" onclick="toggleContactModal()">
+        <div class="contact-modal" onclick="event.stopPropagation()">
+            <div class="contact-modal-header">
+                <h2><svg class="section-icon" viewBox="0 0 24 24" width="33" height="33" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z"/><path d="M12 7l4.33 2.5v5L12 17l-4.33-2.5v-5z" stroke="#EAA924"/></svg> Contact Us</h2>
+                <button class="contact-modal-close" onclick="toggleContactModal()" aria-label="Close">✕</button>
+            </div>
+            <p class="contact-modal-desc">Have questions about our sensors or need a custom solution? Send us a message and we'll get back to you within 24 hours.</p>
+            <form name="contact" class="contact-form" id="contactForm">
+                <div id="formSuccess" style="display:none; text-align:center; padding:24px;">
+                    <div style="font-size:48px;margin-bottom:12px;">✅</div>
+                    <h3 style="margin-bottom:8px;">Message Sent!</h3>
+                    <p style="color:var(--text-light);">We'll get back to you within 24 hours.</p>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" placeholder="Your company name" />
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject">
+                        <option value="">Select a topic</option>
+                        <option value="Product Inquiry">Product Inquiry</option>
+                        <option value="Technical Support">Technical Support</option>
+                        <option value="Custom Solution">Custom Solution</option>
+                        <option value="Partnership">Partnership</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project or question..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="products-data.js"></script>
+    <script src="script.js"></script>
+<script>
+(function() {
+    // Render products from PRODUCTS_DATA into category grids
+    if (typeof PRODUCTS_DATA !== 'undefined') {
+        const HEX_SVG = '<svg viewBox="0 0 150 170" xmlns="http://www.w3.org/2000/svg">' +
+            '<path class="hex-border" d="M66.2,9.7 Q75.0,5.0 83.8,9.7 L131.2,35.3 Q140.0,40.0 140.0,50.0 L140.0,120.0 Q140.0,130.0 131.2,134.7 L83.8,160.3 Q75.0,165.0 66.2,160.3 L18.8,134.7 Q10.0,130.0 10.0,120.0 L10.0,50.0 Q10.0,40.0 18.8,35.3 Z" fill="none" stroke="#E2E8F0" stroke-width="2"/>' +
+            '<path class="hex-fill" d="M68.0,11.8 Q75.0,8.0 82.0,11.8 L130.0,38.2 Q137.0,42.0 137.0,50.0 L137.0,120.0 Q137.0,128.0 130.0,131.8 L82.0,158.2 Q75.0,162.0 68.0,158.2 L20.0,131.8 Q13.0,128.0 13.0,120.0 L13.0,50.0 Q13.0,42.0 20.0,38.2 Z" fill="#fff" stroke="none"/>' +
+            '</svg>';
+
+        function createHexCard(product) {
+            const card = document.createElement('div');
+            card.className = 'hex-card';
+            if (product.anchor) card.id = product.anchor;
+            card.style.cursor = 'pointer';
+            card.onclick = function() { window.location.href = '/' + product.slug; };
+            if (product.image) {
+                card.innerHTML =
+                    '<div class="hex-card-inner">' + HEX_SVG + '</div>' +
+                    '<div class="hex-content">' +
+                    (product.image ? '<img src="' + product.image + '" alt="' + product.title + '" style="max-width:60%;max-height:60%;margin-bottom:4px;">' : '') +
+                    '<h3>' + product.title + '</h3>' +
+                    (product.badge ? '<span class="badge">' + product.badge + '</span>' : '') +
+                    '</div>';
+            } else {
+                card.innerHTML =
+                    '<div class="hex-card-inner">' + HEX_SVG + '</div>' +
+                    '<div class="hex-content"><h3>' + product.title + '</h3></div>';
+            }
+            return card;
+        }
+
+        document.querySelectorAll('.hex-grid[data-category]').forEach(grid => {
+            const cat = grid.getAttribute('data-category');
+            const products = PRODUCTS_DATA.filter(p => p.category === cat).sort((a, b) => (a.order || 0) - (b.order || 0));
+            products.forEach(p => grid.appendChild(createHexCard(p)));
+        });
+    }
+
+    const input = document.getElementById('sensor-search');
+    const clearBtn = document.getElementById('search-clear');
+    if (!input) return;
+
+    const cards = document.querySelectorAll('.hex-card');
+    const grids = document.querySelectorAll('.hex-grid');
+
+    input.addEventListener('input', function() {
+        const q = this.value.trim().toLowerCase();
+        clearBtn.classList.toggle('visible', q.length > 0);
+
+        cards.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            if (!q || text.includes(q)) {
+                card.classList.remove('search-hidden');
+            } else {
+                card.classList.add('search-hidden');
+            }
+        });
+
+        grids.forEach(grid => {
+            const visible = grid.querySelectorAll('.hex-card:not(.search-hidden)');
+            grid.classList.toggle('search-empty', visible.length === 0 && q.length > 0);
+        });
+    });
+
+    clearBtn.addEventListener('click', function() {
+        input.value = '';
+        input.dispatchEvent(new Event('input'));
+        input.focus();
+    });
+})();
+</script>
+</body>
+</html>
