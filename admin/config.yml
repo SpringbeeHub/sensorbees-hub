@@ -48,7 +48,6 @@ collections:
         name: resources
         widget: list
         fields:
-          - { label: 资源标题, name: title, widget: string }
           - { label: 描述, name: description, widget: text, required: false }
           - label: 下载链接
             name: files
