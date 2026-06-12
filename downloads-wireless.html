@@ -153,79 +153,70 @@
             return '';
         }
 
-        // Inline download data (fetched via CMS publish)
-        const items = [
-            {
-                title: 'RS485-LN End Nodes',
-                category: 'Wireless End Nodes',
-                file_url: 'https://www.dragino.com/products/lora-lorawan-end-node/item/287-rs485-lb-ls.html',
-                icon: 'RS485-LN',
-                description: ''
-            },
-            {
-                title: 'RS485-LN Data Sheet',
-                category: 'Wireless End Nodes',
-                file_url: 'https://www.dragino.com/products/lora-lorawan-end-node/item/287-rs485-lb-ls.html',
-                icon: 'RS485-LN',
-                description: ''
-            }
-        ];
-        // Filter only wireless items
-        const wirelessItems = items.filter(item => {
-                    // If category is set to Wireless End Nodes, include it directly
-            if (item.category === 'Wireless End Nodes') return true;
-            const t = (item.title + ' ' + item.category).toLowerCase();
-                    const wirelessKeywords = ['gateway', 'lorawan', 'lora', 'cellular', '4g', 'nbiot', 'nb-iot', 'dlos', 'lps', 'wifi', 'network'];
-            return wirelessKeywords.some(kw => t.includes(kw));
+        const API_PROXY = 'https://oauth.sensorbeeshub.com/api/github';
+        fetch(`${API_PROXY}?url=${encodeURIComponent(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`)}`)
+            .then(r => r.json())
+            .then(files => {
+                if (!Array.isArray(files)) throw new Error('No files');
+                const mdFiles = files.filter(f => f.name.endsWith('.md'));
+                return Promise.all(mdFiles.map(f =>
+                    fetch(`${API_PROXY}?url=${encodeURIComponent(f.download_url)}`).then(r => r.text()).then(text => {
+                        const fm = parseFrontmatter(text);
+                        return {
+                            title: fm.title || f.name.replace('.md', ''),
+                            description: fm.description || '',
+                            files: fm.files || '',
+                            file_url: fm.file_url || '#',
+                            icon: fm.icon || '📡',
+                            category: fm.category || '',
+                            body: text.replace(/^---[\s\S]*?---\n*/, '')
+                        };
+                    })
+                ));
+            })
+            .then(items => {
+                const wirelessItems = items.filter(item => {
+                    if (item.category === 'Wireless End Nodes') return true;
+                    const t = (item.title + ' ' + item.category).toLowerCase();
+                    const ws = ['gateway', 'lorawan', 'lora', 'cellular', '4g', 'nbiot', 'nb-iot', 'dlos', 'lps', 'wifi', 'network'];
+                    return ws.some(kw => t.includes(kw));
                 });
-
                 if (wirelessItems.length === 0) {
-                document.getElementById('download-content').innerHTML = '<p>No wireless downloads available yet.</p>';
-            return;
+                    document.getElementById('download-content').innerHTML = '<p>No wireless downloads available yet.</p>';
+                    return;
                 }
-
-                // Group by category
-            const grouped = {};
-            wirelessItems.forEach(item => {
+                const grouped = {};
+                wirelessItems.forEach(item => {
                     const cat = categorize(item);
-                if (!grouped[cat]) grouped[cat] = [];
-                grouped[cat].push(item);
+                    if (!grouped[cat]) grouped[cat] = [];
+                    grouped[cat].push(item);
                 });
-
-                // Render
-            let html = '';
-            const catOrder = ['LoRaWAN Gateways', 'LoRaWAN End Nodes', 'Cellular (4G/NB-IoT)', 'WiFi'];
-            catOrder.forEach(cat => {
-                if (!grouped[cat]) return;
-                html += `<div class="category-title">${cat}</div><ul class="dl-list">`;
-                grouped[cat].forEach(item => {
-                    let files = [];
-                    if (item.files) {
-                        try { files = typeof item.files === 'string' ? JSON.parse(item.files) : item.files; } catch(e) { files = []; }
+                let html = '';
+                const catOrder = ['LoRaWAN Gateways', 'LoRaWAN End Nodes', 'Cellular (4G/NB-IoT)', 'WiFi'];
+                catOrder.forEach(cat => {
+                    if (!grouped[cat]) return;
+                    html += '<div class="category-title">' + cat + '</div><ul class="dl-list">';
+                    grouped[cat].forEach(item => {
+                        let files = [];
+                        if (item.files) {
+                            try { files = typeof item.files === 'string' ? JSON.parse(item.files) : item.files; } catch(e) { files = []; }
                         }
-                    let btns = '';
-                    if (files.length > 0) {
-                        files.forEach(f => {
-                            const typeLabel = f.type || 'Download';
-                        btns += `<a href="${f.url}" class="dl-btn" target="_blank">${typeLabel}</a> `;
-                        });
-                    } else if (item.file_url) {
-                        btns += `<a href="${item.file_url}" class="dl-btn" target="_blank">Download</a>`;
+                        let btns = '';
+                        if (files.length > 0) {
+                            files.forEach(f => { btns += '<a href="' + f.url + '" class="dl-btn" target="_blank">' + (f.type || 'Download') + '</a> '; });
+                        } else if (item.file_url) {
+                            btns += '<a href="' + item.file_url + '" class="dl-btn" target="_blank">Download</a>';
                         }
-                    html += `
-                        <li>
-                            <span class="dl-icon">${item.icon}</span>
-                            <div class="dl-info">
-                                <h4>${item.title}</h4>
-                                <p>${item.description}</p>
-                            </div>
-                            <div class="dl-actions">${btns}</div>
-                        </li>`;
+                        html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-info"><h4>' + item.title + '</h4><p>' + item.description + '</p></div><div class="dl-actions">' + btns + '</div></li>';
                     });
-                html += '</ul>';
+                    html += '</ul>';
                 });
-
-        document.getElementById('download-content').innerHTML = html;
+                document.getElementById('download-content').innerHTML = html;
+            })
+            .catch(err => {
+                console.warn('Failed to load downloads:', err);
+                document.getElementById('download-content').innerHTML = '<p>No wireless downloads available yet.</p>';
+            });
     })();
     </script>
 </body>
