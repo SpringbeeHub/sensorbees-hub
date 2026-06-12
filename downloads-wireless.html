@@ -139,11 +139,9 @@
         function categorize(item) {
             const catField = (item.category || '').toLowerCase();
             if (catField === 'wireless end nodes') return 'LoRaWAN End Nodes';
-            // Check resource titles for keywords
-            const titles = (item.resources || []).map(r => (r.title || '').toLowerCase()).join(' ');
             for (const [cat, keywords] of Object.entries(CATEGORIES)) {
                 for (const kw of keywords) {
-                    if (titles.includes(kw.toLowerCase()) || catField.includes(kw.toLowerCase())) return cat;
+                    if (catField.includes(kw.toLowerCase())) return cat;
                 }
             }
             return '';
@@ -170,7 +168,7 @@
             .then(items => {
                 const wirelessItems = items.filter(item => {
                     if (item.category === 'Wireless End Nodes') return true;
-                    const t = (item.category || '').toLowerCase() + ' ' + (item.resources || []).map(r => (r.title || '').toLowerCase()).join(' ');
+                    const t = (item.category || '').toLowerCase();
                     const ws = ['gateway', 'lorawan', 'lora', 'cellular', '4g', 'nbiot', 'nb-iot', 'dlos', 'lps', 'wifi', 'network'];
                     return ws.some(kw => t.includes(kw));
                 });
@@ -192,13 +190,8 @@
                     grouped[cat].forEach(item => {
                     const res = item.resources || [];
                     if (res.length === 0) return;
-                    res.forEach(r => {
-                        let btns = '';
-                        if (r.files && r.files.length > 0) {
-                            r.files.forEach(f => { btns += '<a href="' + f.url + '" class="dl-btn" target="_blank">' + (f.type || 'Download') + '</a> '; });
-                        }
-                        html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-actions">' + btns + '</div></li>';
-                    });
+                    const btns = (item.resources || []).map(r => '<a href="' + r.url + '" class="dl-btn" target="_blank">' + (r.type || 'Download') + '</a>').join(' ');
+                    html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-actions">' + btns + '</div></li>';
                 });
                     html += '</ul>';
                 });

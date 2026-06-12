@@ -179,7 +179,7 @@
                     // If category is set to Wireless End Nodes, exclude it directly
                     if (item.category === 'Wireless End Nodes') return false;
                     if (item.category === 'Sensor Probes') return true;
-                    const t = (item.category || '').toLowerCase() + ' ' + (item.resources && item.resources.length > 0 ? item.resources.map(r => r.title).join(' ') : '');
+                    const t = (item.category || '').toLowerCase();
                     return !wirelessKeywords.some(kw => t.includes(kw));
                 });
 
@@ -205,13 +205,8 @@
                     grouped[cat].forEach(item => {
                         const res = item.resources || [];
                         if (res.length === 0) return;
-                        res.forEach(r => {
-                            let btns = '';
-                            if (r.files && r.files.length > 0) {
-                                r.files.forEach(f => { btns += '<a href="' + f.url + '" class="dl-btn" target="_blank">' + (f.type || 'Download') + '</a> '; });
-                            }
-                            html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-actions">' + btns + '</div></li>';
-                        });
+                        const btns = (item.resources || []).map(r => '<a href="' + r.url + '" class="dl-btn" target="_blank">' + (r.type || 'Download') + '</a>').join(' ');
+                        html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-actions">' + btns + '</div></li>';
                     });
                     html += '</ul>';
                 });
