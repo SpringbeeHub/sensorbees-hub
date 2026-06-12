@@ -44,6 +44,7 @@ collections:
     fields:
       - { label: "图标(型号)", name: icon, widget: string, default: "📡" }
       - { label: 资源分类, name: category, widget: select, options: ["Sensor Probes", "Wireless End Nodes"], required: true }
+      - { label: 无线子分类, name: subcategory, widget: select, options: ["LoRaWAN", "Cellular"], required: false, condition: { field: category, value: "Wireless End Nodes" } }
       - label: 下载资源
         name: resources
         widget: list

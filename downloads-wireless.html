@@ -65,6 +65,21 @@
             transition: box-shadow 0.2s;
         }
         .dl-list li:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .two-col-layout {
+            display: flex;
+            gap: 0;
+            align-items: stretch;
+        }
+        .two-col-layout .col {
+            flex: 1;
+            min-width: 0;
+        }
+        .two-col-layout .col-divider {
+            width: 1px;
+            background: #ddd;
+            margin: 0 24px;
+            flex-shrink: 0;
+        }
         .dl-list .dl-icon { font-size: 0.8rem; margin-right: 120px; font-weight: 700; }
         .dl-list .dl-btn {
             background: #FFF8DC;
@@ -160,6 +175,7 @@
                         return {
                             icon: fm.icon || '📡',
                             category: fm.category || '',
+                            subcategory: fm.subcategory || '',
                             resources: Array.isArray(fm.resources) ? fm.resources : [],
                             body: text.replace(/^---[\s\S]*?---\n*/, '')
                         };
@@ -177,25 +193,42 @@
                     document.getElementById('download-content').innerHTML = '<p>No wireless downloads available yet.</p>';
                     return;
                 }
-                const grouped = {};
-                wirelessItems.forEach(item => {
-                    const cat = categorize(item);
-                    if (!grouped[cat]) grouped[cat] = [];
-                    grouped[cat].push(item);
+
+                // Separate LoRaWAN and Cellular items by subcategory
+                const lorawanItems = wirelessItems.filter(item => {
+                    const sc = (item.subcategory || '').toLowerCase();
+                    return sc === 'lorawan' || item.category.toLowerCase() === 'lorawan';
                 });
-                let html = '';
-                const catOrder = ['LoRaWAN Gateways', 'LoRaWAN End Nodes', 'Cellular (4G/NB-IoT)', 'WiFi'];
-                catOrder.forEach(cat => {
-                    if (!grouped[cat]) return;
-                    html += '<div class="category-title">' + cat + '</div><ul class="dl-list">';
-                    grouped[cat].forEach(item => {
-                    const res = item.resources || [];
-                    if (res.length === 0) return;
-                    const btns = (item.resources || []).map(r => '<a href="' + r.url + '" class="dl-btn" target="_blank">' + (r.type || 'Download') + '</a>').join(' ');
-                    html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-actions">' + btns + '</div></li>';
+                const cellularItems = wirelessItems.filter(item => {
+                    const sc = (item.subcategory || '').toLowerCase();
+                    return sc === 'cellular' || item.category.toLowerCase() === 'cellular';
                 });
-                    html += '</ul>';
-                });
+
+                // Helper to render a section (no wrapper list)
+                function renderItems(itms) {
+                    let h = '';
+                    itms.forEach(item => {
+                        const btns = (item.resources || []).map(r => '<a href="' + r.url + '" class="dl-btn" target="_blank">' + (r.type || 'Download') + '</a>').join(' ');
+                        h += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-actions">' + btns + '</div></li>';
+                    });
+                    return '<ul class="dl-list">' + h + '</ul>';
+                }
+
+                let html = '<div class="two-col-layout">';
+                // Left column: LoRaWAN
+                html += '<div class="col col-lora">';
+                html += '<div class="category-title">LoRaWAN End Nodes</div>';
+                html += renderItems(lorawanItems);
+                html += '</div>';
+                // Divider
+                html += '<div class="col-divider"></div>';
+                // Right column: Cellular
+                html += '<div class="col col-cellular">';
+                html += '<div class="category-title">Cellular End Nodes</div>';
+                html += renderItems(cellularItems);
+                html += '</div>';
+                html += '</div>';
+
                 document.getElementById('download-content').innerHTML = html;
             })
             .catch(err => {
