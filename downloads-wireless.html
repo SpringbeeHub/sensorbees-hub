@@ -109,6 +109,7 @@
         <div class="dl-list-wrapper"><div id="download-content" class="loading">Loading downloads...</div></div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script>
     (function loadDownloads() {
         const REPO = 'SpringbeeHub/sensorbees-hub';
@@ -124,30 +125,29 @@
         };
 
         function parseFrontmatter(text) {
-            const fm = {};
             const match = text.match(/^---\n([\s\S]*?)\n---/);
-            if (!match) return fm;
-            match[1].split('\n').forEach(line => {
-                const m = line.match(/^(\w+):\s*["']?(.+?)["']?\s*$/);
-                if (m) fm[m[1]] = m[2].trim();
-            });
-            return fm;
+            if (!match) return {};
+            try {
+                return jsyaml.load(match[1]);
+            } catch(e) {
+                console.warn('YAML parse failed, fallback to regex:', e);
+                const fm = {};
+                match[1].split('\n').forEach(line => {
+                    const m = line.match(/^(\w+):\s*["']?(.+?)["']?\s*$/);
+                    if (m) fm[m[1]] = m[2].trim();
+                });
+                return fm;
+            }
         }
 
         function categorize(item) {
-            const title = (item.title || '').toLowerCase();
             const catField = (item.category || '').toLowerCase();
-            // Check frontmatter category direct match
             if (catField === 'wireless end nodes') return 'LoRaWAN End Nodes';
+            // Check resource titles for keywords
+            const titles = (item.resources || []).map(r => (r.title || '').toLowerCase()).join(' ');
             for (const [cat, keywords] of Object.entries(CATEGORIES)) {
                 for (const kw of keywords) {
-                    if (title.includes(kw.toLowerCase())) return cat;
-                }
-            }
-            // Fallback: check frontmatter category against keywords
-            for (const [cat, keywords] of Object.entries(CATEGORIES)) {
-                for (const kw of keywords) {
-                    if (catField.includes(kw.toLowerCase())) return cat;
+                    if (titles.includes(kw.toLowerCase()) || catField.includes(kw.toLowerCase())) return cat;
                 }
             }
             return '';
@@ -163,12 +163,9 @@
                     fetch(`${API_PROXY}?url=${encodeURIComponent(f.download_url)}`).then(r => r.text()).then(text => {
                         const fm = parseFrontmatter(text);
                         return {
-                            title: fm.title || f.name.replace('.md', ''),
-                            description: fm.description || '',
-                            files: fm.files || '',
-                            file_url: fm.file_url || '#',
                             icon: fm.icon || '📡',
                             category: fm.category || '',
+                            resources: Array.isArray(fm.resources) ? fm.resources : [],
                             body: text.replace(/^---[\s\S]*?---\n*/, '')
                         };
                     })
@@ -177,7 +174,7 @@
             .then(items => {
                 const wirelessItems = items.filter(item => {
                     if (item.category === 'Wireless End Nodes') return true;
-                    const t = (item.title + ' ' + item.category).toLowerCase();
+                    const t = (item.category || '').toLowerCase() + ' ' + (item.resources || []).map(r => (r.title || '').toLowerCase()).join(' ');
                     const ws = ['gateway', 'lorawan', 'lora', 'cellular', '4g', 'nbiot', 'nb-iot', 'dlos', 'lps', 'wifi', 'network'];
                     return ws.some(kw => t.includes(kw));
                 });
@@ -197,18 +194,16 @@
                     if (!grouped[cat]) return;
                     html += '<div class="category-title">' + cat + '</div><ul class="dl-list">';
                     grouped[cat].forEach(item => {
-                        let files = [];
-                        if (item.files) {
-                            try { files = typeof item.files === 'string' ? JSON.parse(item.files) : item.files; } catch(e) { files = []; }
-                        }
+                    const res = item.resources || [];
+                    if (res.length === 0) return;
+                    res.forEach(r => {
                         let btns = '';
-                        if (files.length > 0) {
-                            files.forEach(f => { btns += '<a href="' + f.url + '" class="dl-btn" target="_blank">' + (f.type || 'Download') + '</a> '; });
-                        } else if (item.file_url) {
-                            btns += '<a href="' + item.file_url + '" class="dl-btn" target="_blank">Download</a>';
+                        if (r.files && r.files.length > 0) {
+                            r.files.forEach(f => { btns += '<a href="' + f.url + '" class="dl-btn" target="_blank">' + (f.type || 'Download') + '</a> '; });
                         }
-                        html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-info"><h4>' + item.title + '</h4><p>' + item.description + '</p></div><div class="dl-actions">' + btns + '</div></li>';
+                        html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-info"><h4>' + r.title + '</h4><p>' + (r.description || '') + '</p></div><div class="dl-actions">' + btns + '</div></li>';
                     });
+                });
                     html += '</ul>';
                 });
                 document.getElementById('download-content').innerHTML = html;

@@ -42,18 +42,20 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: 资源标题, name: title, widget: string }
+      - { label: "图标(型号)", name: icon, widget: string, default: "📡" }
       - { label: 资源分类, name: category, widget: select, options: ["Sensor Probes", "Wireless End Nodes"], required: true }
-      - { label: 描述, name: description, widget: text, required: false }
-      - label: 文件链接
-        name: files
+      - label: 资源
+        name: resources
         widget: list
-        required: false
         fields:
-          - {label: 文件名称, name: name, widget: string}
-          - {label: 文件类型, name: type, widget: select, options: [Datasheet, "User Guide", Certification, Firmware, Tool]}
-          - {label: 文件链接, name: url, widget: string}
-      - { label: "图标 emoji", name: icon, widget: string, default: "📋" }
+          - { label: 资源标题, name: title, widget: string }
+          - { label: 描述, name: description, widget: text, required: false }
+          - label: 下载链接
+            name: files
+            widget: list
+            fields:
+              - {label: 类型, name: type, widget: select, options: [Datasheet, "User Guide", Certification, Firmware, Tool]}
+              - {label: 链接, name: url, widget: string}
       - { label: 详情说明, name: body, widget: markdown, required: false }
   - name: faq
     label: "❓ FAQ 管理"
