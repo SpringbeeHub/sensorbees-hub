@@ -129,57 +129,91 @@
         <div class="dl-list-wrapper"><div id="download-content" class="loading">Loading downloads...</div></div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script>
     (function loadDownloads() {
-        // Inline data (no API dependency)
-        const downloadItems = [
-            {
-                icon: "RS485-LN",
-                category: "Wireless End Nodes",
-                subcategory: "LoRaWAN",
-                resources: [
-                    {type: "Datasheet", url: "https://www.dragino.com/products/lora-lorawan-end-node/item/287-rs485-lb-ls.html"},
-                    {type: "Datasheet", url: "https://www.dragino.com/products/lora-lorawan-end-node/item/287-rs485-lb-ls.html"}
-                ]
-            }
-        ];
+        const REPO = 'SpringbeeHub/sensorbees-hub';
+        const BRANCH = 'main';
+        const FOLDER = 'downloads';
 
-        const wirelessItems = downloadItems.filter(item => {
-            if (item.category === 'Wireless End Nodes') return true;
-            const t = (item.category || '').toLowerCase();
-            const ws = ['gateway', 'lorawan', 'lora', 'cellular', '4g', 'nbiot', 'nb-iot', 'dlos', 'lps', 'wifi', 'network'];
-            return ws.some(kw => t.includes(kw));
-        });
-        if (wirelessItems.length === 0) {
-            document.getElementById('download-content').innerHTML = '<p>No wireless downloads available yet.</p>';
-        } else {
-            // Separate LoRaWAN and Cellular items by subcategory
-            const lorawanItems = wirelessItems.filter(item => (item.subcategory || '').toLowerCase() === 'lorawan');
-            const cellularItems = wirelessItems.filter(item => (item.subcategory || '').toLowerCase() === 'cellular');
-
-            function renderItems(itms) {
-                let h = '';
-                itms.forEach(item => {
-                    const btns = (item.resources || []).map(r => '<a href="' + r.url + '" class="dl-btn" target="_blank">' + (r.type || 'Download') + '</a>').join(' ');
-                    h += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-actions">' + btns + '</div></li>';
+        function parseFrontmatter(text) {
+            const match = text.match(/^---\n([\s\S]*?)\n---/);
+            if (!match) return {};
+            try {
+                return jsyaml.load(match[1]);
+            } catch(e) {
+                console.warn('YAML parse failed, fallback to regex:', e);
+                const fm = {};
+                match[1].split('\n').forEach(line => {
+                    const m = line.match(/^(\w+):\s*["']?(.+?)["']?\s*$/);
+                    if (m) fm[m[1]] = m[2].trim();
                 });
-                return '<ul class="dl-list">' + h + '</ul>';
+                return fm;
             }
-
-            let html = '<div class="two-col-layout">';
-            html += '<div class="col col-lora">';
-            html += '<div class="category-title">LoRaWAN End Nodes</div>';
-            html += renderItems(lorawanItems);
-            html += '</div>';
-            html += '<div class="col-divider"></div>';
-            html += '<div class="col col-cellular">';
-            html += '<div class="category-title">Cellular End Nodes</div>';
-            html += renderItems(cellularItems);
-            html += '</div>';
-            html += '</div>';
-
-            document.getElementById('download-content').innerHTML = html;
         }
+
+        const API_PROXY = 'https://oauth.sensorbeeshub.com/api/github';
+
+        fetch(`${API_PROXY}?url=${encodeURIComponent(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`)}`)
+            .then(r => r.json())
+            .then(files => {
+                if (!Array.isArray(files)) throw new Error('No files');
+                const mdFiles = files.filter(f => f.name.endsWith('.md'));
+                return Promise.all(mdFiles.map(f =>
+                    fetch(`${API_PROXY}?url=${encodeURIComponent(f.download_url)}`).then(r => r.text()).then(text => {
+                        const fm = parseFrontmatter(text);
+                        return {
+                            icon: fm.icon || '📡',
+                            category: fm.category || '',
+                            subcategory: fm.subcategory || '',
+                            resources: Array.isArray(fm.resources) ? fm.resources : [],
+                            body: text.replace(/^---[\s\S]*?---\n*/, '')
+                        };
+                    })
+                ));
+            })
+            .then(items => {
+                const wirelessItems = items.filter(item => {
+                    if (item.category === 'Wireless End Nodes') return true;
+                    const t = (item.category || '').toLowerCase();
+                    const ws = ['gateway', 'lorawan', 'lora', 'cellular', '4g', 'nbiot', 'nb-iot', 'dlos', 'lps', 'wifi', 'network'];
+                    return ws.some(kw => t.includes(kw));
+                });
+                if (wirelessItems.length === 0) {
+                    document.getElementById('download-content').innerHTML = '<p>No wireless downloads available yet.</p>';
+                    return;
+                }
+
+                const lorawanItems = wirelessItems.filter(item => (item.subcategory || '').toLowerCase() === 'lorawan');
+                const cellularItems = wirelessItems.filter(item => (item.subcategory || '').toLowerCase() === 'cellular');
+
+                function renderItems(itms) {
+                    let h = '';
+                    itms.forEach(item => {
+                        const btns = (item.resources || []).map(r => '<a href="' + r.url + '" class="dl-btn" target="_blank">' + (r.type || 'Download') + '</a>').join(' ');
+                        h += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-actions">' + btns + '</div></li>';
+                    });
+                    return '<ul class="dl-list">' + h + '</ul>';
+                }
+
+                let html = '<div class="two-col-layout">';
+                html += '<div class="col col-lora">';
+                html += '<div class="category-title">LoRaWAN End Nodes</div>';
+                html += renderItems(lorawanItems);
+                html += '</div>';
+                html += '<div class="col-divider"></div>';
+                html += '<div class="col col-cellular">';
+                html += '<div class="category-title">Cellular End Nodes</div>';
+                html += renderItems(cellularItems);
+                html += '</div>';
+                html += '</div>';
+
+                document.getElementById('download-content').innerHTML = html;
+            })
+            .catch(err => {
+                console.warn('Failed to load downloads:', err);
+                document.getElementById('download-content').innerHTML = '<p>No wireless downloads available yet.</p>';
+            });
     })();
     </script>
 </body>
