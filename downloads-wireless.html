@@ -153,15 +153,14 @@
             return '';
         }
 
-        const API_DIR = 'https://oauth.sensorbeeshub.com/api/github';
-        fetch(`${API_DIR}?url=${encodeURIComponent(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`)}`)
+        const GIT_TREE = `https://api.github.com/repos/${REPO}/git/trees/${BRANCH}?recursive=1`;
+        fetch(GIT_TREE, { headers: { 'Accept': 'application/vnd.github.v3+json' } })
             .then(r => r.json())
-            .then(files => {
-                if (!Array.isArray(files)) throw new Error('No files');
-                const mdFiles = files.filter(f => f.name.endsWith('.md'));
+            .then(tree => {
+                if (!tree.tree) throw new Error('No files');
+                const mdFiles = tree.tree.filter(f => f.path.startsWith(FOLDER + '/') && f.path.endsWith('.md') && f.mode !== '160000');
                 return Promise.all(mdFiles.map(f =>
-                    fetch(f.download_url.replace('raw.githubusercontent.com', 'raw.staticdn.net')).then(r => r.text()).then(text => {
-                        const fm = parseFrontmatter(text);
+                    fetch(`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${f.path}`).then(r => r.text()).then(text => {
                         return {
                             title: fm.title || f.name.replace('.md', ''),
                             description: fm.description || '',
