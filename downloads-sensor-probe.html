@@ -46,47 +46,44 @@
             padding: 0 20px;
         }
         .category-title {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin: 30px 0 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #ffd700;
-            color: #fff; background: #032144; padding: 8px 20px; border-radius: 50px; display: inline-block;
+            margin: -12px 0 6px;
+            color: #032144;
+            text-align: center;
         }
         .dl-list { list-style: none; padding: 0; }
         .dl-list li {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px 20px;
-            margin-bottom: 8px;
+            padding: 10px 16px;
+            margin-bottom: 6px;
             background: #fff;
-            border-radius: 8px;
+            border-radius: 16px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.06);
             transition: box-shadow 0.2s;
         }
         .dl-list li:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .dl-list .dl-info { flex: 1; }
-        .dl-list .dl-info h4 { margin: 0 0 4px; font-size: 1rem; color: #fff; background: #032144; padding: 8px 20px; border-radius: 50px; display: inline-block; }
-        .dl-list .dl-info p { margin: 0; font-size: 0.85rem; color: #666; }
-        .dl-list .dl-icon { font-size: 1.5rem; margin-right: 15px; }
+        .dl-list .dl-icon { font-size: 0.8rem; margin-right: 24px; font-weight: 700; min-width: 72px; }
         .dl-list .dl-btn {
-            background: #ffd700;
-            color: #fff; background: #032144; padding: 8px 20px; border-radius: 50px; display: inline-block;
+            background: #FFF8DC;
+            color: #323300;
+            border: 1px solid #EAA924;
             padding: 6px 18px;
-            border-radius: 6px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             white-space: nowrap;
         }
-        .dl-list .dl-btn:hover { background: #ffec80; }
+        .dl-list .dl-btn:hover { background: #FFF3CD; border-color: #d4941f; }
         .dl-actions { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
         .loading { text-align: center; padding: 40px; color: #666; }
     
         .dl-list-wrapper {
             background: #FFFDF5;
-            border-radius: 16px;
+            border-radius: 24px;
             padding: 16px 12px;
             margin-top: 16px;
             min-height: 200px;
@@ -214,7 +211,7 @@
                             if (r.files && r.files.length > 0) {
                                 r.files.forEach(f => { btns += '<a href="' + f.url + '" class="dl-btn" target="_blank">' + (f.type || 'Download') + '</a> '; });
                             }
-                            html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-info"><h4>' + r.title + '</h4><p>' + (r.description || '') + '</p></div><div class="dl-actions">' + btns + '</div></li>';
+                            html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-actions">' + btns + '</div></li>';
                         });
                     });
                     html += '</ul>';

@@ -65,10 +65,7 @@
             transition: box-shadow 0.2s;
         }
         .dl-list li:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .dl-list .dl-info { flex: 1; }
-        .dl-list .dl-info h4 { margin: 0 0 4px; font-size: 0.8rem; color: #323300; background: #FFF8DC; border: 1px solid #EAA924; padding: 6px 16px; border-radius: 50px; display: inline-block; font-weight: 600; }
-        .dl-list .dl-info p { margin: 0; font-size: 0.8rem; color: #666; }
-        .dl-list .dl-icon { font-size: 0.8rem; margin-right: 24px; font-weight: 700; }
+        .dl-list .dl-icon { font-size: 0.8rem; margin-right: 24px; font-weight: 700; min-width: 72px; }
         .dl-list .dl-btn {
             background: #FFF8DC;
             color: #323300;
@@ -201,7 +198,7 @@
                         if (r.files && r.files.length > 0) {
                             r.files.forEach(f => { btns += '<a href="' + f.url + '" class="dl-btn" target="_blank">' + (f.type || 'Download') + '</a> '; });
                         }
-                        html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-info"><h4>' + r.title + '</h4><p>' + (r.description || '') + '</p></div><div class="dl-actions">' + btns + '</div></li>';
+                        html += '<li><span class="dl-icon">' + item.icon + '</span><div class="dl-actions">' + btns + '</div></li>';
                     });
                 });
                     html += '</ul>';
