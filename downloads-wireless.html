@@ -153,15 +153,13 @@
             return '';
         }
 
-        const API_PROXY = 'https://oauth.sensorbeeshub.com/api/github';
-
-        fetch(`${API_PROXY}?url=${encodeURIComponent(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`)}`)
+        fetch(`https://api.github.com/repos/${REPO}/contents/${FOLDER}?ref=${BRANCH}`, { headers: { 'Accept': 'application/vnd.github.v3+json' } })
             .then(r => r.json())
             .then(files => {
                 if (!Array.isArray(files)) throw new Error('No files');
                 const mdFiles = files.filter(f => f.name.endsWith('.md'));
                 return Promise.all(mdFiles.map(f =>
-                    fetch(`${API_PROXY}?url=${encodeURIComponent(f.download_url)}`).then(r => r.text()).then(text => {
+                    fetch(f.download_url).then(r => r.text()).then(text => {
                         const fm = parseFrontmatter(text);
                         return {
                             title: fm.title || f.name.replace('.md', ''),
