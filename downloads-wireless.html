@@ -138,9 +138,18 @@
 
         function categorize(item) {
             const title = (item.title || '').toLowerCase();
+            const catField = (item.category || '').toLowerCase();
+            // Check frontmatter category direct match
+            if (catField === 'wireless end nodes') return 'LoRaWAN End Nodes';
             for (const [cat, keywords] of Object.entries(CATEGORIES)) {
                 for (const kw of keywords) {
                     if (title.includes(kw.toLowerCase())) return cat;
+                }
+            }
+            // Fallback: check frontmatter category against keywords
+            for (const [cat, keywords] of Object.entries(CATEGORIES)) {
+                for (const kw of keywords) {
+                    if (catField.includes(kw.toLowerCase())) return cat;
                 }
             }
             return '';
