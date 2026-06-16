@@ -1301,14 +1301,11 @@ body {
     white-space: nowrap;
     letter-spacing: 0.5px;
     line-height: 1.6;
-    box-shadow: 4px 4px 0 #EAA924 !important;
     margin-left: auto;
 }
 .nav-badge:hover {
     background: rgba(234,169,36,0.1) !important;
     color: #fff !important;
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 #EAA924 !important;
 }
 
 .contact-modal-overlay {
